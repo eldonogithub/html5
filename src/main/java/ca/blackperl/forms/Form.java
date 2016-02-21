@@ -16,7 +16,7 @@ public class Form extends ValidatorForm {
 	String date;
 	String website;
 	String message;
-	
+
 	public String getWebsite() {
 		return website;
 	}

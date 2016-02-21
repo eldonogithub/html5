@@ -14,28 +14,34 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 --%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
-
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <html:html>
 <head>
-<title><bean:message key="welcome.title"/></title>
-<html:base/>
+<title><bean:message key="welcome.title" /></title>
+<html:base />
 </head>
 <body bgcolor="white">
 
-<logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
-  <font color="red">
-    ERROR:  Application resources not loaded -- check servlet container
-    logs for error messages.
-  </font>
-</logic:notPresent>
+    <logic:notPresent name="org.apache.struts.action.MESSAGE"
+        scope="application">
+        <font color="red"> ERROR: Application resources not
+            loaded -- check servlet container logs for error messages. </font>
+    </logic:notPresent>
 
-<h3><bean:message key="welcome.heading"/></h3>
-<p><bean:message key="welcome.message"/></p>
+    <h3>
+        <bean:message key="welcome.heading" />
+    </h3>
+    <p>
+        <bean:message key="welcome.message" />
+    </p>
 
-<html:link action="/Input.do">Input Form</html:link>
-<html:link action="/form/load.do">Load Token Form</html:link>
+    <ul>
+        <li><html:link action="/Input.do">Input Form</html:link></li>
+        <li><html:link action="/form/load.do">Load Token Form</html:link></li>
+        <li><html:link page="/pages/testdb.jsp">Test Database</html:link></li>
+        <li><html:link page="/pages/classpath.jsp">Class Path</html:link></li>
+    </ul>
 </body>
 </html:html>

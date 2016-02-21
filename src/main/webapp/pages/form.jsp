@@ -7,7 +7,7 @@
 <c:url var="angularUrl" value="/js/angular-1.5.0.js"></c:url>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Form</title>
@@ -19,9 +19,6 @@
 <script>
 	$(function() {
 		$("#datepicker").datepicker();
-	});
-	$(function() {
-		
 	});
 </script>
 <link rel="stylesheet" href='<c:out value="${cssUrl }"/>'>
@@ -72,6 +69,44 @@
                 </html:form>
             </div>
             <div class="col3"></div>
+        </section>
+        <section>
+            <div id="container">
+                <p>justify-content: flex-start</p>
+                <div id="flex-start">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <p>justify-content: flex-end</p>
+                <div id="flex-end">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <p>justify-content: center</p>
+                <div id="center">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <p>justify-content: space-between</p>
+                <div id="space-between">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <p>justify-content: space-around</p>
+                <div id="space-around">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </section>
         <footer class="footer"></footer>
     </div>
