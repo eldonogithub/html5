@@ -52,11 +52,11 @@ public class Html5InputTag extends BaseFieldTag implements DynamicAttributes {
 
 	@Override
 	public void setDynamicAttribute(String ns, String name, Object value) throws JspException {
-		if ( "type".equals(name)) {
-			type = name;
-		}
-		else {
-			attributes.put(name, value);
-		}
+		attributes.put(name, value);
 	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 }

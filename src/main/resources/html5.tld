@@ -13,10 +13,16 @@
 		<tag-class>ca.blackperl.tags.Html5InputTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>placeholder</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
-			
+
 		</attribute>
 		<attribute>
 			<description>

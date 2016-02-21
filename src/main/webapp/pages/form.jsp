@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
+<c:url var="cssUrl" value="/css/main.css"></c:url>
+<c:url var="angularUrl" value="/js/angular-1.5.0.js"></c:url>
 
 <!DOCTYPE html>
 <html>
@@ -13,12 +15,15 @@
     href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src='<c:out value="${angularUrl }"/>'></script>
 <script>
 	$(function() {
 		$("#datepicker").datepicker();
 	});
+	$(function() {
+		
+	});
 </script>
-<c:url var="cssUrl" value="/css/main.css"></c:url>
 <link rel="stylesheet" href='<c:out value="${cssUrl }"/>'>
 </head>
 <body>
