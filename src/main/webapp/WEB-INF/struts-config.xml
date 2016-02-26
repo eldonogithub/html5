@@ -37,11 +37,17 @@
 			type="org.apache.struts.action.DynaActionForm"> <form-property name="username" 
 			type="java.lang.String"/> <form-property name="password" type="java.lang.String"/> 
 			</form-bean> end sample -->
+
 		<form-bean name="form" type="ca.blackperl.forms.Form">
 			<display-name>Form Display Name</display-name>
 			<description>This is a form</description>
-			
 		</form-bean>
+
+		<form-bean name="derbyForm" type="ca.blackperl.forms.DerbyForm">
+			<display-name>Derby Form</display-name>
+			<description>A form for Derby</description>
+		</form-bean>
+		
 	</form-beans>
 
 
@@ -82,6 +88,10 @@
 
 		<action name="form" path="/form/load" type="ca.blackperl.actions.FormLoadAction"
 			input="/pages/form.jsp">
+		</action>
+		
+		<action name="derbyForm" path="/derby/load" type="ca.blackperl.actions.DerbyLoadAction"
+			input="/pages/derbyForm.jsp">
 		</action>
 		
 		<!-- sample input and input submit actions <action path="/Input" type="org.apache.struts.actions.ForwardAction" 

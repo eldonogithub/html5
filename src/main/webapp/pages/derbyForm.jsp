@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Form</title>
+<title>Derby Form</title>
 <link rel="stylesheet"
     href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -67,6 +67,32 @@
                                 value="submit">Submit Form</button></li>
                     </ul>
                 </html:form>
+            </div>
+            <div class="col3"></div>
+        </section>
+        <section class="content">
+            <div class="col1"></div>
+            <div class="col2">
+                <table id="derbyTable">
+                    <thead>
+                        <tr>
+                            <c:forEach var="col"
+                                items="${derbyForm.results.header }">
+                                <th><c:out value="${col }" /></th>
+                            </c:forEach>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <c:forEach var="row"
+                                items="${derbyForm.results.rows }">
+                                <c:forEach var="col" items="${row }">
+                                    <td><c:out value="${col }" /></td>
+                                </c:forEach>
+                            </c:forEach>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="col3"></div>
         </section>

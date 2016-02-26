@@ -5,14 +5,14 @@
 	<artifactId>html5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 	<properties>
 		<struts.version>1.3.10</struts.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<togglz.version>2.1.0.Final</togglz.version>
 		<hibernate.version>[5.1,)</hibernate.version>
 	</properties>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -129,6 +129,11 @@
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.directwebremoting</groupId>
+			<artifactId>dwr</artifactId>
+			<version>3.0.1-RELEASE</version>
 		</dependency>
 	</dependencies>
 </project>
