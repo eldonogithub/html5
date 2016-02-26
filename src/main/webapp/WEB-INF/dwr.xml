@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
+    "http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+	<allow>
+		<create creator="new" javascript="AjaxBean">
+			<param name="class" value="ca.blackperl.dwr.bean.AjaxBean" />
+			
+		</create>
+		<convert match="ca.blackperl.dwr.bean.*" converter="bean"></convert>
+		<convert match="ca.blackperl.dwr.enums.*" converter="enum"></convert>
+	</allow>
+</dwr>

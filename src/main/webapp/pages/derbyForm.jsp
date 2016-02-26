@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
 <c:url var="cssUrl" value="/css/main.css"></c:url>
 <c:url var="angularUrl" value="/js/angular-1.5.0.js"></c:url>
-
+<c:url var="baseUrl" value="/" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +25,9 @@
 		$("#datepicker").datepicker();
 	});
 </script>
+<script type='text/javascript' src='${baseUrl }/dwr/engine.js'></script>
+<script type='text/javascript' src='${baseUrl }/dwr/interface/AjaxBean.js'></script>
+<script type='text/javascript' src='${baseUrl }/dwr/util.js'></script>
 <link rel="stylesheet" href='<c:out value="${cssUrl }"/>'>
 </head>
 <body>
@@ -83,14 +90,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <c:forEach var="row"
-                                items="${derbyForm.results.rows }">
+                        <c:forEach var="row"
+                            items="${derbyForm.results.rows }">
+                            <tr>
                                 <c:forEach var="col" items="${row }">
                                     <td><c:out value="${col }" /></td>
                                 </c:forEach>
-                            </c:forEach>
-                        </tr>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

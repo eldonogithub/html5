@@ -22,7 +22,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
-import ca.blackperl.forms.DatabaseResults;
+import ca.blackperl.dwr.bean.DatabaseResults;
 import ca.blackperl.forms.DerbyForm;
 
 public class DerbyLoadAction extends Action {
@@ -33,6 +33,7 @@ public class DerbyLoadAction extends Action {
 		ActionErrors errors = new ActionErrors();
 		
 		DerbyForm derbyForm = (DerbyForm) form;
+
 		// Obtain our environment naming context
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");
@@ -42,32 +43,7 @@ public class DerbyLoadAction extends Action {
 
 		// Allocate and use a connection from the pool
 		try (Connection conn = ds.getConnection()) {
-			PreparedStatement testst = conn.prepareStatement("select * from testdata");
-
-			ResultSet rs = testst.executeQuery();
-			DatabaseResults results = new DatabaseResults();
-			List<List<String>> datarows = new ArrayList<List<String>>();
-			List<String> header = new ArrayList<String>();
-			if (rs != null) {
-				while (rs.next()) {
-					ResultSetMetaData metaData = rs.getMetaData();
-					int columnCount = metaData.getColumnCount();
-					for ( int col = 1; col <= columnCount; col++) {
-						header.add(metaData.getColumnLabel(col));
-					}
-					List<String> row = new ArrayList<String>();
-					for (int col = 1; col <= columnCount; col++) {
-						row.add(rs.getString(col));
-					}
-					datarows.add(row);
-				}
-			}
-			
-			results.setHeader(header);
-			results.setRows(datarows);
-			derbyForm.setResults(results);
-			
-			testst.close();
+			queryDatabase(derbyForm, conn);
 			return mapping.getInputForward();
 		}
 		catch( SQLException e) {
@@ -76,5 +52,35 @@ public class DerbyLoadAction extends Action {
 			return mapping.getInputForward();
 		}
 
+	}
+
+	private void queryDatabase(DerbyForm derbyForm, Connection conn) throws SQLException {
+		DatabaseResults results = new DatabaseResults();
+		PreparedStatement testst = conn.prepareStatement("select * from testdata");
+
+		ResultSet rs = testst.executeQuery();
+		List<List<String>> datarows = new ArrayList<List<String>>();
+		List<String> header = new ArrayList<String>();
+		if (rs != null) {
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			for ( int col = 1; col <= columnCount; col++) {
+				header.add(metaData.getColumnLabel(col));
+			}
+			while (rs.next()) {
+				List<String> row = new ArrayList<String>();
+				for (int col = 1; col <= columnCount; col++) {
+					row.add(rs.getString(col));
+				}
+				datarows.add(row);
+			}
+		}
+		
+		results.setHeader(header);
+		results.setRows(datarows);
+		
+		derbyForm.setResults(results);
+		
+		testst.close();
 	}
 }

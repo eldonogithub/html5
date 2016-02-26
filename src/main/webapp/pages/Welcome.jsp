@@ -44,6 +44,7 @@
         <li><html:link page="/pages/classpath.jsp">Class Path</html:link></li>
         <li><html:link page="/pages/flexbox.jsp">Flex Box</html:link></li>
         <li><html:link page="/derby/load.do">Derby Form</html:link></li>
+        <li><html:link page="/dwr">Direct Web Remoting</html:link></li>
     </ul>
 </body>
 </html:html>

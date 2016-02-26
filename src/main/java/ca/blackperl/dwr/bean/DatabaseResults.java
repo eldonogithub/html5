@@ -1,4 +1,4 @@
-package ca.blackperl.forms;
+package ca.blackperl.dwr.bean;
 
 import java.util.List;
 
