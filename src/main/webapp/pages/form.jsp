@@ -1,20 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
 <c:url var="cssUrl" value="/css/main.css"></c:url>
 <c:url var="angularUrl" value="/js/angular-1.5.0.js"></c:url>
+<c:url var="baseUrl" value="/" />
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Form</title>
-<link rel="stylesheet"
-    href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="${baseUrl }/js/jquery-ui.css">
+<script src="${baseUrl }/js/jquery-1.12.1.js"></script>
+<script src="${baseUrl }/js/jquery-ui.js"></script>
 <script type="text/javascript" src='<c:out value="${angularUrl }"/>'></script>
 <script>
 	$(function() {
@@ -36,6 +38,14 @@
         <section class="content">
             <div class="col1"></div>
             <div class="col2">
+                <logic:notPresent
+                    name="org.apache.struts.action.MESSAGE"
+                    scope="application">
+                    <font color="red"> ERROR: Application
+                        resources not loaded -- check servlet container
+                        logs for error messages. </font>
+                </logic:notPresent>
+
                 <html:errors />
                 <html:form action="/form/process.do"
                     styleClass="contact_form">

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="cssUrl" value="/css/flexbox.css"></c:url>
 <!DOCTYPE html>
@@ -10,6 +13,15 @@
 <link rel="stylesheet" href='<c:out value="${cssUrl }"/>'>
 </head>
 <body>
+    <logic:notPresent name="org.apache.struts.action.MESSAGE"
+        scope="application">
+        <section id="container">
+            <font color="red"> ERROR: Application resources not
+                loaded -- check servlet container logs for error
+                messages. </font>
+        </section>
+    </logic:notPresent>
+
     <section>
         <div id="container">
             <p>justify-content: flex-start</p>

@@ -19,4 +19,20 @@
                driverClassName="org.apache.derby.jdbc.ClientDriver"
                url="jdbc:derby://localhost:1527/testdata"/>
 	
+	  <Resource name="jdbc/jdbcDemoDB" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               driverClassName="org.apache.derby.jdbc.ClientDriver"
+               url="jdbc:derby://localhost:1527/jdbcDemoDB"/>
+	
+	<!-- org.apache.derby.jdbc.EmbeddedDriver -->
+	  <Resource name="jdbc/firstdb" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               driverClassName="org.apache.derby.jdbc.ClientDriver"
+               url="jdbc:derby://localhost:1527/firstdb"/>
+	
+	  <Resource name="jdbc/seconddb" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               driverClassName="org.apache.derby.jdbc.ClientDriver"
+               url="jdbc:derby://localhost:1527/seconddb"/>
+	
 </Context>

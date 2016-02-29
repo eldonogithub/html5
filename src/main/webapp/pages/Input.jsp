@@ -21,6 +21,13 @@ fieldset {
 <html:javascript formName="inputForm2" staticJavascript="false" />
 </head>
 <body>
+
+    <logic:notPresent name="org.apache.struts.action.MESSAGE"
+        scope="application">
+        <font color="red"> ERROR: Application resources not
+            loaded -- check servlet container logs for error messages. </font>
+    </logic:notPresent>
+
 	<html:errors />
 	<html:form action="/Input.do"
 		onsubmit="return validateInputForm(this);">
