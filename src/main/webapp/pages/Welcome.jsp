@@ -47,6 +47,7 @@
         <li><html:link page="/dwr">Direct Web Remoting</html:link></li>
         <li><html:link page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
         <li><html:link page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
+        <li><html:link page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
     </ul>
 </body>
 </html:html>

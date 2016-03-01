@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Simple Input Form</title>
 <style type="text/css">
 fieldset {
 	border: none;
@@ -21,7 +21,6 @@ fieldset {
 <html:javascript formName="inputForm2" staticJavascript="false" />
 </head>
 <body>
-
     <logic:notPresent name="org.apache.struts.action.MESSAGE"
         scope="application">
         <font color="red"> ERROR: Application resources not

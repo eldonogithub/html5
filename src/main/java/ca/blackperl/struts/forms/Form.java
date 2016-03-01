@@ -1,13 +1,11 @@
-package ca.blackperl.forms;
+package ca.blackperl.struts.forms;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.ValidatorForm;
 
-import ca.blackperl.dwr.bean.DatabaseResults;
-
-public class DerbyForm extends ValidatorForm {
+public class Form extends ValidatorForm {
 
 	/**
 	 * 
@@ -18,19 +16,9 @@ public class DerbyForm extends ValidatorForm {
 	String date;
 	String website;
 	String message;
-	
-	DatabaseResults results;
 
 	public String getWebsite() {
 		return website;
-	}
-
-	public DatabaseResults getResults() {
-		return results;
-	}
-
-	public void setResults(DatabaseResults results) {
-		this.results = results;
 	}
 
 	public void setWebsite(String website) {
@@ -51,8 +39,7 @@ public class DerbyForm extends ValidatorForm {
 
 	@Override
 	public String toString() {
-		return "DerbyForm [inputText=" + inputText + ", emailAddress=" + emailAddress + ", date=" + date + ", website="
-				+ website + ", message=" + message + ", results=" + results + "]";
+		return "Form [inputText=" + inputText + ", emailAddress=" + emailAddress + ", date=" + date + "]";
 	}
 
 	public void setEmailAddress(String emailAddress) {

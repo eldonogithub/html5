@@ -6,9 +6,17 @@ public class AjaxResults {
 	Status status;
 	String message;
 	DatabaseResults results;
-	public void failue(String message) {
+	String debug;
+	public String getDebug() {
+		return debug;
+	}
+	public void setDebug(String debug) {
+		this.debug = debug;
+	}
+	public void failue(String message, String debug) {
 		this.status = Status.FAILURE;
 		this.message = message;
+		this.debug = debug;
 	}
 	public String getMessage() {
 		return message;
@@ -35,6 +43,7 @@ public class AjaxResults {
 	}
 	@Override
 	public String toString() {
-		return "AjaxResults [status=" + status + ", message=" + message + ", results=" + results + "]";
+		return "AjaxResults [status=" + status + ", message=" + message + ", results=" + results + ", debug=" + debug
+				+ "]";
 	}
 }

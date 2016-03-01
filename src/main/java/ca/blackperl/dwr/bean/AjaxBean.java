@@ -23,15 +23,15 @@ public class AjaxBean {
 		AjaxResults ajaxResults = new AjaxResults();
 		
 		try {
-			DataSource ds = getDataSource("jdbcDemoDB");
+			DataSource ds = getDataSource("jdbcDemoDB"); //$NON-NLS-1$
 	
-			String string = "select * from wish_list";
+			String string = "select * from wish_list"; //$NON-NLS-1$
 			executeQuery(ajaxResults, ds, string );
 		} catch (NamingException e) {
-			ajaxResults.failue(e.getMessage());
+			ajaxResults.failue(Messages.getString("AjaxBean.datasource.unavailable"), e.getMessage()); //$NON-NLS-1$
 		}
 		catch (Exception e) {
-			ajaxResults.failue(e.getMessage());
+			ajaxResults.failue(Messages.getString("AjaxBean.database.query.failed"), e.getMessage()); //$NON-NLS-1$
 		}
 	
 		return ajaxResults;
@@ -42,15 +42,15 @@ public class AjaxBean {
 		AjaxResults ajaxResults = new AjaxResults();
 		
 		try {
-			DataSource ds = getDataSource("TestDB");
+			DataSource ds = getDataSource("TestDB"); //$NON-NLS-1$
 
-			String string = "select * from testdata";
+			String string = "select * from testdata"; //$NON-NLS-1$
 			executeQuery(ajaxResults, ds, string);
 		} catch (NamingException e) {
-			ajaxResults.failue(e.getMessage());
+			ajaxResults.failue(Messages.getString("AjaxBean.datasource.unavailable"), e.getMessage()); //$NON-NLS-1$
 		}
 		catch (Exception e) {
-			ajaxResults.failue(e.getMessage());
+			ajaxResults.failue(Messages.getString("AjaxBean.database.query.failed"), e.getMessage()); //$NON-NLS-1$
 		}
 
 		return ajaxResults;
@@ -87,16 +87,16 @@ public class AjaxBean {
 			ajaxResults.success(results);
 		}
 		catch( SQLException e) {
-			ajaxResults.failue(e.getMessage());
+			ajaxResults.failue(Messages.getString("AjaxBean.database.query.failed"), e.getMessage()); //$NON-NLS-1$
 		}
 	}
 	
 	private DataSource getDataSource(String dataSource) throws NamingException {
 		// Obtain our environment naming context
 		Context initCtx = new InitialContext();
-		Context envCtx = (Context) initCtx.lookup("java:comp/env");
+		Context envCtx = (Context) initCtx.lookup("java:comp/env"); //$NON-NLS-1$
 		
-		DataSource ds = (DataSource) envCtx.lookup("jdbc/" + dataSource);
+		DataSource ds = (DataSource) envCtx.lookup("jdbc/" + dataSource); //$NON-NLS-1$
 		if ( ds instanceof ClientDataSource  ) {
 			
 		}

@@ -29,8 +29,8 @@
 	<!-- ================================================ Form Bean Definitions -->
 
 	<form-beans>
-		<form-bean name="inputForm" type="ca.blackperl.InputForm" />
-		<form-bean name="inputForm2" type="ca.blackperl.InputForm2" />
+		<form-bean name="inputForm" type="ca.blackperl.struts.forms.InputForm" />
+		<form-bean name="inputForm2" type="ca.blackperl.struts.forms.InputForm2" />
 		<!-- sample form bean descriptor for an ActionForm end sample -->
 
 		<!-- sample form bean descriptor for a DynaActionForm <form-bean name="logonForm" 
@@ -38,12 +38,12 @@
 			type="java.lang.String"/> <form-property name="password" type="java.lang.String"/> 
 			</form-bean> end sample -->
 
-		<form-bean name="form" type="ca.blackperl.forms.Form">
+		<form-bean name="form" type="ca.blackperl.struts.forms.Form">
 			<display-name>Form Display Name</display-name>
 			<description>This is a form</description>
 		</form-bean>
 
-		<form-bean name="derbyForm" type="ca.blackperl.forms.DerbyForm">
+		<form-bean name="derbyForm" type="ca.blackperl.struts.forms.DerbyForm">
 			<display-name>Derby Form</display-name>
 			<description>A form for Derby</description>
 		</form-bean>
@@ -75,22 +75,22 @@
 		<!-- Forwards to Welcome.jsp -->
 		<action path="/Welcome" forward="/pages/Welcome.jsp" />
 
-		<action path="/Input" type="ca.blackperl.actions.Input" name="inputForm"
+		<action path="/Input" type="ca.blackperl.struts.actions.Input" name="inputForm"
 			input="/pages/Input.jsp" />
 
-		<action path="/Input2" type="ca.blackperl.actions.Input2" name="inputForm2"
+		<action path="/Input2" type="ca.blackperl.struts.actions.Input2" name="inputForm2"
 			input="/pages/Input.jsp" />
 
-		<action name="form" path="/form/process" type="ca.blackperl.actions.FormAction"
+		<action name="form" path="/form/process" type="ca.blackperl.struts.actions.FormAction"
 			input="/pages/form.jsp">
 			<forward name="success" path="/pages/done.jsp" />
 		</action>
 
-		<action name="form" path="/form/load" type="ca.blackperl.actions.FormLoadAction"
+		<action name="form" path="/form/load" type="ca.blackperl.struts.actions.FormLoadAction"
 			input="/pages/form.jsp">
 		</action>
 		
-		<action name="derbyForm" path="/derby/load" type="ca.blackperl.actions.DerbyLoadAction"
+		<action name="derbyForm" path="/derby/load" type="ca.blackperl.struts.actions.DerbyLoadAction"
 			input="/pages/derbyForm.jsp">
 		</action>
 		

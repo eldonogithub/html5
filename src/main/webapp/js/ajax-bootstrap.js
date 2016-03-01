@@ -1,9 +1,23 @@
 // jQuery - Invoked when the document is ready
 $(function() {
-	// Create a simple table
+	$("#dialog").dialog({
+		autoOpen : false,
+		buttons : [ {
+			text : "OK",
+			click : function() {
+				$(this).dialog("close");
+			}
+		} ]
+	});
 	AjaxBean.getTestData({
 		callback : function(data) {
 			if (data.status == 'FAILURE') {
+				$("#dialog .ui-dialog-content .message").empty().append(
+						data.message);
+				$("#dialog .ui-dialog-content .debug").empty().append(
+						data.debug);
+				$("#dialog").dialog("option", "title", 'Error Occured');
+				$("#dialog").dialog("open");
 			} else if (data.status == 'SUCCESS') {
 				var html = "<table class='table'><thead><tr>";
 				var hdr = data.results.header;

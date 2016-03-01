@@ -89,7 +89,7 @@ body {
 	background-color: red;
 }
 
-@media ( min-width : 800px) {
+@media ( min-device-width : 800px) {
 	.header {
 		padding: 1em 3%;
 	}
@@ -109,7 +109,6 @@ body {
 		float: left;
 		background-color: #eee;
 		margin-bottom: 1em;
-		margin-left: 3%;
 	}
 	.content {
 		overflow: hidden;
@@ -126,6 +125,9 @@ body {
 	}
 	.footer {
 		padding: 1em 3%;
+	}
+	.col1, .col2, .col3 {
+		margin-left: 3%;
 	}
 }
 

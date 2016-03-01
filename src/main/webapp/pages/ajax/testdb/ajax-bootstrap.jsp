@@ -19,13 +19,17 @@
 <link rel="stylesheet"
     href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="//yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
 <script src="${baseUrl }/bootstrap/js/bootstrap.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="${baseUrl }/js/ajax-bootstrap.js"></script>
-<link rel="stylesheet" href="${baseUrl }/bootstrap/css/bootstrap.css">sp
 </head>
 <body>
+    <div id="dialog" class="ui-dialog">
+        <div class="ui-dialog-content">
+            <div class="message"></div>
+            <div class="debug"></div>
+        </div>
+    </div>
     <h1>Test Data database</h1>
     <div id="results"></div>
 

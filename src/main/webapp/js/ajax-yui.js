@@ -52,8 +52,12 @@ YUI({ skin: 'night' }).use('panel','datasource', 'datatable', 'dataschema', func
 	AjaxBean.getTestData({
 		callback : function(data) {
 			if ( data.status == 'FAILURE' ) {
+				console.error('Ajax failed: ' + data.debug)
 				// set the content you want in the message
-			    Y.one('#dialog .message').setHTML(data.message);
+				
+				dialog.setStdModContent('header', 'Error Occured', 'replace');
+				dialog.setStdModContent('body', data.message, 'replace');
+				dialog.setStdModContent('footer', data.debug, 'replace');
 			    dialog.show();
 			}
 			else if (data.status == 'SUCCESS') {

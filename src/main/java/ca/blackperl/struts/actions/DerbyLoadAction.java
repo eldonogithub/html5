@@ -1,4 +1,4 @@
-package ca.blackperl.actions;
+package ca.blackperl.struts.actions;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
 import ca.blackperl.dwr.bean.DatabaseResults;
-import ca.blackperl.forms.DerbyForm;
+import ca.blackperl.struts.forms.DerbyForm;
 
 public class DerbyLoadAction extends Action {
 

@@ -1,4 +1,4 @@
-package ca.blackperl.actions;
+package ca.blackperl.struts.actions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
