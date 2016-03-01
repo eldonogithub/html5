@@ -83,7 +83,7 @@
                                 "http://someaddress.com"</span></li>
                         <li><label for="message">Message:</label> <textarea
                                 name="message" cols="40" rows="6"></textarea></li>
-                        <li><button type="submit" class="submit"
+                        <li id="button"><button type="submit" class="submit"
                                 value="submit">Submit Form</button></li>
                     </ul>
                 </html:form>

@@ -48,6 +48,11 @@
 			<description>A form for Derby</description>
 		</form-bean>
 		
+		<form-bean name="airlinesForm" type="ca.blackperl.struts.forms.AirlinesForm">
+			<display-name>Airlines Form</display-name>
+			<description>A form for Airlines</description>
+		</form-bean>
+		
 	</form-beans>
 
 
@@ -94,11 +99,14 @@
 			input="/pages/derbyForm.jsp">
 		</action>
 		
-		<!-- sample input and input submit actions <action path="/Input" type="org.apache.struts.actions.ForwardAction" 
-			parameter="/pages/Input.jsp"/> <action path="/InputSubmit" type="app.InputAction" 
-			name="inputForm" scope="request" validate="true" input="/pages/Input.jsp"/> 
-			<action path="/edit*" type="app.Edit{1}Action" name="inputForm" scope="request" 
-			validate="true" input="/pages/Edit{1}.jsp"/> end samples -->
+		<action name="airlinesForm" path="/firstdb/load" type="ca.blackperl.struts.actions.AirlinesLoadAction"
+			input="/pages/firedb/airlines.jsp">
+		</action>
+		
+		<action name="airlinesForm" path="/firstdb/update" type="ca.blackperl.struts.actions.AirlinesUpdateAction"
+			input="/pages/firedb/airlines.jsp">
+		</action>
+		
 	</action-mappings>
 
 
