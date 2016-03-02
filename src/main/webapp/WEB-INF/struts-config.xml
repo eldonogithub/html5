@@ -47,12 +47,17 @@
 			<display-name>Derby Form</display-name>
 			<description>A form for Derby</description>
 		</form-bean>
-		
+
 		<form-bean name="airlinesForm" type="ca.blackperl.struts.forms.AirlinesForm">
 			<display-name>Airlines Form</display-name>
 			<description>A form for Airlines</description>
 		</form-bean>
-		
+
+		<form-bean name="eventForm" type="ca.blackperl.struts.forms.EventForm">
+			<display-name>Airlines Form</display-name>
+			<description>A form for Airlines</description>
+		</form-bean>
+
 	</form-beans>
 
 
@@ -80,33 +85,39 @@
 		<!-- Forwards to Welcome.jsp -->
 		<action path="/Welcome" forward="/pages/Welcome.jsp" />
 
-		<action path="/Input" type="ca.blackperl.struts.actions.Input" name="inputForm"
-			input="/pages/Input.jsp" />
+		<action path="/Input" type="ca.blackperl.struts.actions.Input"
+			name="inputForm" input="/pages/Input.jsp" />
 
-		<action path="/Input2" type="ca.blackperl.struts.actions.Input2" name="inputForm2"
-			input="/pages/Input.jsp" />
+		<action path="/Input2" type="ca.blackperl.struts.actions.Input2"
+			name="inputForm2" input="/pages/Input.jsp" />
 
-		<action name="form" path="/form/process" type="ca.blackperl.struts.actions.FormAction"
-			input="/pages/form.jsp">
+		<action name="form" path="/form/process"
+			type="ca.blackperl.struts.actions.FormAction" input="/pages/form.jsp">
 			<forward name="success" path="/pages/done.jsp" />
 		</action>
 
-		<action name="form" path="/form/load" type="ca.blackperl.struts.actions.FormLoadAction"
-			input="/pages/form.jsp">
+		<action name="form" path="/form/load"
+			type="ca.blackperl.struts.actions.FormLoadAction" input="/pages/form.jsp">
 		</action>
-		
-		<action name="derbyForm" path="/derby/load" type="ca.blackperl.struts.actions.DerbyLoadAction"
-			input="/pages/derbyForm.jsp">
+
+		<action name="derbyForm" path="/derby/load"
+			type="ca.blackperl.struts.actions.DerbyLoadAction" input="/pages/derbyForm.jsp">
 		</action>
-		
-		<action name="airlinesForm" path="/firstdb/load" type="ca.blackperl.struts.actions.AirlinesLoadAction"
-			input="/pages/firedb/airlines.jsp">
+
+		<action name="airlinesForm" path="/firstdb/load"
+			type="ca.blackperl.struts.actions.AirlinesLoadAction" input="/pages/firedb/airlines.jsp">
 		</action>
-		
-		<action name="airlinesForm" path="/firstdb/update" type="ca.blackperl.struts.actions.AirlinesUpdateAction"
-			input="/pages/firedb/airlines.jsp">
+
+		<action name="airlinesForm" path="/firstdb/update"
+			type="ca.blackperl.struts.actions.AirlinesUpdateAction" input="/pages/firedb/airlines.jsp">
 		</action>
-		
+
+		<action name="eventForm" path="/hibernate/store" cancellable="true"
+			type="ca.blackperl.struts.actions.hibernate.EventManager" parameter="method"
+			input="/pages/hibernate/store.jsp">
+			<forward name="success" path="/pages/hibernate/store.jsp"></forward>
+		</action>
+
 	</action-mappings>
 
 

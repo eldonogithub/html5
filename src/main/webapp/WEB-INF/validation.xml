@@ -26,6 +26,9 @@
 	</global>
 
 	<formset>
+		<form name="eventForm">
+		</form>
+		
 		<form name="inputForm">
 			<field property="input" depends="required,minlength,maxlength">
 				<arg key="inputForm.input" position="0" />
