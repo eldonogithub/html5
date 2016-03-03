@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Manager</title>
 </head>
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"
@@ -24,20 +24,18 @@
     <html:link page="/hibernate/store.do?method=load">Event Store</html:link>
     <html:link page="/">Home</html:link>
 
-    <html:form action="/hibernate/store.do">
+    <html:form action="/hibernate/manager.do">
         <fieldset>
             <legend>Buttons trigger hibernate to perform
                 actions</legend>
-            <html:text property="person.firstName"></html:text>
-            <html:text property="person.lastName"></html:text>
-            <html:text property="person.age"></html:text>
+            <html:text property="personId"></html:text>
+            <html:text property="eventId"></html:text>
             <html:submit property="method" value="store"></html:submit>
-            <html:submit property="method" value="list"></html:submit>
             <html:cancel></html:cancel>
         </fieldset>
     </html:form>
 
-    <c:if test="${not empty eventForm.list }">
+    <c:if test="${not empty managerForm.events }">
         <table id="events">
             <thead>
                 <tr>
@@ -47,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="item" items="eventForm.events">
+                <c:forEach var="item" items="managerForm.events">
                     <tr>
                         <td>${item.id }</td>
                         <td>${item.title }</td>

@@ -54,8 +54,18 @@
 		</form-bean>
 
 		<form-bean name="eventForm" type="ca.blackperl.struts.forms.EventForm">
-			<display-name>Airlines Form</display-name>
-			<description>A form for Airlines</description>
+			<display-name>Event Form</display-name>
+			<description>A form for event</description>
+		</form-bean>
+
+		<form-bean name="personForm" type="ca.blackperl.struts.forms.PersonForm">
+			<display-name>Person Form</display-name>
+			<description>A form for person</description>
+		</form-bean>
+
+		<form-bean name="managerForm" type="ca.blackperl.struts.forms.ManagerForm">
+			<display-name>Manager Form</display-name>
+			<description>Manager form</description>
 		</form-bean>
 
 	</form-beans>
@@ -112,10 +122,21 @@
 			type="ca.blackperl.struts.actions.AirlinesUpdateAction" input="/pages/firedb/airlines.jsp">
 		</action>
 
-		<action name="eventForm" path="/hibernate/store" cancellable="true"
-			type="ca.blackperl.struts.actions.hibernate.EventManager" parameter="method"
-			input="/pages/hibernate/store.jsp">
-			<forward name="success" path="/pages/hibernate/store.jsp"></forward>
+		<action name="eventForm" path="/hibernate/event" cancellable="true"
+			type="ca.blackperl.struts.actions.hibernate.EventAction"
+			input="/pages/hibernate/event.jsp">
+			<forward name="success" path="/pages/hibernate/event.jsp"></forward>
+		</action>
+
+		<action name="personForm" path="/hibernate/person" cancellable="true"
+			type="ca.blackperl.struts.actions.hibernate.PersonAction" input="/pages/hibernate/person.jsp">
+			<forward name="success" path="/pages/hibernate/person.jsp"></forward>
+		</action>
+
+		<action name="managerForm" path="/hibernate/manager"
+			cancellable="true" type="ca.blackperl.struts.actions.hibernate.ManagerAction"
+			parameter="method" input="/pages/hibernate/manager.jsp">
+			<forward name="success" path="/pages/hibernate/manager.jsp"></forward>
 		</action>
 
 	</action-mappings>

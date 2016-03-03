@@ -48,7 +48,9 @@
         <li><html:link page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
         <li><html:link page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
         <li><html:link page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
-        <li><html:link page="/hibernate/store.do?method=load">Event Store</html:link></li>
+        <li><html:link page="/hibernate/person.do">Person Form</html:link></li>
+        <li><html:link page="/hibernate/event.do">Event Form</html:link></li>
+        <li><html:link page="/hibernate/manager.do?method=list">Manager Form</html:link></li>
     </ul>
 </body>
 </html:html>

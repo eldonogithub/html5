@@ -1,5 +1,6 @@
 package ca.blackperl.struts.forms;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.struts.validator.ValidatorForm;
@@ -12,30 +13,23 @@ public class EventForm extends ValidatorForm {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Event event;
-	private Person person;
-	private List<Event> events;
 	
-	public Event getEvent() {
-		return event;
+	private String title;
+	private Date date;
+	public Date getDate() {
+		return date;
 	}
-	public void setEvent(Event event) {
-		this.event = event;
+	public String getTitle() {
+		return title;
 	}
-	public Person getPerson() {
-		return person;
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-	public List<Event> getEvents() {
-		return events;
-	}
-	public void setEvents(List<Event> events) {
-		this.events = events;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	@Override
 	public String toString() {
-		return "EventForm [event=" + event + ", person=" + person + ", events=" + events + "]";
+		return "EventForm [title=" + title + ", date=" + date + "]";
 	}
 }
