@@ -11,6 +11,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
 <title>jQuery UI Dialog - Modal message</title>
 <link rel="stylesheet"
     href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">

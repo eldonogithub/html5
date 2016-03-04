@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width">
 <title>Simple Input Form</title>
 <style type="text/css">
 fieldset {

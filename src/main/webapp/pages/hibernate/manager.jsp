@@ -6,11 +6,13 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
 <c:url var="baseUrl" value="/" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width">
 <title>Manager</title>
+<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
 </head>
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"
@@ -21,39 +23,79 @@
 
     <html:errors />
     <hr>
-    <html:link page="/hibernate/store.do?method=load">Event Store</html:link>
-    <html:link page="/">Home</html:link>
+    <nav class="nav-bar">
+        <ul class="nav">
+            <li><html:link page="/">Home</html:link></li>
+            <li><a href="#">menu 2</a></li>
+            <li><a href="#">menu 3</a></li>
+        </ul>
+    </nav>
 
-    <html:form action="/hibernate/manager.do">
-        <fieldset>
-            <legend>Buttons trigger hibernate to perform
-                actions</legend>
-            <html:text property="personId"></html:text>
-            <html:text property="eventId"></html:text>
-            <html:submit property="method" value="store"></html:submit>
-            <html:cancel></html:cancel>
-        </fieldset>
-    </html:form>
+    <section>
+        <html:form action="/hibernate/manager.do"
+            styleClass="contact_form">
+            <fieldset>
+                <legend>Buttons trigger hibernate to perform
+                    actions</legend>
+                <ul>
+                    <li><label for="personId"></label> <html:text
+                            property="personId"></html:text></li>
+                    <li><label for="eventId"></label> <html:text
+                            property="eventId"></html:text></li>
+                    <li><button type="submit" class="submit" name="method"
+                            value="addPersonToEvent">Add Person
+                            To Event</button></li>
+                </ul>
+            </fieldset>
+        </html:form>
+    </section>
 
-    <c:if test="${not empty managerForm.events }">
-        <table id="events">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="item" items="managerForm.events">
+    <section>
+        <c:if test="${not empty managerForm.events }">
+            <table id="events">
+                <thead>
                     <tr>
-                        <td>${item.id }</td>
-                        <td>${item.title }</td>
-                        <td>${item.date }</td>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Date</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </c:if>
+                </thead>
+                <tbody>
+                    <c:forEach var="item" items="${managerForm.events}">
+                        <tr>
+                            <td>${item.id }</td>
+                            <td>${item.title }</td>
+                            <td>${item.date }</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+    </section>
+    <section>
+        <c:if test="${not empty managerForm.persons }">
+            <table id="events">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="item"
+                        items="${managerForm.persons }">
+                        <tr>
+                            <td>${item.id }</td>
+                            <td>${item.firstname}</td>
+                            <td>${item.lastname}</td>
+                            <td>${item.age}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+    </section>
 </body>
 </html>

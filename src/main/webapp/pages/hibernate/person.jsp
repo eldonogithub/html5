@@ -10,7 +10,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width">
 <title>Create Person</title>
+<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
 </head>
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"
@@ -23,14 +25,24 @@
     <hr>
     <html:link page="/">Home</html:link>
 
-    <html:form action="/hibernate/person.do">
+    <html:form action="/hibernate/person.do" styleClass="contact_form">
         <fieldset>
             <legend>Create Person</legend>
-            <html:text property="firstname"></html:text>
-            <html:text property="lastname"></html:text>
-            <html:text property="age"></html:text>
-            <html:submit property="method" value="createPerson"></html:submit>
-            <html:cancel></html:cancel>
+            <ul>
+                <li>
+                    <h2>Create Person</h2> <span
+                    class="required_notification">* Denotes
+                        Required Field</span>
+                </li>
+                <li><label for="firstname">First Name:</label> <html:text
+                        property="firstname"></html:text></li>
+                <li><label for="lastname">Last Name:</label> <html:text
+                        property="lastname"></html:text></li>
+                <li><label for="age">Age:</label> <html:text
+                        property="age"></html:text></li>
+                <li><button name="submit" class="submit"
+                        value="createPerson">Create Person</button></li>
+            </ul>
         </fieldset>
     </html:form>
 </body>

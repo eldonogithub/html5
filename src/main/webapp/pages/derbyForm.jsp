@@ -12,6 +12,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width">
 <title>Derby Form</title>
 <link rel="stylesheet" href="${baseUrl }/js/jquery-ui.css">
 <script src="${baseUrl }/js/jquery-1.12.1.js"></script>

@@ -5,7 +5,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
-<c:url var="cssUrl" value="/css/main.css"></c:url>
 <c:url var="baseUrl" value="/" />
 
 <!DOCTYPE html>
@@ -33,7 +32,7 @@
 		});
 	});
 </script>
-<link rel="stylesheet" href='<c:out value="${cssUrl }"/>'>
+<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
 </head>
 <body>
     <div class="inputForm">

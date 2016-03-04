@@ -19,8 +19,10 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <html:html>
 <head>
+<meta name="viewport" content="width=device-width">
 <title><bean:message key="welcome.title" /></title>
 <html:base />
+<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
 </head>
 <body bgcolor="white">
 

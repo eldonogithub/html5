@@ -15,8 +15,6 @@ import javax.sql.DataSource;
 
 import org.apache.derby.jdbc.ClientDataSource;
 
-import ca.blackperl.dwr.enums.Status;
-
 public class AjaxBean {
 
 	public AjaxResults getWishList() {

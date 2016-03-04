@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width">
 <title>Test Database using javascript</title>
 <script type='text/javascript' src='${baseUrl }/dwr/engine.js'></script>
 <script type='text/javascript'

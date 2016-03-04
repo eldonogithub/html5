@@ -1,8 +1,6 @@
 package ca.blackperl.struts.actions.hibernate;
 
-import java.io.Serializable;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +21,6 @@ import org.hibernate.Session;
 import ca.blackperl.hibernate.Event;
 import ca.blackperl.hibernate.HibernateUtil;
 import ca.blackperl.hibernate.Person;
-import ca.blackperl.struts.forms.EventForm;
 import ca.blackperl.struts.forms.ManagerForm;
 
 public class ManagerAction extends DispatchAction {
@@ -37,7 +34,7 @@ public class ManagerAction extends DispatchAction {
 		
 		addPersonToEvent(errors, managerForm);
 
-		System.out.println("Added person " + managerForm.getPersonId() + " to event " + managerForm.getEventId() );
+		logger.debug("Added person " + managerForm.getPersonId() + " to event " + managerForm.getEventId() );
 
 		return mapping.findForward("success");
 	}
@@ -57,10 +54,31 @@ public class ManagerAction extends DispatchAction {
 		ActionErrors errors = new ActionErrors();
 
 		List<Event> events = listEvents(errors);
-
+		List<Person> persons = listPersons(errors);
+		
 		managerForm.setEvents(events);
+		managerForm.setPersons(persons);
 		
 		return mapping.findForward("success");
+	}
+
+	private List<Person> listPersons(ActionErrors errors) {
+		@SuppressWarnings("unchecked")
+		List<Person> result = null;
+		try {
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+			session.beginTransaction();
+
+			result = session.createQuery("from Person").list();
+
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			errors.add(ActionMessages.GLOBAL_MESSAGE,
+					new ActionMessage("Error processing request " + e.getMessage(), false));
+		}
+
+		return result;
 	}
 
 	public ActionForward load(ActionMapping mapping, ActionForm form, HttpServletRequest request,
