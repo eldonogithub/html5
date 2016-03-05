@@ -15,6 +15,7 @@
 		
 		
 		<convert match="ca.blackperl.dwr.bean.*" converter="bean"></convert>
+		<convert match="ca.blackperl.hibernate.*" converter="bean"></convert>
 		<convert match="ca.blackperl.dwr.enums.*" converter="enum"></convert>
 
 	</allow>

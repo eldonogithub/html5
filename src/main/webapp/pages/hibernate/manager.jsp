@@ -1,15 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
-<%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
-<c:url var="baseUrl" value="/" />
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/pages/head.jsp"></jsp:include>
+<%@ include file="/includes/head.jspf" %>
 <title>Manager</title>
 </head>
 <body>
@@ -21,7 +13,8 @@
 
     <hr>
     <div class="inputForm">
-        <jsp:include page="/pages/menu.jsp"></jsp:include>
+        <header class="header"></header>
+        <%@ include file="/includes/menu.jspf" %>
         <section class="content">
             <div class="col1"></div>
             <div class="col2">
@@ -106,6 +99,7 @@
             </div>
             <div class="col3"></div>
         </section>
+        <footer class="footer"></footer>
     </div>
 </body>
 </html>

@@ -1,13 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/pages/head.jsp"></jsp:include>
+<%@ include file="/includes/head.jspf" %>
 <title>Input</title>
 <style type="text/css">
 fieldset {
@@ -28,6 +22,8 @@ fieldset {
     </logic:notPresent>
 
 	<html:errors />
+    <header></header>
+    <section class="content">
 	<html:form action="/Input.do"
 		onsubmit="return validateInputForm(this);">
 		<fieldset>
@@ -57,5 +53,7 @@ fieldset {
 			<c:out value="${inputForm2.input1 }" />
 		</div>
 	</c:if>
+    </section>
+    <footer class="footer"></footer>
 </body>
 </html>

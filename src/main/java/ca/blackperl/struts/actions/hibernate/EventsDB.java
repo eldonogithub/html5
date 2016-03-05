@@ -57,4 +57,23 @@ public class EventsDB {
 		return result;
 	}
 
+	public static Person getPerson(Long id, ActionErrors errors) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+	
+			session.beginTransaction();
+	
+			Person person = (Person) session.createQuery("from Person where id = :id").setLong("id", id).setMaxResults(1).uniqueResult();
+
+			session.getTransaction().commit();
+			
+			return person;
+
+		} catch (Exception e) {
+			errors.add(ActionMessages.GLOBAL_MESSAGE,
+					new ActionMessage("Error processing request " + e.getMessage(), false));
+			return null;
+		}
+	}
+
 }

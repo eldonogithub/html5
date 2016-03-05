@@ -14,15 +14,9 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
-<%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
-<c:url var="baseUrl" value="/" />
 <html:html>
 <head>
-<jsp:include page="/pages/head.jsp"></jsp:include>
+<%@ include file="/includes/head.jspf" %>
 <title><bean:message key="welcome.title" /></title>
 <html:base />
 <link rel="stylesheet" href='${baseUrl }/css/main.css'>
@@ -34,7 +28,7 @@
             loaded -- check servlet container logs for error messages. </font>
     </logic:notPresent>
     <header class="header"></header>
-    <jsp:include page="/pages/menu.jsp"></jsp:include>
+    <%@ include file="/includes/menu.jspf" %>
     <section class="content">
         <div class="col1"></div>
         <div class="col2">

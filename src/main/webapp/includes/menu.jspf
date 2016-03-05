@@ -1,0 +1,7 @@
+<nav class="nav-bar">
+    <ul class="nav">
+        <li><html:link page="/">Home</html:link></li>
+        <li><a href="#">menu 2</a></li>
+        <li><a href="#">menu 3</a></li>
+    </ul>
+</nav>

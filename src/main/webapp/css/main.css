@@ -85,6 +85,14 @@ body {
 	background-color: red;
 }
 
+@media ( max-device-width : 449px ) {
+	.contact_form label {
+		width: 100%;
+	}
+	.header, .footer {
+		display: none;
+	}
+}
 @media ( min-device-width : 450px) {
 	.contact_form label {
 		width: 150px;

@@ -5,42 +5,71 @@ import java.util.Set;
 
 public class Person {
 	// Accessor methods for all properties, private setter for 'id'
-	private String id;
-	private int age;
+	private Long id;
+	private Long age;
 	private String firstname;
 	private String lastname;
 	private Set<Event> events = new HashSet<Event>();
-	
-	public int getAge() {
+	private Set<String> emailAddresses = new HashSet<String>();
+
+	public Set<String> getEmailAddresses() {
+		return emailAddresses;
+	}
+
+	public void setEmailAddresses(Set<String> emailAddresses) {
+		this.emailAddresses = emailAddresses;
+	}
+
+	public void addToEvent(Event event) {
+		this.getEvents().add(event);
+		event.getParticipants().add(this);
+	}
+
+	public void removeFromEvent(Event event) {
+		this.getEvents().remove(event);
+		event.getParticipants().remove(this);
+	}
+
+	public Long getAge() {
 		return age;
 	}
-	public Set<Event> getEvents() {
+
+	public void setAge(Long age) {
+		this.age = age;
+	}
+
+	protected Set<Event> getEvents() {
 		return events;
 	}
+
 	public String getFirstname() {
 		return firstname;
 	}
+
 	public String getLastname() {
 		return lastname;
 	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public void setEvents(Set<Event> events) {
+
+	protected void setEvents(Set<Event> events) {
 		this.events = events;
 	}
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-	public String getId() {
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", age=" + age + ", firstname=" + firstname + ", lastname=" + lastname + ", events="

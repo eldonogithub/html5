@@ -35,6 +35,12 @@ public class ManagerAction extends DispatchAction {
 
 			addPersonToEvent(errors, managerForm);
 
+			List<Event> events = EventsDB.listEvents(errors);
+			List<Person> persons = EventsDB.listPersons(errors);
+
+			managerForm.setEvents(events);
+			managerForm.setPersons(persons);
+
 			logger.debug("Added person " + managerForm.getPersonId() + " to event " + managerForm.getEventId());
 		}
 		saveErrors(request, errors);
@@ -75,7 +81,7 @@ public class ManagerAction extends DispatchAction {
 			session.beginTransaction();
 			Person aPerson = (Person) session.load(Person.class, managerForm.getPersonId());
 			Event anEvent = (Event) session.load(Event.class, managerForm.getEventId());
-			aPerson.getEvents().add(anEvent);
+			aPerson.addToEvent(anEvent);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			errors.add(ActionMessages.GLOBAL_MESSAGE,

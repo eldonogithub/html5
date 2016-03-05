@@ -1,0 +1,1 @@
+select * from HIBERNATE_UNIQUE_KEY;

@@ -10,9 +10,13 @@
 		<property name="firstname" />
 		<property name="lastname" />
 		<property name="age" />
-		<set name="events" table="PERSON_EVENT">
+		<set name="events" table="PERSON_EVENT" lazy="false">
 			<key column="PERSON_ID" />
 			<many-to-many column="EVENT_ID" class="ca.blackperl.hibernate.Event" />
+		</set>
+		<set name="emailAddresses" table="PERSON_EMAIL_ADDR">
+			<key column="PERSON_ID" />
+			<element type="string" column="EMAIL_ADDR" />
 		</set>
 	</class>
 </hibernate-mapping>
