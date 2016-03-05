@@ -66,6 +66,7 @@
 		<form-bean name="managerForm" type="ca.blackperl.struts.forms.ManagerForm">
 			<display-name>Manager Form</display-name>
 			<description>Manager form</description>
+
 		</form-bean>
 
 	</form-beans>
@@ -93,47 +94,48 @@
 	<action-mappings>
 		<!-- Default "Welcome" action -->
 		<!-- Forwards to Welcome.jsp -->
-		<action path="/Welcome" forward="/pages/Welcome.jsp" />
+		<action path="/Welcome" forward="/pages/Welcome.jsp" scope="request" />
 
 		<action path="/Input" type="ca.blackperl.struts.actions.Input"
-			name="inputForm" input="/pages/Input.jsp" />
+			scope="request" name="inputForm" input="/pages/Input.jsp" />
 
 		<action path="/Input2" type="ca.blackperl.struts.actions.Input2"
-			name="inputForm2" input="/pages/Input.jsp" />
+			scope="request" name="inputForm2" input="/pages/Input.jsp" />
 
-		<action name="form" path="/form/process"
+		<action name="form" path="/form/process" scope="request"
 			type="ca.blackperl.struts.actions.FormAction" input="/pages/form.jsp">
 			<forward name="success" path="/pages/done.jsp" />
 		</action>
 
-		<action name="form" path="/form/load"
+		<action name="form" path="/form/load" scope="request"
 			type="ca.blackperl.struts.actions.FormLoadAction" input="/pages/form.jsp">
 		</action>
 
-		<action name="derbyForm" path="/derby/load"
+		<action name="derbyForm" path="/derby/load" scope="request"
 			type="ca.blackperl.struts.actions.DerbyLoadAction" input="/pages/derbyForm.jsp">
 		</action>
 
-		<action name="airlinesForm" path="/firstdb/load"
+		<action name="airlinesForm" path="/firstdb/load" scope="request"
 			type="ca.blackperl.struts.actions.AirlinesLoadAction" input="/pages/firedb/airlines.jsp">
 		</action>
 
-		<action name="airlinesForm" path="/firstdb/update"
+		<action name="airlinesForm" path="/firstdb/update" scope="request"
 			type="ca.blackperl.struts.actions.AirlinesUpdateAction" input="/pages/firedb/airlines.jsp">
 		</action>
 
 		<action name="eventForm" path="/hibernate/event" cancellable="true"
-			type="ca.blackperl.struts.actions.hibernate.EventAction"
+			scope="request" type="ca.blackperl.struts.actions.hibernate.EventAction"
 			input="/pages/hibernate/event.jsp">
 			<forward name="success" path="/pages/hibernate/event.jsp"></forward>
 		</action>
 
 		<action name="personForm" path="/hibernate/person" cancellable="true"
-			type="ca.blackperl.struts.actions.hibernate.PersonAction" input="/pages/hibernate/person.jsp">
+			scope="request" type="ca.blackperl.struts.actions.hibernate.PersonAction"
+			input="/pages/hibernate/person.jsp">
 			<forward name="success" path="/pages/hibernate/person.jsp"></forward>
 		</action>
 
-		<action name="managerForm" path="/hibernate/manager"
+		<action name="managerForm" path="/hibernate/manager" scope="request"
 			cancellable="true" type="ca.blackperl.struts.actions.hibernate.ManagerAction"
 			parameter="method" input="/pages/hibernate/manager.jsp">
 			<forward name="success" path="/pages/hibernate/manager.jsp"></forward>

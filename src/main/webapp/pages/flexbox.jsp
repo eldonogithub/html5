@@ -8,10 +8,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width">
-<title></title>
-<link rel="stylesheet" href='<c:out value="${cssUrl }"/>'>
+<jsp:include page="/pages/head.jsp"></jsp:include>
+<title>Flexbox</title>
 </head>
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"

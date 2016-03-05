@@ -10,29 +10,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- http://cssmediaqueries.com/overview.html -->
-<!-- https://css-tricks.com/snippets/css/media-queries-for-standard-devices/ -->
-<!-- http://www.quirksmode.org/blog/archives/2010/09/combining_meta.html -->
-<meta name="viewport" content="width=device-width">
-
+<jsp:include page="/pages/head.jsp"></jsp:include>
 <title>Form</title>
-<link rel="stylesheet" href="${baseUrl }/js/jquery-ui.css">
-<script src="${baseUrl }/js/jquery-1.12.1.js"></script>
-<script src="${baseUrl }/js/jquery-ui.js"></script>
-<link rel="stylesheet"
-    href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="${baseUrl }/bootstrap/js/bootstrap.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-	$(function() {
-		$("#datepicker").datepicker({
-			minDate : new Date()
-		});
-	});
-</script>
-<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
 </head>
 <body>
     <div class="inputForm">

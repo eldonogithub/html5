@@ -85,7 +85,10 @@ body {
 	background-color: red;
 }
 
-@media ( min-device-width : 800px) {
+@media ( min-device-width : 450px) {
+	.contact_form label {
+		width: 150px;
+	}
 	.content {
 		padding: 1em;
 	}
@@ -157,7 +160,7 @@ body {
 	border-bottom: 1px solid #777;
 }
 
-/*  style the header section of our form. This includes the heading tag and the notification that informs users that the asterisk (*) indicates required fields. */
+/*  style the header section of our form. This includes the heading tag and the notification that informs table that the asterisk (*) indicates required fields. */
 .contact_form h2 {
 	margin: 0;
 	display: inline;
@@ -172,7 +175,6 @@ body {
 
 /* style all of the core form elements, the ones used to collect user information. */
 .contact_form label {
-	width: 150px;
 	margin-top: 3px;
 	display: inline-block;
 	float: left;
@@ -194,7 +196,7 @@ body {
 	justify-content: flex-end;
 }
 
-/* add some extra visual CSS styles. Some of these are CSS3 styles that reward users who use modern browsers. */
+/* add some extra visual CSS styles. Some of these are CSS3 styles that reward table who use modern browsers. */
 .contact_form input, .contact_form textarea {
 	border: 1px solid #aaa;
 	box-shadow: 0px 0px 3px #ccc, inset 0 15px 15px #eee;
@@ -263,4 +265,30 @@ button.submit:active {
 	-webkit-transition: padding .25s;
 	-o-transition: padding .25s;
 	transition: padding .25s;
+}
+
+.table tr:nth-child(even) {
+	background: lightblue;
+}
+
+.table {
+	table-layout: auto;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.table td {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.table th {
+	background: darkblue;
+	color: white;
+}
+
+.table td, .table th {
+	text-align: left;
+	padding: 5px 10px;
 }

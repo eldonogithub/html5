@@ -8,8 +8,8 @@
 		<id name="id" column="EVENT_ID">
 			<generator class="native" />
 		</id>
+		<property name="title" unique="true" />
 		<property name="date" type="timestamp" column="EVENT_DATE" />
-		<property name="title" />
 	</class>
 
 </hibernate-mapping>

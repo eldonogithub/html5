@@ -11,20 +11,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width">
+<jsp:include page="/pages/head.jsp"></jsp:include>
 <title>Derby Form</title>
-<link rel="stylesheet" href="${baseUrl }/js/jquery-ui.css">
-<script src="${baseUrl }/js/jquery-1.12.1.js"></script>
-<script src="${baseUrl }/js/jquery-ui.js"></script>
-<script type="text/javascript"
-    src='<c:out value="${baseUrl }/js/angular-1.5.0.js"/>'></script>
-<script>
-	$(function() {
-		$("#datepicker").datepicker();
-	});
-</script>
-<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
 </head>
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"

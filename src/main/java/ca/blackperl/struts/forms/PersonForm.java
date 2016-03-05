@@ -1,6 +1,10 @@
 package ca.blackperl.struts.forms;
 
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
+
+import ca.blackperl.hibernate.Person;
 
 public class PersonForm extends ActionForm {
 	/**
@@ -10,6 +14,7 @@ public class PersonForm extends ActionForm {
 	private int age;
 	private String firstname;
 	private String lastname;
+	private List<Person> persons;
 	public int getAge() {
 		return age;
 	}
@@ -31,5 +36,12 @@ public class PersonForm extends ActionForm {
 	@Override
 	public String toString() {
 		return "PersonForm [age=" + age + ", firstname=" + firstname + ", lastname=" + lastname + "]";
+	}
+	
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+	public List<Person> getPersons() {
+		return persons;
 	}
 }

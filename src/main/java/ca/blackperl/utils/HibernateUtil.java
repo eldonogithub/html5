@@ -1,4 +1,4 @@
-package ca.blackperl.hibernate;
+package ca.blackperl.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +14,7 @@ public class HibernateUtil {
 	static {
 		try {
 			// Create the SessionFactory from hibernate.cfg.xml
-			sessionFactory = new Configuration().configure("/ca/blackperl/hibernate/hibernate.cfg.xml")
+			sessionFactory = new Configuration().configure("/ca/blackperl/utils/hibernate.cfg.xml")
 					.buildSessionFactory();
 		} catch (Throwable ex) {
 			log.debug("Error obtaining connection " + ex);

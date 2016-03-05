@@ -6,6 +6,8 @@
 		</Console>
 	</Appenders>
 	<Loggers>
+		<!-- org.hibernate.tool.hbm2ddl -->
+		<Logger name="org.hibernate" level="debug"></Logger>
 		<Logger name="ca.blackperl" level="trace"></Logger>
 		<Root level="warn">
 			<AppenderRef ref="Console" />

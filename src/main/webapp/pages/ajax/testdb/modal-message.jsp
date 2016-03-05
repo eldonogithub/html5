@@ -10,14 +10,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>jQuery UI Dialog - Modal message</title>
-<link rel="stylesheet"
-    href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="${baseUrl}/css/jquery.css">
+<jsp:include page="/pages/head.jsp"></jsp:include>
 <script>
 	$(function() {
 		$("#dialog-message").dialog({

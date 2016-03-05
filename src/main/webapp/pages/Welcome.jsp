@@ -14,45 +14,57 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
+<%@ taglib uri="urn:ca:blackperl:taglib:html5" prefix="html5"%>
+<c:url var="baseUrl" value="/" />
 <html:html>
 <head>
-<meta name="viewport" content="width=device-width">
+<jsp:include page="/pages/head.jsp"></jsp:include>
 <title><bean:message key="welcome.title" /></title>
 <html:base />
-<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
+<link rel="stylesheet" href='${baseUrl }/css/main.css'>
 </head>
-<body bgcolor="white">
-
+<body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"
         scope="application">
         <font color="red"> ERROR: Application resources not
             loaded -- check servlet container logs for error messages. </font>
     </logic:notPresent>
-
-    <h3>
-        <bean:message key="welcome.heading" />
-    </h3>
-    <p>
-        <bean:message key="welcome.message" />
-    </p>
-
-    <ul>
-        <li><html:link action="/Input.do">Input Form</html:link></li>
-        <li><html:link action="/form/load.do">Load Token Form</html:link></li>
-        <li><html:link page="/pages/simple/testdb.jsp">Test Database</html:link></li>
-        <li><html:link page="/pages/classpath.jsp">Class Path</html:link></li>
-        <li><html:link page="/pages/flexbox.jsp">Flex Box</html:link></li>
-        <li><html:link page="/derby/load.do">Derby Form</html:link></li>
-        <li><html:link page="/dwr">Direct Web Remoting</html:link></li>
-        <li><html:link page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
-        <li><html:link page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
-        <li><html:link page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
-        <li><html:link page="/hibernate/person.do">Person Form</html:link></li>
-        <li><html:link page="/hibernate/event.do">Event Form</html:link></li>
-        <li><html:link page="/hibernate/manager.do?method=list">Manager Form</html:link></li>
-    </ul>
+    <header class="header"></header>
+    <jsp:include page="/pages/menu.jsp"></jsp:include>
+    <section class="content">
+        <div class="col1"></div>
+        <div class="col2">
+            <h3>
+                <bean:message key="welcome.heading" />
+            </h3>
+            <p>
+                <bean:message key="welcome.message" />
+            </p>
+            <ul>
+                <li><html:link action="/Input.do">Input Form</html:link></li>
+                <li><html:link action="/form/load.do">Load Token Form</html:link></li>
+                <li><html:link page="/pages/simple/testdb.jsp">Test Database</html:link></li>
+                <li><html:link page="/pages/classpath.jsp">Class Path</html:link></li>
+                <li><html:link page="/pages/flexbox.jsp">Flex Box</html:link></li>
+                <li><html:link page="/derby/load.do">Derby Form</html:link></li>
+                <li><html:link page="/dwr">Direct Web Remoting</html:link></li>
+                <li><html:link
+                        page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
+                <li><html:link
+                        page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
+                <li><html:link
+                        page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
+                <li><html:link page="/hibernate/person.do">Person Form</html:link></li>
+                <li><html:link page="/hibernate/event.do">Event Form</html:link></li>
+                <li><html:link
+                        page="/hibernate/manager.do?method=list">Manager Form</html:link></li>
+            </ul>
+        </div>
+        <div class="col3"></div>
+    </section>
 </body>
 </html:html>

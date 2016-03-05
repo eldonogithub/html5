@@ -14,21 +14,13 @@ select * from testdata
 </sql:query>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width">
+<jsp:include page="/pages/head.jsp"></jsp:include>
 <title>DB Test</title>
-<link rel="stylesheet" href='<c:out value="${cssUrl }"/>'>
 </head>
 <body>
     <div class="inputForm">
         <header class="header"></header>
-        <nav class="nav-bar">
-            <ul class="nav">
-                <li><a href="#">menu 1</a></li>
-                <li><a href="#">menu 2</a></li>
-                <li><a href="#">menu 3</a></li>
-            </ul>
-        </nav>
+        <jsp:include page="/pages/menu.jsp"></jsp:include>
         <section class="content">
 
             <h2>Results</h2>

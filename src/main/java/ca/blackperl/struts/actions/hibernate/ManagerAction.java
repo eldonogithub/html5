@@ -19,9 +19,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import ca.blackperl.hibernate.Event;
-import ca.blackperl.hibernate.HibernateUtil;
 import ca.blackperl.hibernate.Person;
 import ca.blackperl.struts.forms.ManagerForm;
+import ca.blackperl.utils.HibernateUtil;
 
 public class ManagerAction extends DispatchAction {
 	private static final Logger logger = LogManager.getLogger(ManagerAction.class);
@@ -30,12 +30,14 @@ public class ManagerAction extends DispatchAction {
 			HttpServletResponse response) throws Exception {
 		ActionErrors errors = new ActionErrors();
 
-		ManagerForm managerForm = (ManagerForm) form;
-		
-		addPersonToEvent(errors, managerForm);
+		if ("POST".equals(request.getMethod())) {
+			ManagerForm managerForm = (ManagerForm) form;
 
-		logger.debug("Added person " + managerForm.getPersonId() + " to event " + managerForm.getEventId() );
+			addPersonToEvent(errors, managerForm);
 
+			logger.debug("Added person " + managerForm.getPersonId() + " to event " + managerForm.getEventId());
+		}
+		saveErrors(request, errors);
 		return mapping.findForward("success");
 	}
 
@@ -53,32 +55,13 @@ public class ManagerAction extends DispatchAction {
 
 		ActionErrors errors = new ActionErrors();
 
-		List<Event> events = listEvents(errors);
-		List<Person> persons = listPersons(errors);
-		
+		List<Event> events = EventsDB.listEvents(errors);
+		List<Person> persons = EventsDB.listPersons(errors);
+
 		managerForm.setEvents(events);
 		managerForm.setPersons(persons);
-		
+
 		return mapping.findForward("success");
-	}
-
-	private List<Person> listPersons(ActionErrors errors) {
-		@SuppressWarnings("unchecked")
-		List<Person> result = null;
-		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-			session.beginTransaction();
-
-			result = session.createQuery("from Person").list();
-
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			errors.add(ActionMessages.GLOBAL_MESSAGE,
-					new ActionMessage("Error processing request " + e.getMessage(), false));
-		}
-
-		return result;
 	}
 
 	public ActionForward load(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -90,34 +73,14 @@ public class ManagerAction extends DispatchAction {
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			Person aPerson = (Person) session.load(Person.class, managerForm.getPersonId() );
-			Event anEvent = (Event) session.load(Event.class, managerForm.getEventId() );
+			Person aPerson = (Person) session.load(Person.class, managerForm.getPersonId());
+			Event anEvent = (Event) session.load(Event.class, managerForm.getEventId());
 			aPerson.getEvents().add(anEvent);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			errors.add(ActionMessages.GLOBAL_MESSAGE,
 					new ActionMessage("Error processing request " + e.getMessage(), false));
 		}
-	}
-
-	private List<Event> listEvents(ActionErrors errors) {
-
-		@SuppressWarnings("unchecked")
-		List<Event> result = null;
-		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-			session.beginTransaction();
-
-			result = session.createQuery("from Event").list();
-
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			errors.add(ActionMessages.GLOBAL_MESSAGE,
-					new ActionMessage("Error processing request " + e.getMessage(), false));
-		}
-
-		return result;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package ca.blackperl.struts.forms;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +13,8 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.ValidatorForm;
 
+import ca.blackperl.hibernate.Event;
+
 public class EventForm extends ValidatorForm {
 	/**
 	 * 
@@ -20,6 +23,11 @@ public class EventForm extends ValidatorForm {
 	private String title;
 	private String date;
 	private Date dateDate;
+	private List<Event> events;
+	
+	public List<Event> getEvents() {
+		return events;
+	}
 	public String getDate() {
 		return date;
 	}
@@ -52,5 +60,8 @@ public class EventForm extends ValidatorForm {
 	}
 	public Date getDateDate() {
 		return dateDate;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 }

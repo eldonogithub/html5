@@ -9,26 +9,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width">
-
+<jsp:include page="/pages/head.jsp"></jsp:include>
 <title>Create Event</title>
-<link rel="stylesheet" href="${baseUrl }/js/jquery-ui.css">
-<script src="${baseUrl }/js/jquery-1.12.1.js"></script>
-<script src="${baseUrl }/js/jquery-ui.js"></script>
-<link rel="stylesheet"
-    href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="${baseUrl }/bootstrap/js/bootstrap.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-	$(function() {
-		$("#datepicker").datepicker({
-			minDate : new Date()
-		});
-	});
-</script>
-<link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
 </head>
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"
@@ -38,14 +20,7 @@
     </logic:notPresent>
     <div class="inputForm">
         <header class="header"></header>
-        <nav class="nav-bar">
-            <ul class="nav">
-                <li><html:link page="/">Home</html:link></li>
-                <li><a href="#">menu 2</a></li>
-                <li><a href="#">menu 3</a></li>
-            </ul>
-        </nav>
-
+        <jsp:include page="/pages/menu.jsp"></jsp:include>
         <section class="content">
             <div class="col1"></div>
             <div class="col2">
@@ -62,13 +37,40 @@
                                 property="title"></html:text></li>
                         <li><label>Date:</label> <html:text
                                 styleId="datepicker" property="date"></html:text></li>
-                        <li id="button"><button type="submit"
-                                class="submit" name="submit"
-                                value="create">Create</button>
+                        <li id="button"><label></label>
+                        <button type="submit" class="submit"
+                                name="submit" value="create">Create</button>
                             <button type="submit" class="submit"
                                 name="submit" value="cancel">Cancel</button></li>
                     </ul>
                 </html:form>
+            </div>
+            <div class="col3"></div>
+        </section>
+        <section class="content">
+            <div class="col1"></div>
+            <div class="col2">
+                <c:if test="${not empty eventForm.events }">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="item"
+                                items="${eventForm.events}">
+                                <tr>
+                                    <td>${item.id }</td>
+                                    <td>${item.title }</td>
+                                    <td>${item.date }</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:if>
             </div>
             <div class="col3"></div>
         </section>
