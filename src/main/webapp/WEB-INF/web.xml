@@ -51,7 +51,7 @@
 		<location>/error.jsp</location>
 	</error-page>
 	<jsp-config>
-		<!-- Servlet 3.0 configuration for custom tag -->
+		<!-- Servlet 3.0 configuration for custom tag, This was an override of JSP.7.3.1, and shouldn't be done -->
 		<taglib>
 			<taglib-uri>urn:ca:blackperl:taglib:html5</taglib-uri>
 			<taglib-location>/WEB-INF/classes/html5.tld</taglib-location>
