@@ -9,10 +9,9 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<display-name>HTML 5 Examples</display-name>
 
 	<servlet>
@@ -51,4 +50,19 @@
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/error.jsp</location>
 	</error-page>
+	<jsp-config>
+		<!-- Servlet 3.0 configuration for custom tag -->
+		<taglib>
+			<taglib-uri>urn:ca:blackperl:taglib:html5</taglib-uri>
+			<taglib-location>/WEB-INF/classes/html5.tld</taglib-location>
+		</taglib>
+		<jsp-property-group>
+			<url-pattern>/pages/*</url-pattern>
+			<scripting-invalid>true</scripting-invalid>
+		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/scripts/*</url-pattern>
+			<scripting-invalid>false</scripting-invalid>
+		</jsp-property-group>
+	</jsp-config>
 </web-app>
