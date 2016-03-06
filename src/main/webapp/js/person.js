@@ -1,4 +1,9 @@
 $(function() {
+	var persons = {};
+	function encode(txt) {
+		var t2h = $("<div/>");
+		return t2h.text(txt).html();
+	}
 	console.log("Calling DataTable()")
 	$("table#personForm").DataTable();
 	$("form#personForm").submit(
@@ -25,13 +30,15 @@ $(function() {
 							});
 							$("table#personForm tbody tr").remove();
 							var text = "";
-							var results = ajaxPersons.results;
-							console.log("Result = " + results);
-							for (i = 0; i < ajaxPersons.results.length; i++) {
-								text += "<tr><td>" + results[i].id
-										+ "</td><td>" + results[i].firstname
-										+ "</td><td>" + results[i].lastname
-										+ "</td><td>" + results[i].age
+							persons = ajaxPersons.results;
+							console.log("Result = " + persons);
+							for (i = 0; i < ajaxPersons.persons.length; i++) {
+								var t2h = $("<div/>");
+								
+								text += "<tr><td>" + encode(persons[i].id)
+										+ "</td><td>" + encode(persons[i].firstname)
+										+ "</td><td>" + encode(persons[i].lastname)
+										+ "</td><td>" + encode(persons[i].age)
 										+ "</td></tr>";
 							}
 							console.log("new row = " + text);
