@@ -61,15 +61,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="item"
-                            items="${personForm.persons }">
-                            <tr>
-                                <td>${item.id }</td>
-                                <td>${item.firstname}</td>
-                                <td>${item.lastname}</td>
-                                <td>${item.age}</td>
-                            </tr>
-                        </c:forEach>
                     </tbody>
                 </table>
         </div>

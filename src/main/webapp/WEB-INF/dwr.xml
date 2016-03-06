@@ -13,9 +13,9 @@
 			<param name="class" value="ca.blackperl.dwr.bean.AjaxHibernate" />
 		</create>
 		
-		<convert match="ca.blackperl.dwr.bean.*" converter="bean" javascript="*"></convert>
+		<convert match="ca.blackperl.dwr.bean.*" converter="bean"></convert>
 		<convert match="ca.blackperl.dwr.enums.*" converter="enum"></convert>
-		<convert match="ca.blackperl.hibernate.*" converter="bean" javascript="*"></convert>
+		<convert match="ca.blackperl.hibernate.*" converter="bean"></convert>
 
 	</allow>
 </dwr>
