@@ -5,13 +5,16 @@ $(function() {
 			function(e) {
 				e.preventDefault();
 				var data = $(this).serializeArray();
-				console.log("Data = " + data)
+				console.log("Data serialized");
+				console.log(data)
 				// this won't work always
 				var result = {};
 				$(data).each(function(idx, field) {
 					result[field.name] = field.value;
 					console.log(field.name + " = " + field.value);
 				});
+				console.log("result converted to:");
+				console.log(result);
 				AjaxHibernate.submitPerson(result, {
 					callback : function(ajaxPersons) {
 						console.log(ajaxPersons);

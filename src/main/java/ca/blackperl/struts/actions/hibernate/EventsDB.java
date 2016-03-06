@@ -11,7 +11,6 @@ import org.apache.struts.action.ActionMessages;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import ca.blackperl.dwr.bean.PersonForm;
 import ca.blackperl.hibernate.Event;
 import ca.blackperl.hibernate.Person;
 import ca.blackperl.utils.HibernateUtil;
