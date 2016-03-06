@@ -7,15 +7,23 @@
 	<allow>
 		<create creator="new" javascript="AjaxBean">
 			<param name="class" value="ca.blackperl.dwr.bean.AjaxBean" />
-			
 		</create>
+		
 		<create creator="new" javascript="AjaxHibernate">
 			<param name="class" value="ca.blackperl.dwr.bean.AjaxHibernate" />
 		</create>
 		
-		<convert match="ca.blackperl.dwr.bean.*" converter="bean"></convert>
-		<convert match="ca.blackperl.hibernate.*" converter="bean"></convert>
+		<create creator="struts" javascript="PersonForm">
+			<param name="formBean" value="personForm" />
+		</create>
+		
+		<create creator="struts" javascript="EventForm">
+			<param name="formBean" value="eventForm" />
+		</create>
+		
+		<convert match="ca.blackperl.dwr.bean.*" converter="bean" javascript="*"></convert>
 		<convert match="ca.blackperl.dwr.enums.*" converter="enum"></convert>
+		<convert match="ca.blackperl.hibernate.*" converter="bean" javascript="*"></convert>
 
 	</allow>
 </dwr>

@@ -21,7 +21,7 @@
 			<param-name>config</param-name>
 			<param-value>/WEB-INF/struts-config.xml</param-value>
 		</init-param>
-		<load-on-startup>2</load-on-startup>
+		<load-on-startup>20</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
@@ -36,6 +36,7 @@
 			<param-name>debug</param-name>
 			<param-value>true</param-value>
 		</init-param>
+		<load-on-startup>30</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
@@ -46,10 +47,12 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/error.jsp</location>
 	</error-page>
+	
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>/pages/*</url-pattern>

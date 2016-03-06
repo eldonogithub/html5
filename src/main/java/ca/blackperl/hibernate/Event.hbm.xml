@@ -8,7 +8,7 @@
 		<id name="id" column="EVENT_ID">
 			<generator class="native" />
 		</id>
-		<property name="title" unique="true" />
+		<property name="title" unique="true" length="500" />
 		<property name="date" type="timestamp" column="EVENT_DATE" />
 		<set name="participants" table="PERSON_EVENT" inverse="true">
 			<key column="EVENT_ID" />
