@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/includes/head.jspf" %>
+<%@ include file="/includes/head.jspf"%>
 <title>Create Event</title>
 <script src="${baseUrl }/js/event.js"></script>
 </head>
@@ -13,7 +13,7 @@
     </logic:notPresent>
     <div class="inputForm">
         <header class="header"></header>
-        <%@ include file="/includes/menu.jspf" %>
+        <%@ include file="/includes/menu.jspf"%>
         <section class="content">
             <div class="col1"></div>
             <div class="col2">
@@ -31,7 +31,7 @@
                         <li><label>Date:</label> <html:text
                                 styleId="datepicker" property="date"></html:text></li>
                         <li id="button"><label></label>
-                        <button type="submit" class="submit"
+                            <button type="submit" class="submit"
                                 name="submit" value="create">Create</button>
                             <button type="submit" class="submit"
                                 name="submit" value="cancel">Cancel</button></li>
@@ -43,6 +43,9 @@
         <section class="content">
             <div class="col1"></div>
             <div class="col2">
+                <h1>Events</h1>
+                Events size:
+                <c:out value="${fn:length(eventForm.events) }"></c:out>
                 <c:if test="${not empty eventForm.events }">
                     <table class="table">
                         <thead>

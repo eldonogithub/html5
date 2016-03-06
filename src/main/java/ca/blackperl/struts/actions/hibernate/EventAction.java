@@ -30,24 +30,27 @@ public class EventAction extends Action {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
 		ActionErrors errors = new ActionErrors();
+		EventForm eventForm = (EventForm) form;
+		log.debug("received " + eventForm);
 
 		if ("POST".equals(request.getMethod())) {
+			log.debug("form submission");
 			if (isCancelled(request)) {
 				log.debug("Request was cancelled");
 				return mapping.getInputForward();
 			}
-			EventForm eventForm = (EventForm) form;
 
 			createAndStoreEvent(errors, eventForm);
 
-			List<Event> events = EventsDB.listEvents(errors);
-
-			eventForm.setEvents(events);
-
 			HibernateUtil.getSessionFactory().close();
 		}
+		
+		List<Event> events = EventsDB.listEvents(errors);
+		log.debug("Events " + events);
+		
+		eventForm.setEvents(events);
+		
 		saveErrors(request, errors);
 
 		return mapping.findForward("success");

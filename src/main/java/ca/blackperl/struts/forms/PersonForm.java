@@ -20,12 +20,6 @@ public class PersonForm extends ValidatorForm {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	private Long age;
 	private String firstname;
 	private String lastname;
@@ -33,32 +27,38 @@ public class PersonForm extends ValidatorForm {
 	public Long getAge() {
 		return age;
 	}
-	public void setAge(Long age) {
-		this.age = age;
-	}
 	public String getFirstname() {
 		return firstname;
+	}
+	public Long getId() {
+		return id;
 	}
 	public String getLastname() {
 		return lastname;
 	}
+	public List<Person> getPersons() {
+		return persons;
+	}
+	public void setAge(Long age) {
+		this.age = age;
+	}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}
-	@Override
-	public String toString() {
-		return "PersonForm [id=" + id + ", age=" + age + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", persons=" + persons + "]";
 	}
 	
 	public void setPersons(List<Person> persons) {
 		this.persons = persons;
 	}
-	public List<Person> getPersons() {
-		return persons;
+	@Override
+	public String toString() {
+		return "PersonForm [id=" + id + ", age=" + age + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", persons=" + persons + "]";
 	}
 	@Override
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {

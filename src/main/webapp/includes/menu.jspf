@@ -1,7 +1,8 @@
 <nav class="nav-bar">
     <ul class="nav">
         <li><html:link page="/">Home</html:link></li>
-        <li><a href="#">menu 2</a></li>
-        <li><a href="#">menu 3</a></li>
+        <li><html:link page="/hibernate/manager.do?method=list">Manager</html:link></li>
+        <li><html:link page="/hibernate/person.do">Person</html:link></li>
+        <li><html:link page="/hibernate/event.do">Event</html:link></li>
     </ul>
 </nav>

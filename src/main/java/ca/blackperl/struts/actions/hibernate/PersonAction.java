@@ -31,6 +31,7 @@ public class PersonAction extends Action {
 			HttpServletResponse response) throws Exception {
 		ActionErrors errors = new ActionErrors();
 
+		PersonForm personForm = (PersonForm) form;
 		if ("POST".equals(request.getMethod())) {
 			log.debug("execute");
 
@@ -38,19 +39,17 @@ public class PersonAction extends Action {
 				log.debug("Request was cancelled");
 				return mapping.getInputForward();
 			}
-			PersonForm personForm = (PersonForm) form;
 
 			log.debug("Creating Person");
 			createAndStorePerson(errors, personForm);
 
-			log.debug("Getting persons");
-			List<Person> persons = EventsDB.listPersons(errors);
-
-			personForm.setPersons(persons);
-
+			
 			HibernateUtil.getSessionFactory().close();
-
 		}
+
+		log.debug("Getting persons");
+		List<Person> persons = EventsDB.listPersons(errors);
+		personForm.setPersons(persons);
 		saveErrors(request, errors);
 		return mapping.findForward("success");
 	}

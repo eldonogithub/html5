@@ -19,14 +19,16 @@
         <div class="col1"></div>
         <div class="col2">
             <html:errors />
-            <html:form action="/hibernate/person.do"
+            <html:form action="/hibernate/person.do" styleId="personForm"
                 styleClass="contact_form">
+                <html:hidden property="id"/>
                 <ul>
                     <li>
                         <h2>Create Person</h2> <span
                         class="required_notification">* Denotes
                             Required Field</span>
                     </li>
+                    
                     <li><label for="firstname">First Name:</label>
                         <html:text property="firstname"></html:text></li>
                     <li><label for="lastname">Last Name:</label> <html:text
@@ -49,7 +51,6 @@
             <h1>Persons</h1>
             Person size:
             <c:out value="${fn:length(personForm.persons) }"></c:out>
-            <c:if test="${not empty personForm.persons }">
                 <table id="personForm" class="table">
                     <thead>
                         <tr>
@@ -71,7 +72,6 @@
                         </c:forEach>
                     </tbody>
                 </table>
-            </c:if>
         </div>
         <div class="col3"></div>
     </section>

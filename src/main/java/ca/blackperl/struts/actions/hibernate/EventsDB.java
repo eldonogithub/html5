@@ -8,8 +8,10 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import ca.blackperl.dwr.bean.PersonForm;
 import ca.blackperl.hibernate.Event;
 import ca.blackperl.hibernate.Person;
 import ca.blackperl.utils.HibernateUtil;
@@ -27,6 +29,7 @@ public class EventsDB {
 			session.beginTransaction();
 	
 			result.addAll(session.createQuery("from Event").list());
+			log.debug("Events: " + result.size());
 	
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -74,6 +77,38 @@ public class EventsDB {
 					new ActionMessage("Error processing request " + e.getMessage(), false));
 			return null;
 		}
+	}
+
+	public static Person addEmailToPerson(Long personId, String emailAddress) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		session.beginTransaction();
+
+		Person aPerson = (Person) session.load(Person.class, personId);
+		
+		// The getEmailAddresses() might trigger a lazy load of the collection
+		aPerson.getEmailAddresses().add(emailAddress);
+
+		session.getTransaction().commit();
+		
+		return aPerson;
+	}
+
+	public static boolean createPerson(Person person, ActionErrors errors) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			
+			session.beginTransaction();
+
+			session.save(person);
+			
+			session.getTransaction().commit();
+			return true;
+		} catch (HibernateException e) {
+			log.error(e,e);
+			return false;
+		}
+		
 	}
 
 }
