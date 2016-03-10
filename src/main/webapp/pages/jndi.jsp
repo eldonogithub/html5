@@ -12,13 +12,19 @@
     <div class="inputForm">
         <header class="header"></header>
         <%@ include file="/includes/menu.jspf"%>
-		<section class="content">
+        <section class="content">
             <div class="col1"></div>
             <div class="col2">
                 <html:errors />
+                <ul>
+                    <c:forEach var="item"
+                        items="${ jndiForm.list }">
+                        <li>${item.name } - ${item.className }</li>
+                    </c:forEach>
+                </ul>
             </div>
             <div class="col3"></div>
-		</section>
-	</div>
+        </section>
+    </div>
 </body>
 </html>

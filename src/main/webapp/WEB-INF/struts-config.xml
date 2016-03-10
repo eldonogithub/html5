@@ -69,6 +69,12 @@
 
 		</form-bean>
 
+		<form-bean name="jndiForm" type="ca.blackperl.struts.forms.JndiForm">
+			<display-name>Manager Form</display-name>
+			<description>Manager form</description>
+
+		</form-bean>
+
 	</form-beans>
 
 
@@ -141,7 +147,7 @@
 			<forward name="success" path="/pages/hibernate/manager.jsp"></forward>
 		</action>
 
-		<action path="/jndi/log" scope="request"
+		<action path="/jndi/log" name="jndiForm" scope="request"
 			type="ca.blackperl.struts.actions.JndiAction"
 			parameter="method" input="/pages/jndi.jsp">
 		</action>
