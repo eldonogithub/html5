@@ -141,6 +141,11 @@
 			<forward name="success" path="/pages/hibernate/manager.jsp"></forward>
 		</action>
 
+		<action path="/jndi/log" scope="request"
+			type="ca.blackperl.struts.actions.JndiAction"
+			parameter="method" input="/pages/jndi.jsp">
+		</action>
+
 	</action-mappings>
 
 
