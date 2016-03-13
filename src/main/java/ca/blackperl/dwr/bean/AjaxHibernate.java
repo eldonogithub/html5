@@ -17,76 +17,52 @@ public class AjaxHibernate {
 	private static final Logger log = LogManager.getLogger(AjaxHibernate.class);
 
 	public AjaxPersons getPersons() {
-		ActionErrors errors = new ActionErrors();
-
-		List<Person> listPersons = EventsDB.listPersons(errors);
-
 		AjaxPersons ajaxPersons = new AjaxPersons();
-		ajaxPersons.setResults(listPersons);
-		if (errors.size() > 0) {
+		try {
+			List<Person> listPersons = EventsDB.listPersons();
+
+			ajaxPersons.setResults(listPersons);
+			ajaxPersons.setStatus(Status.SUCCESS);
+		} catch (Exception e) {
+			ajaxPersons.setMessage("Failed to get list of persons: " + e.getMessage());
 			ajaxPersons.setStatus(Status.FAILURE);
-		} else {
-			if (listPersons.size() == 0) {
-				ajaxPersons.setStatus(Status.NOTFOUND);
-			} else {
-				ajaxPersons.setStatus(Status.SUCCESS);
-			}
 		}
 		return ajaxPersons;
 	}
 
 	public AjaxPerson getPerson(Long id) {
-		ActionErrors errors = new ActionErrors();
-
-		Person person = EventsDB.getPerson(id, errors);
-
 		AjaxPerson ajaxPerson = new AjaxPerson();
-		ajaxPerson.setPerson(person);
-		if (errors.size() > 0) {
+
+		try {
+			Person person = EventsDB.getPerson(id);
+			ajaxPerson.setPerson(person);
+			ajaxPerson.setStatus(Status.SUCCESS);
+			return ajaxPerson;
+		} catch (Exception e) {
+			ajaxPerson.setMessage("Failed to get person: " + e.getMessage());
 			ajaxPerson.setStatus(Status.FAILURE);
-		} else {
-			if (person == null) {
-				ajaxPerson.setStatus(Status.NOTFOUND);
-			} else {
-				ajaxPerson.setStatus(Status.SUCCESS);
-			}
 		}
 		return ajaxPerson;
 	}
 
 	public AjaxPersons submitPerson(PersonForm person) {
 		log.debug("received " + person);
-		ActionErrors errors = new ActionErrors();
-
 		AjaxPersons ajaxPersons = new AjaxPersons();
 
 		try {
 			Person newPerson = new Person();
 			BeanUtils.copyProperties(newPerson, person);
 			log.debug("properties copied");
-			EventsDB.createPerson(newPerson, errors);
-			List<Person> listPersons = EventsDB.listPersons(errors);
+			EventsDB.createPerson(newPerson);
+
+			List<Person> listPersons = EventsDB.listPersons();
 
 			ajaxPersons.setResults(listPersons);
-			if (errors.size() > 0) {
-				ajaxPersons.setStatus(Status.FAILURE);
-			} else {
-				if (listPersons.size() == 0) {
-					ajaxPersons.setStatus(Status.NOTFOUND);
-				} else {
-					ajaxPersons.setStatus(Status.SUCCESS);
-				}
-			}
+			ajaxPersons.setStatus(Status.SUCCESS);
 			return ajaxPersons;
-		} catch (IllegalAccessException e) {
-			log.error(e, e);
-			ajaxPersons.setDebug(e.getMessage());
-			ajaxPersons.setMessage("Failed to save Person");
-			ajaxPersons.setStatus(Status.FAILURE);
-		} catch (InvocationTargetException e) {
-			log.error(e, e);
-			ajaxPersons.setDebug(e.getMessage());
-			ajaxPersons.setMessage("Failed to save Person");
+		} catch (Exception e) {
+			log.error("Failed to save person: " + e.getMessage());
+			ajaxPersons.setMessage("Failed to save Person: " + e.getMessage());
 			ajaxPersons.setStatus(Status.FAILURE);
 		}
 		log.debug("Returning result" + ajaxPersons);
@@ -94,21 +70,30 @@ public class AjaxHibernate {
 	}
 
 	public AjaxEvents getEvents() {
-		ActionErrors errors = new ActionErrors();
-
-		List<Event> listEvents = EventsDB.listEvents(errors);
-
 		AjaxEvents ajaxEvents = new AjaxEvents();
-		ajaxEvents.setResults(listEvents);
-		if (errors.size() > 0) {
-			ajaxEvents.setStatus(Status.FAILURE);
-		} else {
+
+		try {
+			List<Event> listEvents = EventsDB.listEvents();
+			ajaxEvents.setResults(listEvents);
 			ajaxEvents.setStatus(Status.SUCCESS);
+			return ajaxEvents;
+		} catch (Exception e) {
+			ajaxEvents.setMessage("Failed to get list of events: " + e.getMessage());
+			ajaxEvents.setStatus(Status.FAILURE);
 		}
 		return ajaxEvents;
 	}
 
-	public void addEmailToPerson(Long personId, String emailAddress) {
-		EventsDB.addEmailToPerson(personId, emailAddress);
+	public AjaxAddEmailToPerson addEmailToPerson(Long personId, String emailAddress) {
+		AjaxAddEmailToPerson addEmailToPerson = new AjaxAddEmailToPerson();
+		
+		try {
+			EventsDB.addEmailToPerson(personId, emailAddress);
+			addEmailToPerson.setStatus(Status.SUCCESS);
+		} catch (Exception e) {
+			addEmailToPerson.setMessage("Failed to add email to person: " + e.getMessage());
+			addEmailToPerson.setStatus(Status.FAILURE);
+		}
+		return addEmailToPerson;
 	}
 }

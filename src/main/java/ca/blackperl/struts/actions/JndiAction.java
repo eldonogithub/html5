@@ -52,11 +52,11 @@ public class JndiAction extends Action {
 					Class<? extends Connection> class1 = connection.getClass();
 					log.debug("Connection class = " + class1.getName());
 					log.debug("Connection Info " + connection.getClientInfo());
-					if ( connection instanceof DelegatingConnection ) {
+					if (connection instanceof DelegatingConnection) {
 						DelegatingConnection pool = (DelegatingConnection) connection;
 						log.debug("DelegatingConnection Info " + pool.getClientInfo());
 						Connection innermostDelegate = pool.getInnermostDelegate();
-						if ( innermostDelegate != null ) {
+						if (innermostDelegate != null) {
 							log.debug(innermostDelegate.getClientInfo());
 						}
 					}

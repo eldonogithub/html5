@@ -27,9 +27,9 @@
                             class="required_notification">*
                                 Denotes Required Field</span>
                         </li>
-                        <li><label for="personId"></label> <html:text
+                        <li><label for="personId">PersonId:</label> <html:text
                                 property="personId"></html:text></li>
-                        <li><label for="eventId"></label> <html:text
+                        <li><label for="eventId">EventId:</label> <html:text
                                 property="eventId"></html:text></li>
                         <li><label></label>
                             <button type="submit" class="submit"

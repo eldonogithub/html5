@@ -29,22 +29,29 @@ public class ManagerAction extends DispatchAction {
 	public ActionForward addPersonToEvent(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ActionErrors errors = new ActionErrors();
+		ManagerForm managerForm = (ManagerForm) form;
 
-		if ("POST".equals(request.getMethod())) {
-			ManagerForm managerForm = (ManagerForm) form;
+		try {
+			if ("POST".equals(request.getMethod())) {
 
-			addPersonToEvent(errors, managerForm);
+				addPersonToEvent(errors, managerForm);
 
-			List<Event> events = EventsDB.listEvents(errors);
-			List<Person> persons = EventsDB.listPersons(errors);
+			}
+			List<Event> events = EventsDB.listEvents();
+			List<Person> persons = EventsDB.listPersons();
 
 			managerForm.setEvents(events);
 			managerForm.setPersons(persons);
 
 			logger.debug("Added person " + managerForm.getPersonId() + " to event " + managerForm.getEventId());
+			return mapping.findForward("success");
+		} catch (Exception e) {
+			errors.add(ActionMessages.GLOBAL_MESSAGE,
+					new ActionMessage("Error creating event " + e.getMessage(), false));
+			return mapping.getInputForward();
+		} finally {
+			saveErrors(request, errors);
 		}
-		saveErrors(request, errors);
-		return mapping.findForward("success");
 	}
 
 	public ActionForward cancelled(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -58,16 +65,24 @@ public class ManagerAction extends DispatchAction {
 	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ManagerForm managerForm = (ManagerForm) form;
-
 		ActionErrors errors = new ActionErrors();
 
-		List<Event> events = EventsDB.listEvents(errors);
-		List<Person> persons = EventsDB.listPersons(errors);
+		try {
+			List<Event> events = EventsDB.listEvents();
+			List<Person> persons = EventsDB.listPersons();
 
-		managerForm.setEvents(events);
-		managerForm.setPersons(persons);
+			managerForm.setEvents(events);
+			managerForm.setPersons(persons);
 
-		return mapping.findForward("success");
+			return mapping.findForward("success");
+		} catch (Exception e) {
+			log.error("Error fetching events and persons: " + e.getMessage());
+			errors.add(ActionMessages.GLOBAL_MESSAGE,
+					new ActionMessage("Error fetching events and persons: " + e.getMessage(), false));
+			return mapping.getInputForward();
+		} finally {
+			saveErrors(request, errors);
+		}
 	}
 
 	public ActionForward load(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -75,23 +90,32 @@ public class ManagerAction extends DispatchAction {
 		return mapping.getInputForward();
 	}
 
-	private void addPersonToEvent(ActionErrors errors, ManagerForm managerForm) {
+	private void addPersonToEvent(ActionErrors errors, ManagerForm managerForm) throws Exception {
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
-			Person aPerson = (Person) session.load(Person.class, managerForm.getPersonId());
-			Event anEvent = (Event) session.load(Event.class, managerForm.getEventId());
-			aPerson.addToEvent(anEvent);
-			session.getTransaction().commit();
-		} catch (HibernateException e) {
+			try {
+				session.beginTransaction();
+				Person aPerson = (Person) session.load(Person.class, managerForm.getPersonId());
+				Event anEvent = (Event) session.load(Event.class, managerForm.getEventId());
+				aPerson.addToEvent(anEvent);
+				session.getTransaction().commit();
+			} catch (RuntimeException e) {
+				log.error("Error adding person to event: " + e.getMessage());
+				session.getTransaction().rollback();
+				errors.add(ActionMessages.GLOBAL_MESSAGE,
+						new ActionMessage("Error adding person to event: " + e.getMessage(), false));
+				throw new Exception(e);
+			}
+		} catch (RuntimeException e) {
 			errors.add(ActionMessages.GLOBAL_MESSAGE,
-					new ActionMessage("Error processing request " + e.getMessage(), false));
+					new ActionMessage("Error adding person to event: " + e.getMessage(), false));
+			throw new Exception(e);
 		}
 	}
 
 	@Override
 	protected Method getMethod(String name) throws NoSuchMethodException {
-		// TODO Auto-generated method stub
+		log.debug("getting method for name: " + name);
 		return super.getMethod(name);
 	}
 }

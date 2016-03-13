@@ -52,16 +52,6 @@
             Person size:
             <c:out value="${fn:length(personForm.persons) }"></c:out>
                 <table id="personForm" class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Age</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
                 </table>
         </div>
         <div class="col3"></div>

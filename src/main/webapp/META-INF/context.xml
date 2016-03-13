@@ -34,19 +34,9 @@
 		maxActive="100" maxIdle="30" maxWait="10000"
 		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/eventsDb;create=true" />
 
-	<Resource name="jdbc/eventsDb2" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/eventsDb" auth="Container" type="javax.sql.DataSource"
 		maxActive="100" maxIdle="30" maxWait="10000"
-		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/eventsDb;create=true" />
-
-	<!-- public class EmbeddedDataSource extends org.apache.derby.jdbc.ReferenceableDataSource 
-		implements Referenceable This data source is suitable for an application 
-		using embedded Derby, running on full Java SE 6 and higher, corresponding 
-		to 4.0 and higher. A DataSource is a factory for Connection objects. An object 
-		that implements the DataSource interface will typically be registered with 
-		a JNDI service provider. -->
-	<Resource name="jdbc/eventsDb4" auth="Container" type="javax.sql.DataSource"
-		driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
-		url="jdbc:derby:eventsDb;create=true" />
+		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/eventsDb2;create=true" />
 
 	<!-- https://tomcat.apache.org/tomcat-7.0-doc/config/context.html#Resource_Links -->
 	<!-- When the attribute factory="org.apache.naming.factory.DataSourceLinkFactory" 
@@ -58,6 +48,16 @@
 		to a call getConnection(username, password) on the global data source. This 
 		is an easy way to get code to be transparent to what schemas are being used, 
 		yet be able to control connections (or pools) in the global configuration. -->
-	<ResourceLink name="jdbc/eventsDb" global="jdbc/eventsDb3" type="javax.sql.DataSource" />
+	<ResourceLink name="jdbc/eventsDb3" global="jdbc/eventsDb3" type="javax.sql.DataSource" />
+
+	<!-- public class EmbeddedDataSource extends org.apache.derby.jdbc.ReferenceableDataSource 
+		implements Referenceable This data source is suitable for an application 
+		using embedded Derby, running on full Java SE 6 and higher, corresponding 
+		to 4.0 and higher. A DataSource is a factory for Connection objects. An object 
+		that implements the DataSource interface will typically be registered with 
+		a JNDI service provider. -->
+	<Resource name="jdbc/eventsDb4" auth="Container" type="javax.sql.DataSource"
+		driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+		url="jdbc:derby:eventsDb;create=true" />
 
 </Context>

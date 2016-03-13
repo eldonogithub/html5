@@ -32,56 +32,64 @@ public class PersonAction extends Action {
 		ActionErrors errors = new ActionErrors();
 
 		PersonForm personForm = (PersonForm) form;
-		if ("POST".equals(request.getMethod())) {
-			log.debug("execute");
+		try {
+			if ("POST".equals(request.getMethod())) {
+				log.debug("execute");
 
-			if (isCancelled(request)) {
-				log.debug("Request was cancelled");
-				return mapping.getInputForward();
+				if (isCancelled(request)) {
+					log.debug("Request was cancelled");
+					return mapping.getInputForward();
+				}
+
+				log.debug("Creating Person");
+				createAndStorePerson(errors, personForm);
 			}
 
-			log.debug("Creating Person");
-			createAndStorePerson(errors, personForm);
-
-			
-			HibernateUtil.getSessionFactory().close();
+			log.debug("Getting persons");
+			List<Person> persons = EventsDB.listPersons();
+			personForm.setPersons(persons);
+			return mapping.findForward("success");
+		} catch (Exception e) {
+			log.error("Error fetching events and persons: " + e.getMessage());
+			errors.add(ActionMessages.GLOBAL_MESSAGE,
+					new ActionMessage("Error fetching creating person: " + e.getMessage(), false));
+			return mapping.getInputForward();
+		} finally {
+			saveErrors(request, errors);
 		}
-
-		log.debug("Getting persons");
-		List<Person> persons = EventsDB.listPersons(errors);
-		personForm.setPersons(persons);
-		saveErrors(request, errors);
-		return mapping.findForward("success");
 	}
 
-	private Long createAndStorePerson(ActionErrors errors, PersonForm personForm) {
+	private Long createAndStorePerson(ActionErrors errors, PersonForm personForm) throws Exception {
 
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-			session.beginTransaction();
+			Long saved;
+			try {
+				session.beginTransaction();
 
-			Person person = new Person();
+				Person person = new Person();
 
-			BeanUtils.copyProperties(person, personForm);
+				BeanUtils.copyProperties(person, personForm);
 
-			Long saved = (Long) session.save(person);
+				saved = (Long) session.save(person);
 
-			log.info("Stored Person: " + person);
+				log.info("Stored Person: " + person);
 
-			session.getTransaction().commit();
+				session.getTransaction().commit();
+				return saved;
+			} catch (RuntimeException e) {
+				log.error("Error creating person: " + e.getMessage());
+				session.getTransaction().rollback();
+				throw new Exception(e);
+			}
 
-			return saved;
-		} catch (HibernateException e) {
+		} catch (RuntimeException e) {
+			log.error("Error getting database session: " + e.getMessage());
 			errors.add(ActionMessages.GLOBAL_MESSAGE,
-					new ActionMessage("Error processing request " + e.getMessage(), false));
-			return null;
-		} catch (IllegalAccessException e) {
-			log.error(e, e);
-		} catch (InvocationTargetException e) {
-			log.error(e, e);
+					new ActionMessage("Error getting database session: " + e.getMessage(), false));
+			throw new Exception(e);
 		}
-		return Long.valueOf(0);
 	}
 
 }

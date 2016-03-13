@@ -34,58 +34,71 @@ public class EventAction extends Action {
 		EventForm eventForm = (EventForm) form;
 		log.debug("received " + eventForm);
 
-		if ("POST".equals(request.getMethod())) {
-			log.debug("form submission");
-			if (isCancelled(request)) {
-				log.debug("Request was cancelled");
-				return mapping.getInputForward();
+		try {
+			if ("POST".equals(request.getMethod())) {
+				log.debug("form submission");
+				if (isCancelled(request)) {
+					log.debug("Request was cancelled");
+					return mapping.getInputForward();
+				}
+
+				createAndStoreEvent(errors, eventForm);
+
 			}
+			List<Event> events = EventsDB.listEvents();
+			log.debug("Events " + events);
 
-			createAndStoreEvent(errors, eventForm);
-
-			HibernateUtil.getSessionFactory().close();
+			eventForm.setEvents(events);
+			return mapping.findForward("success");
+		} catch (Exception e) {
+			log.error("Failed to create event: " + e.getMessage());
+			errors.add(ActionMessages.GLOBAL_MESSAGE,
+					new ActionMessage("Error creating event " + e.getMessage(), false));
+			return mapping.getInputForward();
+		} finally {
+			saveErrors(request, errors);
 		}
-		
-		List<Event> events = EventsDB.listEvents(errors);
-		log.debug("Events " + events);
-		
-		eventForm.setEvents(events);
-		
-		saveErrors(request, errors);
-
-		return mapping.findForward("success");
 	}
 
-	private Long createAndStoreEvent(ActionErrors errors, EventForm eventForm) {
+	private void createAndStoreEvent(ActionErrors errors, EventForm eventForm) throws Exception {
 
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
 
-			session.beginTransaction();
+				Event theEvent = new Event();
+				DateConverter dateConverter = new DateConverter();
+				dateConverter.setPattern("MM/dd/yyyy");
+				ConvertUtils.register(dateConverter, java.util.Date.class);
+				BeanUtils.copyProperties(theEvent, eventForm);
 
-			Event theEvent = new Event();
-			DateConverter dateConverter = new DateConverter();
-			dateConverter.setPattern("dd/MM/yyyy");
-			ConvertUtils.register(dateConverter, java.util.Date.class);
-			BeanUtils.copyProperties(theEvent, eventForm);
+				session.save(theEvent);
+				
+				log.info("Stored Event: " + theEvent);
 
-			Long saved = (Long) session.save(theEvent);
+				session.getTransaction().commit();
 
-			log.info("Stored Event: " + theEvent);
-
-			session.getTransaction().commit();
-
-			return saved;
-		} catch (HibernateException e) {
+			} catch (RuntimeException e) {
+				log.error("Error creating event in the database: " + e.getMessage());
+				session.getTransaction().rollback();
+				errors.add(ActionMessages.GLOBAL_MESSAGE,
+						new ActionMessage("Error creating event in the database: " + e.getMessage(), false));
+				throw new Exception(e);
+			} catch (Exception e) {
+				session.getTransaction().rollback();
+				log.error("Error copying properties: " + e.getMessage());
+				errors.add(ActionMessages.GLOBAL_MESSAGE,
+						new ActionMessage("Error copying properties: " + e.getMessage(), false));
+				throw e;
+			}
+		} catch (RuntimeException e) {
+			log.error("Error getting database session: " + e.getMessage());
 			errors.add(ActionMessages.GLOBAL_MESSAGE,
-					new ActionMessage("Error processing request " + e.getMessage(), false));
-			return null;
-		} catch (IllegalAccessException e) {
-			log.error(e, e);
-		} catch (InvocationTargetException e) {
-			log.error(e, e);
+					new ActionMessage("Error getting database session: " + e.getMessage(), false));
+			throw new Exception(e);
 		}
-		return Long.valueOf(0);
+		return;
 	}
 
 }
