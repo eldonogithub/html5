@@ -14,7 +14,8 @@ $(function() {
 				.DataTable(
 						{
 							"ajax" : function(data, cb, settings) {
-								console.log("AjaxHibernate.getPersons() invoked");
+								console
+										.log("AjaxHibernate.getPersons() invoked");
 								AjaxHibernate
 										.getPersons({
 											"callback" : function(ajaxPersons) {
@@ -22,9 +23,15 @@ $(function() {
 														.log("Received a result back "
 																+ ajaxPersons.status);
 												if (ajaxPersons.status === 'SUCCESS') {
-													console.log("Calling DataTable() callback...");
-													console.log("Received data as ", ajaxPersons.results);
-													cb({"data" : ajaxPersons.results});
+													console
+															.log("Calling DataTable() callback...");
+													console
+															.log(
+																	"Received data as ",
+																	ajaxPersons.results);
+													cb({
+														"data" : ajaxPersons.results
+													});
 												}
 											}
 										});
@@ -41,6 +48,12 @@ $(function() {
 							}, {
 								"data" : "age",
 								"title" : "Name"
+							}, {
+								"data" : null,
+								"title" : "Delete",
+								"render" : function (data, type, row, meta) {
+									return "<button>Delete</button>";
+								},
 							} ],
 							"pageLength" : 10
 						});
