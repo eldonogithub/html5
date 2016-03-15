@@ -36,27 +36,38 @@ $(function() {
 											}
 										});
 							},
-							"columns" : [ {
-								"data" : "id",
-								"title" : "ID"
-							}, {
-								"data" : "firstname",
-								"title" : "First Name"
-							}, {
-								"data" : "lastname",
-								"title" : "Last Name"
-							}, {
-								"data" : "age",
-								"title" : "Name"
-							}, {
-								"data" : null,
-								"title" : "Operation",
-								"render" : function (data, type, row, meta) {
-									return "<button id='edit'>Edit</button><button id='delete'>Delete</button>";
-								},
-							} ],
-							"pageLength" : 10
+							"columns" : [
+									{
+										"data" : "id",
+										"title" : "ID"
+									},
+									{
+										"data" : "firstname",
+										"title" : "First Name"
+									},
+									{
+										"data" : "lastname",
+										"title" : "Last Name"
+									},
+									{
+										"data" : "age",
+										"title" : "Name"
+									},
+									{
+										"data" : null,
+										"title" : "Operation",
+										"render" : function(data, type, row,
+												meta) {
+											return "<button id='edit' class='ui-widget ui-state-default'>Edit</button>"
+													+ "<button id='delete' class='ui-widget ui-state-default'>Delete</button>";
+										},
+									} ],
+							"scrollY" : 200,
+							"paging" : false,
 						});
+		$('.dataTables_scrollBody').on('scroll', (function(e) {
+			console.log(e);
+		}));
 	}
 
 	// Load the table with the initial data

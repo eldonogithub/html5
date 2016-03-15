@@ -66,7 +66,6 @@
 		<form-bean name="managerForm" type="ca.blackperl.struts.forms.ManagerForm">
 			<display-name>Manager Form</display-name>
 			<description>Manager form</description>
-
 		</form-bean>
 
 		<form-bean name="jndiForm" type="ca.blackperl.struts.forms.JndiForm">
@@ -135,10 +134,14 @@
 			<forward name="success" path="/pages/hibernate/event.jsp"></forward>
 		</action>
 
-		<action name="personForm" path="/hibernate/person" cancellable="true"
-			scope="request" type="ca.blackperl.struts.actions.hibernate.PersonAction"
-			input="/pages/hibernate/person.jsp">
+		<action name="personForm" path="/hibernate/person" scope="request"
+			type="ca.blackperl.struts.actions.hibernate.PersonAction" input="/pages/hibernate/person.jsp">
 			<forward name="success" path="/pages/hibernate/person.jsp"></forward>
+		</action>
+
+		<action name="personForm" path="/hibernate/person2" scope="request"
+			type="ca.blackperl.struts.actions.hibernate.PersonAction" input="/pages/hibernate/person2.jsp">
+			<forward name="success" path="/pages/hibernate/person2.jsp"></forward>
 		</action>
 
 		<action name="managerForm" path="/hibernate/manager" scope="request"
@@ -148,8 +151,8 @@
 		</action>
 
 		<action path="/jndi/log" name="jndiForm" scope="request"
-			type="ca.blackperl.struts.actions.JndiAction"
-			parameter="method" input="/pages/jndi.jsp">
+			type="ca.blackperl.struts.actions.JndiAction" parameter="method"
+			input="/pages/jndi.jsp">
 		</action>
 
 	</action-mappings>

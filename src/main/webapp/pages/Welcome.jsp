@@ -39,6 +39,7 @@
                 <bean:message key="welcome.message" />
             </p>
             <ul>
+                <li><html:link page="/jqueryui/index.html">JQuery UI</html:link></li>
                 <li><html:link action="/jndi/log.do">Jndi Page</html:link></li>
                 <li><html:link action="/Input.do">Input Form</html:link></li>
                 <li><html:link action="/form/load.do">Load Token Form</html:link></li>
