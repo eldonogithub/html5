@@ -11,6 +11,7 @@
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<togglz.version>2.1.0.Final</togglz.version>
 		<hibernate.version>[5.1,)</hibernate.version>
+		<derby.version>10.12.1.1</derby.version>
 	</properties>
 
 	<build>
@@ -147,27 +148,27 @@
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbyclient</artifactId>
-			<version>10.11.1.1</version>
+			<version>${derby.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbytools</artifactId>
-			<version>10.11.1.1</version>
+			<version>${derby.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
-			<version>10.11.1.1</version>
+			<version>${derby.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbyoptionaltools</artifactId>
-			<version>10.11.1.1</version>
+			<version>${derby.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbynet</artifactId>
-			<version>10.11.1.1</version>
+			<version>${derby.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -227,6 +228,11 @@
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.12.1.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
 		</dependency>
 	</dependencies>
 </project>

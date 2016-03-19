@@ -64,4 +64,9 @@ public class AuditInterceptor extends EmptyInterceptor {
 	public void afterTransactionCompletion(Transaction tx) {
 		log.debug(this);
 	}
+	
+	@Override
+	public void afterTransactionBegin(Transaction tx) {
+		log.debug("start");
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts.action.ActionErrors;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -73,6 +74,13 @@ public class EventsDB {
 
 				log.debug("Persons: " + result.size());
 
+				// In order for DWR to generate a full JSON object of the Person
+				// object we need to tell hibernate to preload all the data, for
+				// the proxied data. In this case, the email addresses need to
+				// be preloaded.
+				for (Person p : list) {
+					Hibernate.initialize(p.getEmailAddresses());
+				}
 				session.getTransaction().commit();
 			} catch (RuntimeException e) {
 				log.error("Error fetching person list: " + e.getMessage());

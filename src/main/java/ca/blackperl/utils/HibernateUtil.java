@@ -1,5 +1,8 @@
 package ca.blackperl.utils;
 
+import java.net.URL;
+import java.net.URLClassLoader;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
@@ -14,11 +17,21 @@ public class HibernateUtil {
 	static {
 		try {
 			// Create the SessionFactory from hibernate.cfg.xml
-			sessionFactory = new Configuration().configure("/ca/blackperl/utils/hibernate.cfg.xml")
+			Configuration configuration = new Configuration();
+			sessionFactory = configuration.configure("/ca/blackperl/utils/hibernate.cfg.xml")
 					.setInterceptor(new AuditInterceptor())
 					.buildSessionFactory();
 		} catch (Throwable ex) {
-			log.debug("Error obtaining connection " + ex.getMessage());
+			log.error("Error obtaining connection " + ex.getMessage(), ex);
+			ClassLoader cl = Thread.currentThread().getContextClassLoader();
+			while (cl != null) {
+				log.debug("ClassLoader: " + cl.getClass().getName());
+				URL[] urls = ((URLClassLoader) cl).getURLs();
+				for (URL url : urls) {
+					log.debug("  " + url.getFile());
+				}
+				cl = cl.getParent();
+			}
 			// Make sure you log the exception, as it might be swallowed
 			throw new ExceptionInInitializerError(ex);
 		}
