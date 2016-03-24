@@ -83,7 +83,6 @@ public class PersonAction extends Action {
 				session.getTransaction().rollback();
 				throw new Exception(e);
 			}
-
 		} catch (RuntimeException e) {
 			log.error("Error getting database session: " + e.getMessage());
 			errors.add(ActionMessages.GLOBAL_MESSAGE,

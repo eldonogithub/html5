@@ -44,7 +44,7 @@ public class AuditInterceptor extends EmptyInterceptor {
 	@Override
 	public String onPrepareStatement(String sql) {
 		statements++;
-		log.debug(sql);
+		log.trace(sql);
 		return super.onPrepareStatement(sql);
 	}
 

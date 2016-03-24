@@ -57,10 +57,10 @@
 		to 4.0 and higher. A DataSource is a factory for Connection objects. An object 
 		that implements the DataSource interface will typically be registered with 
 		a JNDI service provider. -->
-	<Resource name="jdbc/eventsDb4" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/eventsDb" auth="Container" type="javax.sql.DataSource"
 		driverClassName="org.apache.derby.jdbc.EmbeddedDriver" url="jdbc:derby:eventsDb;create=true" />
 
-	<Resource name="jdbc/eventsDb" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/eventsDb5" auth="Container" type="javax.sql.DataSource"
 		driverClassName="org.apache.derby.jdbc.EmbeddedDriver" url="jdbc:derby:eventsDb2;create=true" />
 
 </Context>

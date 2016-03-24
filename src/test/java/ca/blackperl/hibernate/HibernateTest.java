@@ -32,6 +32,7 @@ public class HibernateTest {
 		// Construct DataSource
 		EmbeddedDataSource ds = new EmbeddedDataSource();
 		ds.setDatabaseName("eventsDb");
+		ds.setCreateDatabase("create");
 
 		ic.bind("java:comp/env/jdbc/eventsDb", ds);
 	}
@@ -49,11 +50,11 @@ public class HibernateTest {
 				List<Event> list = createQuery.list();
 				for (Event e : list) {
 					e.getId();
-				} 
+				}
 			} finally {
 				session.close();
 			}
-			
+
 		} catch (Exception e) {
 			fail("failed: " + e.getMessage());
 		}
@@ -68,11 +69,11 @@ public class HibernateTest {
 				List<Person> list = createQuery.list();
 				for (Person p : list) {
 					p.getId();
-				} 
+				}
 			} finally {
 				session.close();
 			}
-			
+
 		} catch (Exception e) {
 			fail("failed: " + e.getMessage());
 		}
@@ -87,13 +88,13 @@ public class HibernateTest {
 				List<Person> list = createQuery.list();
 				for (Person p : list) {
 					p.getId();
-					for ( String email : p.getEmailAddresses() ) {
+					for (String email : p.getEmailAddresses()) {
 					}
-				} 
+				}
 			} finally {
 				session.close();
 			}
-			
+
 		} catch (Exception e) {
 			fail("failed: " + e.getMessage());
 		}
@@ -101,7 +102,7 @@ public class HibernateTest {
 
 	@Test
 	public void test4() {
-		
+
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
@@ -109,19 +110,58 @@ public class HibernateTest {
 				List<Event> list = createQuery.list();
 				for (Event e : list) {
 					e.getId();
-					for( Person p: e.getParticipants() ) {
-						for ( String ea : p.getEmailAddresses() ) {
-							
+					for (Person p : e.getParticipants()) {
+						for (String ea : p.getEmailAddresses()) {
+
 						}
 					}
-				} 
+				}
 			} finally {
 				session.close();
 			}
-			
+
 		} catch (Exception e) {
 			fail("failed: " + e.getMessage());
 		}
 	}
 
+	@Test
+	public void test5() {
+		try {
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
+				for (int i = 0; i < 100000; i++) {
+					Person p = new Person();
+					p.setAge(Math.round(Math.random() * 40 + 18));
+					StringBuffer sb = new StringBuffer();
+					String letters = "abcdefghijklmnopqrstuvwxyz";
+					for( int j = 0; j < 16; j++ ) {
+						sb.append(letters.charAt((int) Math.floor(Math.random() * letters.length())));
+					}
+					p.setFirstname(sb.toString());
+					sb = new StringBuffer();
+					for( int j = 0; j < 16; j++ ) {
+						sb.append(letters.charAt((int) Math.floor(Math.random() * letters.length())));
+					}
+					p.setLastname(sb.toString());
+
+					session.save(p);
+
+					// 20, same as the JDBC batch size
+					if (i % 20 == 0) { 
+						// flush a batch of inserts and release memory:
+						session.flush();
+						session.clear();
+					}
+				}
+				session.getTransaction().commit();
+			} catch (Exception e) {
+				session.getTransaction().rollback();
+				throw e;
+			}
+		} catch (Exception e) {
+			fail("failed: " + e.getMessage());
+		}
+	}
 }
