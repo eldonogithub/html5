@@ -325,7 +325,7 @@ public class DerbyDialect extends org.hibernate.dialect.DerbyDialect {
 
 	@Override
 	public String toString() {
-		log.debug("here");
+		log.debug("toString");
 		return super.toString();
 	}
 
@@ -646,7 +646,7 @@ public class DerbyDialect extends org.hibernate.dialect.DerbyDialect {
 
 	@Override
 	public char openQuote() {
-		log.debug("here");
+		log.debug("openQuote");
 		return super.openQuote();
 	}
 
@@ -658,7 +658,7 @@ public class DerbyDialect extends org.hibernate.dialect.DerbyDialect {
 
 	@Override
 	public boolean hasAlterTable() {
-		log.debug("here");
+		log.debug("hasAlterTable");
 		return super.hasAlterTable();
 	}
 

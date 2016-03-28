@@ -16,19 +16,17 @@
 --%>
 <html:html>
 <head>
-<%@ include file="/includes/head.jspf" %>
+<%@ include file="/includes/head.jspf"%>
 <title><bean:message key="welcome.title" /></title>
 <html:base />
 <link rel="stylesheet" href='${baseUrl }/css/main.css'>
 </head>
 <body>
-    <logic:notPresent name="org.apache.struts.action.MESSAGE"
-        scope="application">
-        <font color="red"> ERROR: Application resources not
-            loaded -- check servlet container logs for error messages. </font>
+    <logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
+        <font color="red"> ERROR: Application resources not loaded -- check servlet container logs for error messages. </font>
     </logic:notPresent>
     <header class="header"></header>
-    <%@ include file="/includes/menu.jspf" %>
+    <%@ include file="/includes/menu.jspf"%>
     <section class="content">
         <div class="col1"></div>
         <div class="col2">
@@ -48,16 +46,15 @@
                 <li><html:link page="/pages/flexbox.jsp">Flex Box</html:link></li>
                 <li><html:link page="/derby/load.do">Derby Form</html:link></li>
                 <li><html:link page="/dwr">Direct Web Remoting</html:link></li>
-                <li><html:link
-                        page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
-                <li><html:link
-                        page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
-                <li><html:link
-                        page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
+                <li><html:link page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
+                <li><html:link page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
+                <li><html:link page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
                 <li><html:link page="/hibernate/person.do">Person Form</html:link></li>
                 <li><html:link page="/hibernate/event.do">Event Form</html:link></li>
-                <li><html:link
-                        page="/hibernate/manager.do?method=list">Manager Form</html:link></li>
+                <li><html:link page="/hibernate/manager.do?method=list">Manager Form</html:link></li>
+                <li><html:link page="/pages/nicholahibbert.jsp">Nichola Hibbert 1</html:link></li>
+                <li><html:link page="/pages/nicholahibbert2.jsp">Nichola Hibbert 2</html:link></li>
+                <li><html:link action="/databases/toursdb.do">Tours DB</html:link></li>
             </ul>
         </div>
         <div class="col3"></div>

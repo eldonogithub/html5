@@ -1,12 +1,21 @@
 package ca.blackperl.dwr.bean;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts.action.ActionErrors;
 
 import ca.blackperl.dwr.enums.Status;
 import ca.blackperl.hibernate.Event;
@@ -86,7 +95,7 @@ public class AjaxHibernate {
 
 	public AjaxAddEmailToPerson addEmailToPerson(Long personId, String emailAddress) {
 		AjaxAddEmailToPerson addEmailToPerson = new AjaxAddEmailToPerson();
-		
+
 		try {
 			EventsDB.addEmailToPerson(personId, emailAddress);
 			addEmailToPerson.setStatus(Status.SUCCESS);
@@ -95,5 +104,51 @@ public class AjaxHibernate {
 			addEmailToPerson.setStatus(Status.FAILURE);
 		}
 		return addEmailToPerson;
+	}
+
+	public AjaxMetaData getTables() {
+		log.debug("Fetching toursdb info");
+
+		AjaxMetaData ajaxResults = new AjaxMetaData();
+		try {
+			DataSource ds = AjaxBean.getDataSource("toursDb");
+			try (Connection connection = ds.getConnection()) {
+				DatabaseMetaData metaData = connection.getMetaData();
+
+				try (ResultSet tables = metaData.getTables(null, null, null, null)) {
+					ResultSetMetaData rsmeta = tables.getMetaData();
+					int columnCount = rsmeta.getColumnCount();
+					List<String> header = new ArrayList<String>();
+					log.debug("Total columns: " + columnCount);
+					for (int i = 1; i <= columnCount; i++) {
+						log.debug("column[" + i + "] " + rsmeta.getColumnName(i));
+						header.add(rsmeta.getColumnName(i));
+					}
+
+					String[] columns = new String[] { "tableCat", "tableSchema", "tableName", "tableType", "remarks",
+							"typeCat", "typeSchem", "typeName", "selfReferencingColName", "refgenerationString" };
+
+					List<MetaData> datarows = new ArrayList<MetaData>();
+					while (tables.next()) {
+						MetaData row = new MetaData();
+
+						for (int i = 1; i <= columnCount; i++) {
+							BeanUtils.setProperty(row, columns[i - 1], tables.getString(i));
+						}
+						datarows.add(row);
+						log.debug(row);
+					}
+
+					ajaxResults.setResults(datarows);
+					ajaxResults.setStatus(Status.SUCCESS);
+					ajaxResults.setColumns(header);
+				}
+			}
+		} catch (Throwable e) {
+			ajaxResults.setStatus(Status.FAILURE);
+			log.error(e, e);
+			ajaxResults.setDebug(e.getMessage());
+		}
+		return ajaxResults;
 	}
 }

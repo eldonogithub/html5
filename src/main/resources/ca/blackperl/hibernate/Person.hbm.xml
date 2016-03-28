@@ -14,7 +14,7 @@
 			<key column="PERSON_ID" />
 			<many-to-many column="EVENT_ID" class="ca.blackperl.hibernate.Event" />
 		</set>
-		<set name="emailAddresses" table="PERSON_EMAIL_ADDR" >
+		<set name="emailAddresses" table="PERSON_EMAIL_ADDR" fetch="subselect" >
 			<key column="PERSON_ID" />
 			<element type="string" column="EMAIL_ADDR" />
 		</set>

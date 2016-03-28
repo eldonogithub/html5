@@ -5,8 +5,8 @@ import ca.blackperl.dwr.enums.Status;
 public class AjaxResults {
 	Status status;
 	String message;
-	DatabaseResults results;
 	String debug;
+	DatabaseResults results;
 	public String getDebug() {
 		return debug;
 	}

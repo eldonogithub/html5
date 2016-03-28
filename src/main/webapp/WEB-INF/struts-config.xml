@@ -71,7 +71,11 @@
 		<form-bean name="jndiForm" type="ca.blackperl.struts.forms.JndiForm">
 			<display-name>Manager Form</display-name>
 			<description>Manager form</description>
+		</form-bean>
 
+		<form-bean name="viewTable" type="ca.blackperl.struts.forms.ViewTableForm">
+			<display-name>View Table</display-name>
+			<description>View Table parameters</description>
 		</form-bean>
 
 	</form-beans>
@@ -140,7 +144,7 @@
 		</action>
 
 		<action name="personForm" path="/hibernate/person2" scope="request"
-			type="ca.blackperl.struts.actions.hibernate.PersonAction" input="/pages/hibernate/person2.jsp">
+			type="ca.blackperl.struts.actions.hibernate.PersonAction2" input="/pages/hibernate/person2.jsp">
 			<forward name="success" path="/pages/hibernate/person2.jsp"></forward>
 		</action>
 
@@ -153,6 +157,19 @@
 		<action path="/jndi/log" name="jndiForm" scope="request"
 			type="ca.blackperl.struts.actions.JndiAction" parameter="method"
 			input="/pages/jndi.jsp">
+		</action>
+
+		<action path="/databases/toursdb" scope="request"
+			type="ca.blackperl.struts.actions.ToursDbAction" parameter="method"
+			input="/pages/databases/toursdb.jsp">
+			<forward name="success" path="/pages/databases/toursdb.jsp"></forward>
+		</action>
+
+		<action path="/databases/toursdb/viewTable" scope="request"
+			type="ca.blackperl.struts.actions.ViewTableAction" parameter="method"
+			name="viewTable"
+			input="/pages/databases/viewTable.jsp">
+			<forward name="success" path="/pages/databases/viewTable.jsp"></forward>
 		</action>
 
 	</action-mappings>

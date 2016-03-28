@@ -20,10 +20,10 @@
     <section class="content">
         <hr>
         <div class="col1"></div>
-        <div class="col2 ui-widget ui-widget-content ui-corner-top">
+        <div class="col2 ">
             <html:errors />
             <html:form action="/hibernate/person.do"
-                styleId="personForm" styleClass="contact_form ui-widget">
+                styleId="personForm" styleClass="contact_form">
                 <html:hidden property="id" />
                 <ul>
                     <li>
@@ -39,7 +39,7 @@
                     <li><label for="age">Age:</label> <html:text
                             property="age"></html:text></li>
                     <li><label></label>
-                        <button name="submit" class="submit ui-state-default"
+                        <button name="submit" class="submit"
                             value="createPerson">Create Person</button></li>
                 </ul>
             </html:form>
@@ -51,9 +51,6 @@
         <div class="col1"></div>
         <div class="col2 ui-widget ui-widget-content ui-corner-top">
             <h1>Persons</h1>
-            <span>Person size: <c:out
-                    value="${fn:length(personForm.persons) }"></c:out>
-            </span>
             <table id="personForm" class="table">
             </table>
         </div>

@@ -93,6 +93,7 @@ body {
 		display: none;
 	}
 }
+
 @media ( min-device-width : 450px) {
 	.contact_form label {
 		width: 150px;

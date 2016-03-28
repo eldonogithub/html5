@@ -36,26 +36,32 @@ $(function() {
 											}
 										});
 							},
-							"columns" : [ {
-								"data" : "id",
-								"title" : "ID"
-							}, {
-								"data" : "firstname",
-								"title" : "First Name"
-							}, {
-								"data" : "lastname",
-								"title" : "Last Name"
-							}, {
-								"data" : "age",
-								"title" : "Name"
-							}, {
-								"data" : null,
-								"title" : "Operation",
-								"render" : function (data, type, row, meta) {
-									return "<button id='edit'>Edit</button><button id='delete'>Delete</button>";
-								},
-							} ],
-							"pageLength" : 10
+							"columns" : [
+									{
+										"data" : "id",
+										"title" : "ID"
+									},
+									{
+										"data" : "firstname",
+										"title" : "First Name"
+									},
+									{
+										"data" : "lastname",
+										"title" : "Last Name"
+									},
+									{
+										"data" : "age",
+										"title" : "Name"
+									},
+									{
+										"data" : null,
+										"title" : "Operation",
+										"render" : function(data, type, row,
+												meta) {
+											return "<button id='edit'>Edit</button><button id='delete'>Delete</button>";
+										},
+									} ],
+							"pageLength" : 25
 						});
 	}
 

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2016 10:34:39 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="ca.blackperl.toursdb.Flightavailability" table="FLIGHTAVAILABILITY" schema="APP" optimistic-lock="version">
+        <composite-id name="id" class="ca.blackperl.toursdb.FlightavailabilityId">
+            <key-property name="flightId" type="string">
+                <column name="FLIGHT_ID" length="6" />
+            </key-property>
+            <key-property name="segmentNumber" type="int">
+                <column name="SEGMENT_NUMBER" />
+            </key-property>
+            <key-property name="flightDate" type="date">
+                <column name="FLIGHT_DATE" length="10" />
+            </key-property>
+        </composite-id>
+        <property name="economySeatsTaken" type="java.lang.Integer">
+            <column name="ECONOMY_SEATS_TAKEN" />
+        </property>
+        <property name="businessSeatsTaken" type="java.lang.Integer">
+            <column name="BUSINESS_SEATS_TAKEN" />
+        </property>
+        <property name="firstclassSeatsTaken" type="java.lang.Integer">
+            <column name="FIRSTCLASS_SEATS_TAKEN" />
+        </property>
+    </class>
+</hibernate-mapping>

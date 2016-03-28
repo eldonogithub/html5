@@ -1,11 +1,21 @@
 package ca.blackperl.hibernate;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.sql.ConnectionEvent;
+import javax.sql.ConnectionEventListener;
+import javax.sql.DataSource;
 
 import org.apache.derby.jdbc.EmbeddedDataSource;
 import org.hibernate.Query;
@@ -14,9 +24,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ca.blackperl.dwr.bean.AjaxBean;
 import ca.blackperl.utils.HibernateUtil;
 
-public class HibernateTest {
+public class HibernateTest implements ConnectionEventListener {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -31,11 +42,19 @@ public class HibernateTest {
 
 		// Construct DataSource
 		EmbeddedDataSource ds = new EmbeddedDataSource();
+		
 		ds.setDatabaseName("eventsDb");
 		ds.setCreateDatabase("create");
-
 		ic.bind("java:comp/env/jdbc/eventsDb", ds);
+
+		EmbeddedDataSource toursdb = new EmbeddedDataSource();
+		
+		toursdb.setDatabaseName("demo/databases/toursdb");
+		ic.bind("java:comp/env/jdbc/toursDb", toursdb);
 	}
+
+	private boolean errorOccured = false;
+	private boolean connectionClosed = false;
 
 	@Before
 	public void setUp() throws Exception {
@@ -133,7 +152,7 @@ public class HibernateTest {
 				session.beginTransaction();
 				for (int i = 0; i < 100000; i++) {
 					Person p = new Person();
-					p.setAge(Math.round(Math.random() * 40 + 18));
+					p.setAge((long)(Math.random() * 40 + 18));
 					StringBuffer sb = new StringBuffer();
 					String letters = "abcdefghijklmnopqrstuvwxyz";
 					for( int j = 0; j < 16; j++ ) {
@@ -145,7 +164,13 @@ public class HibernateTest {
 						sb.append(letters.charAt((int) Math.floor(Math.random() * letters.length())));
 					}
 					p.setLastname(sb.toString());
-
+					
+					Set<String> emailAddresses = new HashSet<String>();
+					int emails = (int) Math.random() * 6 + 1;
+					for( int j = 0; j < emails; j++ ) {
+						emailAddresses.add(p.getFirstname() + "." + p.getLastname() + "@" + j + ".example.com");
+					}
+					p.setEmailAddresses(emailAddresses );
 					session.save(p);
 
 					// 20, same as the JDBC batch size
@@ -163,5 +188,60 @@ public class HibernateTest {
 		} catch (Exception e) {
 			fail("failed: " + e.getMessage());
 		}
+	}
+
+	@Test
+	public void test6() throws Exception {
+		try {
+			DataSource ds = AjaxBean.getDataSource("toursDb");
+			try (Connection connection = ds.getConnection()) {
+				// Where Dynamic Parameters Are Allowed
+				// You can use dynamic parameters anywhere in an expression where their data type can be easily deduced.
+
+				// As a result the following fails
+				try (PreparedStatement ps = connection.prepareStatement("select * from ?")) {
+					ps.setString(1, "AIRLINE");
+					try (ResultSet tables = ps.executeQuery()) {
+						
+					}
+				}
+			}
+		}
+		catch(SQLException e) {
+			fail("SQL Exception" + e.getMessage());
+		}
+		catch(Exception e) {
+		}
+	}
+	
+	@Test
+	public void test7() throws Exception {
+		try {
+			DataSource ds = AjaxBean.getDataSource("toursDb");
+			List<Connection> connections = new ArrayList<Connection>();
+			try {
+			for( int i = 0; i < 1000; i++ ) {
+				Connection connection = ds.getConnection();
+				connections.add(connection);
+			}
+			}
+			catch(Exception e) {
+				for( int i = 0; i < connections.size(); i++) {
+					connections.get(i).close();
+				}
+			}
+		}
+		catch(Exception e) {
+		}
+	}
+	
+	@Override
+	public void connectionClosed(ConnectionEvent event) {
+		connectionClosed = true;
+	}
+
+	@Override
+	public void connectionErrorOccurred(ConnectionEvent event) {
+		errorOccured = true;
 	}
 }

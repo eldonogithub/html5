@@ -10,8 +10,6 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NameClassPair;
-import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
@@ -35,7 +33,6 @@ public class AjaxBean {
 		}
 	
 		return ajaxResults;
-		
 	}
 
 	public AjaxResults getTestData() {
@@ -91,7 +88,7 @@ public class AjaxBean {
 		}
 	}
 	
-	private DataSource getDataSource(String dataSource) throws NamingException {
+	public static DataSource getDataSource(String dataSource) throws NamingException {
 		// Obtain our environment naming context
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env"); //$NON-NLS-1$

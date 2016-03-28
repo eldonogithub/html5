@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2016 10:34:39 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="ca.blackperl.toursdb.Countries" table="COUNTRIES" schema="APP" optimistic-lock="version">
+        <id name="countryIsoCode" type="string">
+            <column name="COUNTRY_ISO_CODE" length="2" />
+            <generator class="assigned" />
+        </id>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="26" not-null="true" unique="true" />
+        </property>
+        <property name="region" type="string">
+            <column name="REGION" length="26" />
+        </property>
+    </class>
+</hibernate-mapping>

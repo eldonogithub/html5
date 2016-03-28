@@ -13,6 +13,10 @@
 		on session expiration as well as webapp lifecycle) -->
 	<!-- <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" 
 		/> -->
+
+	<!-- For the network client driver that is provided by Derby, the format 
+		for the database connection URL for connecting to a database is this: 
+		jdbc:derby://server[:port]/databaseName[;URLAttributes=value[;...]] -->
 	<Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource"
 		maxActive="100" maxIdle="30" maxWait="10000"
 		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/testdata" />
@@ -30,7 +34,7 @@
 		maxActive="100" maxIdle="30" maxWait="10000"
 		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/seconddb" />
 
-	<Resource name="jdbc/eventsDb1" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/eventsDb" auth="Container" type="javax.sql.DataSource"
 		maxActive="100" maxIdle="30" maxWait="10000"
 		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/eventsDb;create=true" />
 
@@ -57,10 +61,59 @@
 		to 4.0 and higher. A DataSource is a factory for Connection objects. An object 
 		that implements the DataSource interface will typically be registered with 
 		a JNDI service provider. -->
-	<Resource name="jdbc/eventsDb" auth="Container" type="javax.sql.DataSource"
+		
+	<!-- 
+			This syntax has the following components.
+			• jdbc:derby:
+			In JDBC terminology, derby is the subprotocol for connecting to a Derby database.
+			The subprotocol is always derby and does not vary.
+			• subsubprotocol:
+			subsubprotocol specifies where Derby looks for a database: in a directory, in
+			memory, in a classpath, or in a jar file. subsubprotocol is one of the following:
+			• directory: The default, which need not be specified explicitly. The database
+			is in the file system, and the path name is either relative to the system
+			directory or absolute.
+			• memory: Databases exist only in main memory and are not written to disk.
+			An in-memory database may be useful when there is no need to persist the
+			database - for example, in some testing situations. See "Using in-memory
+			databases" in the Derby Developer's Guide for more information.
+			• classpath: Databases are treated as read-only databases, relative to the
+			classpath directory. All databaseNames must begin with at least a slash,
+			because you specify them "relative" to the classpath directory or archive. (You
+			do not have to specify classpath as the subsubprotocol; it is implied.) See
+			"Accessing databases from the classpath" in the Derby Developer's Guide for
+			more information.
+			• jar: Databases are treated as read-only databases. DatabaseNames might
+			require a leading slash, because you specify them "relative" to the jar file. See
+			"Accessing databases from a jar or zip file" in the Derby Developer's Guide for
+			details.
+			jar requires an additional element immediately before the database name:
+			(pathToArchive)
+			pathToArchive is the path name of the jar or zip file that holds the database.
+			• databaseName
+			Specify the databaseName to connect to an existing database or a new one.
+			The databaseName value can be either an absolute path name or a path name
+			relative to the system directory. For example, thisDB, databases/thisDB,
+			and c:/databases/2014/january/thisDB can all be valid values. See
+			"Connecting to databases" and its subsections in the Derby Developer's Guide. The
+			path separator in the connection URL is a forward slash (/), even in Windows path
+			names. The databaseName value cannot contain a colon (:), except for the colon
+			after the drive name in a Windows path name.
+			• attributes
+			Specify zero or more database connection URL attributes as detailed in Attributes of
+			the Derby database connection URL.	
+	 -->
+	<Resource name="jdbc/eventsDb4" auth="Container" type="javax.sql.DataSource"
 		driverClassName="org.apache.derby.jdbc.EmbeddedDriver" url="jdbc:derby:eventsDb;create=true" />
 
 	<Resource name="jdbc/eventsDb5" auth="Container" type="javax.sql.DataSource"
 		driverClassName="org.apache.derby.jdbc.EmbeddedDriver" url="jdbc:derby:eventsDb2;create=true" />
+
+	<Resource name="jdbc/toursDb1" auth="Container" type="javax.sql.DataSource" 
+		driverClassName="org.apache.derby.jdbc.EmbeddedDriver" url="jdbc:derby:demo/databases/toursdb" />
+
+	<Resource name="jdbc/toursDb" auth="Container" type="javax.sql.DataSource" 
+		maxActive="100" maxIdle="30" maxWait="10000"
+		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/demo/databases/toursdb" />
 
 </Context>
