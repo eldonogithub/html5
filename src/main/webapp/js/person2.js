@@ -42,7 +42,7 @@ $(function() {
                             },
                             {
                                 "data" : "age",
-                                "title" : "Name"
+                                "title" : "Age"
                             },
                             {
                                 "data" : null,
@@ -52,7 +52,8 @@ $(function() {
                                             + "<button id='delete' class='ui-widget ui-state-default'>Delete</button>";
                                 },
                             } ],
-                    "pageLength" : 25
+                    "pageLength" : 25,
+                    "deferRender" : true
                 });
         $('.dataTables_scrollBody').on('scroll', (function(e) {
             console.log(e);

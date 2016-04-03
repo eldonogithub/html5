@@ -5,7 +5,7 @@
 <title>Person</title>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/ju/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/t/ju/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script></head>
-<script src="${baseUrl }/js/person.js"></script>
+<script src="${baseUrl }/js/person-server.js"></script>
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE"
         scope="application">
@@ -19,7 +19,7 @@
         <div class="col1"></div>
         <div class="col2">
             <html:errors />
-            <html:form action="/hibernate/person.do" styleId="personForm"
+            <html:form action="/hibernate/person/client.do" styleId="personForm"
                 styleClass="contact_form">
                 <html:hidden property="id"/>
                 <ul>
@@ -49,9 +49,8 @@
         <div class="col1"></div>
         <div class="col2">
             <h1>Persons</h1>
-            Person size:
-            <c:out value="${fn:length(personForm.persons) }"></c:out>
-                <table id="personForm" class="table">
+                Person size: <span id="personSize"></span>
+                <table id="personTable" class="table">
                 </table>
         </div>
         <div class="col3"></div>

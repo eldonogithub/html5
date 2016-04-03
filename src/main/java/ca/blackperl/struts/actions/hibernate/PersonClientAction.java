@@ -1,8 +1,5 @@
 package ca.blackperl.struts.actions.hibernate;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,16 +13,14 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import ca.blackperl.hibernate.Event;
 import ca.blackperl.hibernate.Person;
 import ca.blackperl.struts.forms.PersonForm;
 import ca.blackperl.utils.HibernateUtil;
 
-public class PersonAction extends Action {
-	private static final Logger log = LogManager.getLogger(PersonAction.class);
+public class PersonClientAction extends Action {
+	private static final Logger log = LogManager.getLogger(PersonClientAction.class);
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -45,10 +40,7 @@ public class PersonAction extends Action {
 				createAndStorePerson(errors, personForm);
 			}
 
-			log.debug("Getting persons");
-			List<Person> persons = EventsDB.listPersons();
-			personForm.setPersons(persons);
-			return mapping.findForward("success");
+			return mapping.getInputForward();
 		} catch (Exception e) {
 			log.error("Error fetching events and persons: " + e.getMessage());
 			errors.add(ActionMessages.GLOBAL_MESSAGE,

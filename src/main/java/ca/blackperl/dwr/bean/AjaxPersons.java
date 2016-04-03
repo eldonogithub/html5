@@ -11,10 +11,33 @@ import ca.blackperl.hibernate.Person;
 public class AjaxPersons {
 	private static final Logger log = LogManager.getLogger(AjaxPersons.class);
 
-	Status status;
-	String message;
-	String debug;
-	List<Person> results;
+	private int draw;
+	private int recordsTotal;
+	private int recordsFiltered;
+	private List<Person> data;
+	
+	private Status status;
+	private String message;
+	private String debug;
+
+	public int getDraw() {
+		return draw;
+	}
+	public void setDraw(int draw) {
+		this.draw = draw;
+	}
+	public int getRecordsTotal() {
+		return recordsTotal;
+	}
+	public void setRecordsTotal(int recordsTotal) {
+		this.recordsTotal = recordsTotal;
+	}
+	public int getRecordsFiltered() {
+		return recordsFiltered;
+	}
+	public void setRecordsFiltered(int recordsFiltered) {
+		this.recordsFiltered = recordsFiltered;
+	}
 	public Status getStatus() {
 		return status;
 	}
@@ -33,17 +56,15 @@ public class AjaxPersons {
 	public void setDebug(String debug) {
 		this.debug = debug;
 	}
-	public List<Person> getResults() {
-		return results;
+	public List<Person> getData() {
+		return data;
 	}
-	public void setResults(List<Person> results) {
-		this.results = results;
+	public void setData(List<Person> data) {
+		this.data = data;
 	}
 	@Override
 	public String toString() {
-		return "AjaxPersons [status=" + status + ", message=" + message + ", debug=" + debug + ", results=" + results
-				+ "]";
+		return "AjaxPersons [draw=" + draw + ", recordsTotal=" + recordsTotal + ", recordsFiltered=" + recordsFiltered
+				+ ", data=" + data + ", status=" + status + ", message=" + message + ", debug=" + debug + "]";
 	}
-	
-	
 }

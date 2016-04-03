@@ -10,8 +10,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-public class ToursDbAction extends Action {
-	private static final Logger log = LogManager.getLogger(ToursDbAction.class);
+public class BackButtonTestAction extends Action {
+	private static final Logger log = LogManager.getLogger(BackButtonTestAction.class);
 
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,

@@ -22,6 +22,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ca.blackperl.dwr.bean.AjaxBean;
@@ -144,6 +145,7 @@ public class HibernateTest implements ConnectionEventListener {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void test5() {
 		try {

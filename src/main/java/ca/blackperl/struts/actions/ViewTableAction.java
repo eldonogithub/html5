@@ -76,6 +76,6 @@ public class ViewTableAction extends Action {
 			log.error(e, e);
 		}
 		viewTableForm.setResults(datarows);
-		return mapping.findForward("success");
+		return mapping.getInputForward();
 	}
 }

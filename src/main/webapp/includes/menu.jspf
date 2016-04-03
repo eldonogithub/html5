@@ -1,9 +1,11 @@
-<nav class="nav-bar">
-    <ul class="nav">
-        <li><html:link page="/">Home</html:link></li>
-        <li><html:link page="/hibernate/manager.do?method=list">Manager</html:link></li>
-        <li><html:link page="/hibernate/person.do">Person</html:link></li>
-        <li><html:link page="/hibernate/person2.do">Person2</html:link></li>
-        <li><html:link page="/hibernate/event.do">Event</html:link></li>
-    </ul>
-</nav>
+<header class="header">
+    <nav class="nav-bar">
+        <ul class="nav">
+            <li><html:link page="/">Home</html:link></li>
+            <li><html:link page="/hibernate/manager.do?method=list">Manager</html:link></li>
+            <li><html:link page="/hibernate/person.do">Person</html:link></li>
+            <li><html:link page="/hibernate/person2.do">Person2</html:link></li>
+            <li><html:link page="/hibernate/event.do">Event</html:link></li>
+        </ul>
+    </nav>
+</header>

@@ -81,10 +81,10 @@ $(function() {
         console.log("Loading the table");
         dt = $("table#toursdbForm").DataTable({
             "ajax" : function(data, cb, settings) {
-                console.log("AjaxHibernate.getTables() invoked");
+                console.log("AjaxHibernate.getTables() invoked ", settings);
                 AjaxHibernate.getTables({
                     "callback" : function(ajaxMetaData) {
-                        console.log("Received a result back " + ajaxMetaData.status);
+                        console.log("Received a result back ", ajaxMetaData.status);
                         if (ajaxMetaData.status === 'SUCCESS') {
                             console.log("Calling DataTable() callback...");
                             console.log("Received response ", ajaxMetaData.results);
@@ -97,7 +97,10 @@ $(function() {
                 });
             },
             "columns" : titles,
-            "pageLength" : 25
+            "pageLength" : 25,
+            "serverSide" : true, // enable server side data fetching
+            "processing" : true,  // enable a processing indicator when server side processing is happening
+            "deferRender": true,
         });
         $('.dataTables_scrollBody').on('scroll', (function(e) {
             console.log(e);
@@ -109,7 +112,7 @@ $(function() {
     $("form#toursdbForm tr").each(function(idx, row) {
         console.log("Row = ", row);
         $(row).click(function() {
-            console.log("row clicked: " + row);
+            console.log("row clicked: ", row);
         });
     });
 
@@ -130,11 +133,9 @@ $(function() {
             result[field.name] = field.value;
             console.log(field.name + " = " + field.value);
         });
-        console.log("result converted to:");
-        console.log(result);
+        console.log("result converted to:", result);
         AjaxHibernate.submitPerson(result, {
             callback : function(ajaxMetaData) {
-                console.log("Received a result back " + ajaxMetaData.status);
                 console.log("Submit Tables result ", ajaxMetaData);
                 if (ajaxMetaData.status === 'SUCCESS') {
                     console.log("Reloading DataTable()...");

@@ -115,5 +115,5 @@
 	<Resource name="jdbc/toursDb" auth="Container" type="javax.sql.DataSource" 
 		maxActive="100" maxIdle="30" maxWait="10000"
 		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/demo/databases/toursdb" />
-
+	
 </Context>

@@ -138,9 +138,12 @@
 			<forward name="success" path="/pages/hibernate/event.jsp"></forward>
 		</action>
 
-		<action name="personForm" path="/hibernate/person" scope="request"
-			type="ca.blackperl.struts.actions.hibernate.PersonAction" input="/pages/hibernate/person.jsp">
-			<forward name="success" path="/pages/hibernate/person.jsp"></forward>
+		<action name="personForm" path="/hibernate/person/client" scope="request"
+			type="ca.blackperl.struts.actions.hibernate.PersonClientAction" input="/pages/hibernate/person-client.jsp">
+		</action>
+
+		<action name="personForm" path="/hibernate/person/server" scope="request"
+			type="ca.blackperl.struts.actions.hibernate.PersonServerAction" input="/pages/hibernate/person-server.jsp">
 		</action>
 
 		<action name="personForm" path="/hibernate/person2" scope="request"
@@ -159,17 +162,25 @@
 			input="/pages/jndi.jsp">
 		</action>
 
-		<action path="/databases/toursdb" scope="request"
+		<action path="/databases/toursdb/client" scope="request"
 			type="ca.blackperl.struts.actions.ToursDbAction" parameter="method"
-			input="/pages/databases/toursdb.jsp">
-			<forward name="success" path="/pages/databases/toursdb.jsp"></forward>
+			input="/pages/databases/toursdb-clientside.jsp">
+		</action>
+
+		<action path="/databases/toursdb/server" scope="request"
+			type="ca.blackperl.struts.actions.ToursDbAction" parameter="method"
+			input="/pages/databases/toursdb-serverside.jsp">
 		</action>
 
 		<action path="/databases/toursdb/viewTable" scope="request"
-			type="ca.blackperl.struts.actions.ViewTableAction" parameter="method"
+			type="ca.blackperl.struts.actions.ViewTableAction" 
 			name="viewTable"
 			input="/pages/databases/viewTable.jsp">
-			<forward name="success" path="/pages/databases/viewTable.jsp"></forward>
+		</action>
+
+		<action path="/backbutton/test" scope="request"
+			type="ca.blackperl.struts.actions.BackButtonTestAction" 
+			input="/pages/backbutton/test.jsp">
 		</action>
 
 	</action-mappings>

@@ -27,6 +27,7 @@
     </logic:notPresent>
     <header class="header"></header>
     <%@ include file="/includes/menu.jspf"%>
+    <nav></nav>
     <section class="content">
         <div class="col1"></div>
         <div class="col2">
@@ -49,12 +50,15 @@
                 <li><html:link page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
                 <li><html:link page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
                 <li><html:link page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
-                <li><html:link page="/hibernate/person.do">Person Form</html:link></li>
+                <li><html:link page="/hibernate/person/client.do">Person Form - Client Side</html:link></li>
+                <li><html:link page="/hibernate/person/server.do">Person Form - Server Side</html:link></li>
                 <li><html:link page="/hibernate/event.do">Event Form</html:link></li>
                 <li><html:link page="/hibernate/manager.do?method=list">Manager Form</html:link></li>
                 <li><html:link page="/pages/nicholahibbert.jsp">Nichola Hibbert 1</html:link></li>
                 <li><html:link page="/pages/nicholahibbert2.jsp">Nichola Hibbert 2</html:link></li>
-                <li><html:link action="/databases/toursdb.do">Tours DB</html:link></li>
+                <li><html:link action="/databases/toursdb/client.do">Tours DB - Client Side</html:link></li>
+                <li><html:link action="/databases/toursdb/server.do">Tours DB - Server Side</html:link></li>
+                <li><html:link action="/backbutton/test.do">Back Button Test</html:link></li>
             </ul>
         </div>
         <div class="col3"></div>
