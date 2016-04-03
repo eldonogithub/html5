@@ -54,7 +54,7 @@ public class AjaxHibernate {
 				try {
 					session.beginTransaction();
 
-					if ( data.getDraw() < 1 ) {
+					if (data.getDraw() < 1) {
 						data.setDraw(1);
 					}
 					int offset = (data.getDraw() - 1) * data.getLength();
@@ -66,7 +66,7 @@ public class AjaxHibernate {
 					query.addEntity(Person.class);
 					@SuppressWarnings("unchecked")
 					List<Person> list = query.list();
-					
+
 					result.addAll(list);
 
 					log.debug("Persons: " + result.size());

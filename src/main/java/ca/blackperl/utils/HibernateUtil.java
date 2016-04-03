@@ -21,6 +21,7 @@ public class HibernateUtil {
 			sessionFactory = configuration.configure("/ca/blackperl/utils/hibernate.cfg.xml")
 					.setInterceptor(new AuditInterceptor())
 					.buildSessionFactory();
+
 		} catch (Throwable ex) {
 			log.error("Error obtaining connection " + ex.getMessage(), ex);
 			ClassLoader cl = Thread.currentThread().getContextClassLoader();
