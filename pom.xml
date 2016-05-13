@@ -6,6 +6,32 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+	<repositories>
+		<repository>
+			<id>maven.oracle.com</id>
+			<name>oracle-maven-repo</name>
+			<url>https://maven.oracle.com</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven.oracle.com</id>
+			<name>oracle-maven-repo</name>
+			<url>https://maven.oracle.com</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<properties>
 		<struts.version>1.3.10</struts.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
@@ -16,6 +42,14 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
@@ -34,19 +68,24 @@
 		</plugins>
 	</build>
 	<dependencies>
+<!-- 		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc7</artifactId>
+			<version>12.1.0.2</version>
+		</dependency>
+
 		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ucp</artifactId>
+			<version>12.1.0.2</version>
+		</dependency>
+ -->		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-dbcp</artifactId>
 			<version>7.0.68</version>
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>7.0.68</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
@@ -233,6 +272,24 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-easymock</artifactId>
+			<version>1.6.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>1.6.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>strutstestcase</groupId>
+			<artifactId>strutstestcase</artifactId>
+			<version>2.1.2-1.1-2.3</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
