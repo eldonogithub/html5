@@ -3,10 +3,17 @@
 <head>
 <%@ include file="/includes/head.jspf"%>
 <title>Person</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/ju/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
-<script type="text/javascript" src="https://cdn.datatables.net/t/ju/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-</head>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/dt-1.10.12/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/ju/dt-1.10.12/datatables.min.js"></script>
 <script src="${baseUrl }/js/person-client.js"></script>
+<style type="text/css">
+#delete-confirm {
+    display: none;
+}
+</style>
+</head>
+
 <body>
     <logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
         <font color="red"> ERROR: Application resources not loaded -- check servlet container logs for error messages. </font>
@@ -51,5 +58,8 @@
         <div class="col3"></div>
     </section>
     <footer class="footer"></footer>
+    <div id="delete-confirm" title="Delete Person">
+      <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="msg"></span></p>
+    </div>
 </body>
 </html>

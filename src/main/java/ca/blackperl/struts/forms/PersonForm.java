@@ -18,19 +18,19 @@ public class PersonForm extends ValidatorForm {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private Long id;
-	private Long age;
+	private static final Long serialVersionUID = 1L;
+	private String id;
+	private String age;
 	private String firstname;
 	private String lastname;
 	private List<Person> persons;
-	public Long getAge() {
+	public String getAge() {
 		return age;
 	}
 	public String getFirstname() {
 		return firstname;
 	}
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 	public String getLastname() {
@@ -39,13 +39,13 @@ public class PersonForm extends ValidatorForm {
 	public List<Person> getPersons() {
 		return persons;
 	}
-	public void setAge(Long age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public void setLastname(String lastname) {
