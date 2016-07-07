@@ -85,7 +85,6 @@ $(function() {
                                     });
                                 });
                             });
-                            $("button, input:submit, input:button").button();
                         }
                     }
                 });
@@ -106,16 +105,24 @@ $(function() {
                 "data" : null,
                 "title" : "Operation",
                 "render" : function(data, type, row, meta) {
-                    return "<button class='edit'>Edit</button>" + "<button class='delete'>Delete</button>" + "<button class='copy'>Copy</button>";
+                    var msg = "<button class='edit'>Edit</button>" + "<button class='delete'>Delete</button>" + "<button class='copy'>Copy</button>";
+                    var x = $(msg);
+                    x.find("button").button();
+                    return msg;
                 },
             } ],
             "pageLength" : 25,
             "processing" : true,
         });
+        $('table#personTable').on( 'draw.dt', function () {
+            $("table#personTable button").button();
+            console.log("draw");
+        } );
     }
 
     // Load the table with the initial data
     loadTable();
+    $("button").button();
     // Set the on submit handler
     var button;
 
