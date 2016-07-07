@@ -3,6 +3,7 @@
 <html>
 <head>
 <%@ include file="/includes/head.jspf" %>
+<link rel="stylesheet" href='${cssUrl }'/>
 <title>Flexbox</title>
 </head>
 <body>

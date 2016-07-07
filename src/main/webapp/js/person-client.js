@@ -10,6 +10,8 @@ $(function() {
     // populate table
     function loadTable() {
         console.log("Loading the table");
+        $("form#personForm button[value=updatePerson]").hide();
+        $("form#personForm button[value=createPerson]").show();
         dt = $("table#personTable").DataTable({
             "ajax" : function(data, cb, settings) {
                 console.log("AjaxHibernate.getPersons() invoked");
@@ -18,13 +20,45 @@ $(function() {
                         console.log("Received a result back " + ajaxPersons.status);
                         if (ajaxPersons.status === 'SUCCESS') {
                             console.log("Calling DataTable() callback...");
-                            $("#personSize").text(ajaxPersons.results.length);
+                            $("#personSize").text(ajaxPersons.data.length);
                             cb({
-                                "data" : ajaxPersons.results
+                                "data" : ajaxPersons.data
                             });
-                            $("table#personTable tr").each(function(idx, row) {
+
+                            $("table#personTable tr button#edit").each(function(idx, row) {
+                                var data = ajaxPersons.data[idx];
                                 $(row).click(function() {
-                                    console.log("row clicked: " + row);
+                                    console.log("edit clicked: " + data.id);
+                                    $("#personForm input[name=id]").val(data.id);
+                                    $("#personForm input[name=firstname]").val(data.firstname);
+                                    $("#personForm input[name=lastname]").val(data.lastname);
+                                    $("#personForm input[name=age]").val(data.age);
+                                    if (data.id == "") {
+                                        $("form#personForm button[value=updatePerson]").hide();
+                                        $("form#personForm button[value=createPerson]").show();
+                                    } else {
+                                        $("form#personForm button[value=updatePerson]").show();
+                                        $("form#personForm button[value=createPerson]").hide();
+                                    }
+                                });
+                            });
+
+                            $("table#personTable tr button#delete").each(function(idx, row) {
+                                var data = ajaxPersons.data[idx];
+                                $(row).click(function() {
+                                    console.log("delete clicked: " + data.id);
+                                    AjaxHibernate.deletePerson(data.id, {
+                                        callback : function(ajaxPersons) {
+                                            console.log("Received a result back " + ajaxPersons.status);
+                                            console.log("Submit Person result ", ajaxPersons);
+                                            if (ajaxPersons.status === 'SUCCESS') {
+                                                console.log("Reloading DataTable()...");
+                                                dt.ajax.reload();
+                                            } else {
+                                                $("ul#errors").append("<li>" + ajaxPersons.message + "</li>");
+                                            }
+                                        }
+                                    });
                                 });
                             });
 
@@ -59,17 +93,37 @@ $(function() {
     // Load the table with the initial data
     loadTable();
     // Set the on submit handler
-    $("form#personForm").submit(function(e) {
+    var button;
 
+    $("form#personForm button[type=submit]").click(function() {
+        button = $(this).attr("value");
+    });
+    $("form#personForm button[type=reset]").click(function() {
+        $("ul#errors *").remove();
+        $("#personForm input[name=id]").val("");
+        $("#personForm input[name=firstname]").val("");
+        $("#personForm input[name=lastname]").val("");
+        $("#personForm input[name=age]").val("");
+        $("form#personForm button[value=updatePerson]").hide();
+        $("form#personForm button[value=createPerson]").show();
+    });
+
+    $("form#personForm").submit(function(e) {
+        $("ul#errors *").remove();
         e.preventDefault();
+
+        if (button == "createPerson") {
+            $(this).find("id").val("");
+        }
+        console.log("called " + button);
 
         // serialize the form data
         var data = $(this).serializeArray();
         console.log("Data serialized");
         console.log(data)
 
-        // this won't work always, multiple form fields won't be injected
-        // corrected
+        // this won't work always, multiple identical form fields won't be injected
+        // correctly
         var result = {};
         $(data).each(function(idx, field) {
             result[field.name] = field.value;
@@ -77,13 +131,16 @@ $(function() {
         });
         console.log("result converted to:");
         console.log(result);
-        AjaxHibernate.submitPerson(result, {
+
+        AjaxHibernate.createOrUpdatePerson(result, {
             callback : function(ajaxPersons) {
                 console.log("Received a result back " + ajaxPersons.status);
                 console.log("Submit Person result ", ajaxPersons);
                 if (ajaxPersons.status === 'SUCCESS') {
                     console.log("Reloading DataTable()...");
                     dt.ajax.reload();
+                } else {
+                    $("ul#errors").append("<li>" + ajaxPersons.message + "</li>");
                 }
             }
         });

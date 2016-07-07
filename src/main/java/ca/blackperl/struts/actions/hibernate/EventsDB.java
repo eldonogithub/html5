@@ -143,14 +143,36 @@ public class EventsDB {
 		}
 	}
 
-	public static void createPerson(Person person) throws Exception {
+	public static void createOrUpdatePerson(Person person) throws Exception {
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 			try {
 				session.beginTransaction();
 
-				session.save(person);
+				session.saveOrUpdate(person);
+
+				session.getTransaction().commit();
+			} catch (RuntimeException e) {
+				log.error("Error creating person: " + e.getMessage());
+				session.getTransaction().rollback();
+				throw new Exception(e);
+			}
+		} catch (RuntimeException e) {
+			log.error("Error getting database session: " + e.getMessage());
+			throw new Exception(e);
+		}
+
+	}
+
+	public static void deletePerson(Person person) throws Exception {
+		try {
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+			try {
+				session.beginTransaction();
+
+				session.delete(person);
 
 				session.getTransaction().commit();
 			} catch (RuntimeException e) {

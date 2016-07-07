@@ -118,7 +118,7 @@ public class AjaxHibernate {
 		return ajaxPerson;
 	}
 
-	public AjaxPersons submitPerson(PersonForm person) {
+	public AjaxPersons createOrUpdatePerson(PersonForm person) {
 		log.debug("received " + person);
 		AjaxPersons ajaxPersons = new AjaxPersons();
 
@@ -126,7 +126,7 @@ public class AjaxHibernate {
 			Person newPerson = new Person();
 			BeanUtils.copyProperties(newPerson, person);
 			log.debug("properties copied");
-			EventsDB.createPerson(newPerson);
+			EventsDB.createOrUpdatePerson(newPerson);
 
 			List<Person> listPersons = EventsDB.listPersons();
 
@@ -136,6 +136,30 @@ public class AjaxHibernate {
 		} catch (Exception e) {
 			log.error("Failed to save person: " + e.getMessage());
 			ajaxPersons.setMessage("Failed to save Person: " + e.getMessage());
+			ajaxPersons.setStatus(Status.FAILURE);
+		}
+		log.debug("Returning result" + ajaxPersons);
+		return ajaxPersons;
+	}
+
+	public AjaxPersons deletePerson(Long id) {
+		log.debug("received delete for id=" + id);
+		AjaxPersons ajaxPersons = new AjaxPersons();
+		
+		try {
+			Person newPerson = new Person();
+			newPerson.setId(id);
+			
+			EventsDB.deletePerson(newPerson);
+
+			List<Person> listPersons = EventsDB.listPersons();
+
+			ajaxPersons.setData(listPersons);
+			ajaxPersons.setStatus(Status.SUCCESS);
+			return ajaxPersons;
+		} catch (Exception e) {
+			log.error("Failed to delete person: " + e.getMessage());
+			ajaxPersons.setMessage("Failed to delete Person: " + e.getMessage());
 			ajaxPersons.setStatus(Status.FAILURE);
 		}
 		log.debug("Returning result" + ajaxPersons);
