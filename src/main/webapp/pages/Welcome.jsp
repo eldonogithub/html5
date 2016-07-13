@@ -37,29 +37,6 @@
             <p>
                 <bean:message key="welcome.message" />
             </p>
-            <ul>
-                <li><html:link page="/jqueryui/index.html">JQuery UI</html:link></li>
-                <li><html:link action="/jndi/log.do">Jndi Page</html:link></li>
-                <li><html:link action="/Input.do">Input Form</html:link></li>
-                <li><html:link action="/form/load.do">Load Token Form</html:link></li>
-                <li><html:link page="/pages/simple/testdb.jsp">Test Database</html:link></li>
-                <li><html:link page="/scripts/classpath.jsp">Class Path</html:link></li>
-                <li><html:link page="/pages/flexbox.jsp">Flex Box</html:link></li>
-                <li><html:link action="/derby/load.do">Derby Form</html:link></li>
-                <li><html:link page="/dwr">Direct Web Remoting</html:link></li>
-                <li><html:link page="/pages/ajax/testdb/ajax-yui.jsp">Ajax Test Data - YUI</html:link></li>
-                <li><html:link page="/pages/ajax/testdb/ajax-bootstrap.jsp">Ajax Test Data - Bootstrap</html:link></li>
-                <li><html:link page="/pages/ajax/testdb/modal-message.jsp">JQuery Modal Message</html:link></li>
-                <li><html:link action="/hibernate/person/client.do">Person Form - Client Side</html:link></li>
-                <li><html:link action="/hibernate/person/server.do">Person Form - Server Side</html:link></li>
-                <li><html:link action="/hibernate/event.do">Event Form</html:link></li>
-                <li><html:link action="/hibernate/manager.do?method=list">Manager Form</html:link></li>
-                <li><html:link page="/pages/nicholahibbert.jsp">Nichola Hibbert 1</html:link></li>
-                <li><html:link page="/pages/nicholahibbert2.jsp">Nichola Hibbert 2</html:link></li>
-                <li><html:link action="/databases/toursdb/client.do">Tours DB - Client Side</html:link></li>
-                <li><html:link action="/databases/toursdb/server.do">Tours DB - Server Side</html:link></li>
-                <li><html:link action="/backbutton/test.do">Back Button Test</html:link></li>
-            </ul>
         </div>
         <div class="col3"></div>
     </section>

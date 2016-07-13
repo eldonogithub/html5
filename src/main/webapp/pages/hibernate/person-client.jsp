@@ -3,13 +3,13 @@
 <head>
 <%@ include file="/includes/head.jspf"%>
 <title>Person</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/dt-1.10.12/datatables.min.css"/>
- 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/dt-1.10.12/datatables.min.css" />
+
 <script type="text/javascript" src="https://cdn.datatables.net/v/ju/dt-1.10.12/datatables.min.js"></script>
 <script src="${baseUrl }/js/person-client.js"></script>
 <style type="text/css">
 #delete-confirm {
-    display: none;
+	display: none;
 }
 </style>
 </head>
@@ -39,8 +39,7 @@
                     <li><label></label>
                         <button type="submit" name="submit" class="submit" value="createPerson">Create Person</button>
                         <button type="submit" name="submit" class="submit" value="updatePerson">Update Person</button>
-                        <button type="reset" name="submit" class="submit" value="reset">Reset</button>
-                        </li>
+                        <button type="reset" name="submit" class="submit" value="reset">Reset</button></li>
                 </ul>
             </html:form>
         </div>
@@ -52,14 +51,16 @@
         <div class="col2">
             <h1>Persons</h1>
             Person size: <span id="personSize"></span>
-            <table id="personTable" class="table">
+            <table id="personTable" class="table stripe row-border hover">
             </table>
         </div>
         <div class="col3"></div>
     </section>
     <footer class="footer"></footer>
     <div id="delete-confirm" title="Delete Person">
-      <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="msg"></span></p>
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span><span id="msg"></span>
+        </p>
     </div>
 </body>
 </html>

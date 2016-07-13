@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.net.URL"%>
 <%@ page import="java.net.URLClassLoader"%>
 <%@ page import="java.lang.Thread"%>
@@ -7,10 +6,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="/includes/head.jspf" %>
+<%@ include file="/includes/head.jspf"%>
 <title>Class Path</title>
 </head>
 <body>
+    <%@ include file="/includes/menu.jspf"%>
     <h1>Class Path</h1>
     <%
     	request.setAttribute("env", System.getenv());
@@ -30,7 +30,7 @@
     %>
     <ul>
         <c:forEach var="item" items="${env }">
-            <li>${item.key}- ${item.value}</li>
+            <li>${item.key}-${item.value}</li>
         </c:forEach>
     </ul>
 </body>

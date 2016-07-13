@@ -10,20 +10,17 @@
 
 /*  add some typographic styles to our form elements: */
 body {
-	font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode",
-		sans-serif;
+	font: 12px/18px "Verdana", sans-serif;
 }
-
+input, textarea, keygen, select, button {
+	font: 12px/18px "Verdana", sans-serif;
+}
 .header {
 	background-color: #ccc;
 	padding: 1em 2em;
 	margin-bottom: 1em;
 }
 
-.nav-bar {
-	color: #fff;
-	background-color: #000;
-}
 
 .col1 {
 	margin-bottom: 1em;
@@ -41,48 +38,6 @@ body {
 	clear: both;
 	padding: 1em 2em;
 	background-color: #ccc;
-}
-
-.nav {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.nav li {
-	display: inline;
-	margin: 0;
-}
-
-.nav a {
-	display: block;
-	padding: .7em 1.25em;
-	color: #fff;
-	text-decoration: none;
-	border-bottom: 1px solid gray;
-}
-
-.nav a:link {
-	color: white;
-}
-
-.nav a:visited {
-	color: white;
-}
-
-.nav a:focus {
-	color: black;
-	background-color: white;
-}
-
-.nav a:hover {
-	color: white;
-	background-color: green;
-}
-
-.nav a:active {
-	color: white;
-	background-color: red;
 }
 
 @media ( max-device-width : 449px ) {
@@ -104,18 +59,7 @@ body {
 	.header {
 		padding: 1em 3%;
 	}
-	.nav-bar {
-		padding: 1em 3%;
-	}
-	.nav li {
-		display: inline;
-		margin: 0 1em 0 0;
-	}
-	.nav a {
-		display: inline;
-		padding: 0;
-		border-bottom: 0;
-	}
+
 	.col1, .col2, .col3 {
 		float: left;
 		background-color: #eee;
@@ -191,9 +135,9 @@ body {
 }
 
 .contact_form input {
-	height: 20px;
+	height: 18px;
 	width: 220px;
-	padding: 5px 8px;
+	padding: 2px 4px;
 }
 
 .contact_form textarea {
@@ -280,28 +224,16 @@ button.submit:active {
 	transition: padding .25s;
 }
 
-/* .table tr:nth-child(even) {
-	background: lightblue;
-}
-
 .table {
-	table-layout: auto;
-	width: 100%;
-	white-space: nowrap;
 }
 
-.table td {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+table.table td {
+	font: 11px/16px "Verdana", sans-serif;
 }
 
-.table th {
-	background: darkblue;
-	color: white;
+table.table th {
+	font: 12px/18px "Verdana", sans-serif;
 }
 
 .table td, .table th {
-	text-align: left;
-	padding: 5px 10px;
-} */
+}

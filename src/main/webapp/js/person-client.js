@@ -12,114 +12,112 @@ $(function() {
         console.log("Loading the table");
         $("form#personForm button[value=updatePerson]").hide();
         $("form#personForm button[value=createPerson]").show();
-        dt = $("table#personTable").DataTable({
-            "ajax" : function(data, cb, settings) {
-                console.log("AjaxHibernate.getPersons() invoked");
-                AjaxHibernate.getPersons({
-                    "callback" : function(ajaxPersons) {
-                        console.log("Received a result back " + ajaxPersons.status);
-                        if (ajaxPersons.status === 'SUCCESS') {
-                            console.log("Calling DataTable() callback...");
-                            $("#personSize").text(ajaxPersons.data.length);
-                            cb({
-                                "data" : ajaxPersons.data
-                            });
+        dt = $("table#personTable")
+                .DataTable(
+                        {
+                            "ajax" : function(data, cb, settings) {
+                                console.log("AjaxHibernate.getPersons() invoked");
+                                AjaxHibernate.getPersons({
+                                    "callback" : function(ajaxPersons) {
+                                        console.log("Received a result back " + ajaxPersons.status);
+                                        if (ajaxPersons.status === 'SUCCESS') {
+                                            console.log("Calling DataTable() callback...");
+                                            $("#personSize").text(ajaxPersons.data.length);
+                                            cb({
+                                                "data" : ajaxPersons.data
+                                            });
 
-                            $("table#personTable tr button.edit").each(function(idx, row) {
-                                var data = ajaxPersons.data[idx];
-                                $(row).click(function() {
-                                    console.log("edit clicked: " + data.id);
-                                    $("#personForm input[name=id]").val(data.id);
-                                    $("#personForm input[name=firstname]").val(data.firstname);
-                                    $("#personForm input[name=lastname]").val(data.lastname);
-                                    $("#personForm input[name=age]").val(data.age);
-                                    $("form#personForm button[value=updatePerson]").show();
-                                    $("form#personForm button[value=createPerson]").hide();
-                                });
-                            });
-
-                            $("table#personTable tr button.copy").each(function(idx, row) {
-                                var data = ajaxPersons.data[idx];
-                                $(row).click(function() {
-                                    console.log("copy clicked: " + data.id);
-                                    $("#personForm input[name=id]").val("");
-                                    $("#personForm input[name=firstname]").val(data.firstname);
-                                    $("#personForm input[name=lastname]").val(data.lastname);
-                                    $("#personForm input[name=age]").val(data.age);
-                                    $("form#personForm button[value=updatePerson]").hide();
-                                    $("form#personForm button[value=createPerson]").show();
-                                });
-                            });
-
-                            $("table#personTable tr button.delete").each(function(idx, row) {
-                                var data = ajaxPersons.data[idx];
-                                $(row).click(function() {
-                                    console.log("delete clicked: " + data.id);
-                                    var msg = "<span id='msg'>Delete Person ID " + data.id + " " + data.firstname + " " + data.lastname
-                                    "</span>";
-
-                                    $("#delete-confirm p span#msg").remove();
-                                    $("#delete-confirm p").append(msg);
-                                    $("#delete-confirm").dialog({
-                                        modal : true,
-                                        buttons : {
-                                            "Delete" : function() {
-                                                $(this).dialog("close");
-                                                AjaxHibernate.deletePerson(data.id, {
-                                                    callback : function(ajaxPersons) {
-                                                        console.log("Received a result back " + ajaxPersons.status);
-                                                        console.log("Submit Person result ", ajaxPersons);
-                                                        if (ajaxPersons.status === 'SUCCESS') {
-                                                            console.log("Reloading DataTable()...");
-                                                            dt.ajax.reload();
-                                                        } else {
-                                                            $("ul#errors").append("<li>" + ajaxPersons.message + "</li>");
-                                                        }
-                                                    }
-                                                });
-                                            },
-                                            "Cancel" : function() {
-                                                $(this).dialog("close");
-                                            }
                                         }
-                                    });
+                                    }
                                 });
-                            });
-                        }
-                    }
-                });
-            },
-            "columns" : [ {
-                "data" : "id",
-                "title" : "ID"
-            }, {
-                "data" : "firstname",
-                "title" : "First Name"
-            }, {
-                "data" : "lastname",
-                "title" : "Last Name"
-            }, {
-                "data" : "age",
-                "title" : "Age"
-            }, {
-                "data" : null,
-                "title" : "Operation",
-                "render" : function(data, type, row, meta) {
-                    var msg = "<button class='edit'>Edit</button>" + "<button class='delete'>Delete</button>" + "<button class='copy'>Copy</button>";
-                    var x = $(msg);
-                    x.find("button").button();
-                    return msg;
-                },
-            } ],
-            "pageLength" : 25,
-            "processing" : true,
-        });
-        $('table#personTable').on( 'draw.dt', function () {
-            $("table#personTable button").button();
-            console.log("draw");
-        } );
-    }
+                            },
+                            "columns" : [
+                                    {
+                                        "data" : "id",
+                                        "title" : "ID"
+                                    },
+                                    {
+                                        "data" : "firstname",
+                                        "title" : "First Name"
+                                    },
+                                    {
+                                        "data" : "lastname",
+                                        "title" : "Last Name"
+                                    },
+                                    {
+                                        "data" : "age",
+                                        "title" : "Age"
+                                    },
+                                    {
+                                        "data" : null,
+                                        "title" : "Operation",
+                                        "render" : function(data, type, row, meta) {
+//                                            msg = '<button class="edit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">Edit</span></button>'
+//                                                    + '<button class="delete ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">Delete</span></button>'
+//                                                    + '<button class="copy ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">Copy</span></button>';
+                                            msg = "<button class='edit'>Edit</button>" + "<button class='delete'>Delete</button>" + "<button class='copy'>Copy</button>";
+                                            return msg;
+                                        },
+                                    } ],
+                            "pageLength" : 10,
+                            "processing" : true,
+                        });
 
+        $('table#personTable tbody').on('click', 'button.edit', function() {
+            var data = dt.row($(this).parents('tr')).data();
+            console.log("edit clicked: " + data.id);
+            $("#personForm input[name=id]").val(data.id);
+            $("#personForm input[name=firstname]").val(data.firstname);
+            $("#personForm input[name=lastname]").val(data.lastname);
+            $("#personForm input[name=age]").val(data.age);
+            $("form#personForm button[value=updatePerson]").show();
+            $("form#personForm button[value=createPerson]").hide();
+        });
+
+        $('table#personTable tbody').on('click', 'button.copy', function() {
+            var data = dt.row($(this).parents('tr')).data();
+            console.log("copy clicked: " + data.id);
+            $("#personForm input[name=id]").val("");
+            $("#personForm input[name=firstname]").val(data.firstname);
+            $("#personForm input[name=lastname]").val(data.lastname);
+            $("#personForm input[name=age]").val(data.age);
+            $("form#personForm button[value=updatePerson]").hide();
+            $("form#personForm button[value=createPerson]").show();
+        });
+
+        $('table#personTable tbody').on('click', 'button.delete', function() {
+            var data = dt.row($(this).parents('tr')).data();
+            console.log("delete clicked: " + data.id);
+            var msg = "<span id='msg'>Delete Person ID " + data.id + " " + data.firstname + " " + data.lastname
+            "</span>";
+
+            $("#delete-confirm p span#msg").remove();
+            $("#delete-confirm p").append(msg);
+            $("#delete-confirm").dialog({
+                modal : true,
+                buttons : {
+                    "Delete" : function() {
+                        $(this).dialog("close");
+                        AjaxHibernate.deletePerson(data.id, {
+                            callback : function(ajaxPersons) {
+                                console.log("Received a result back " + ajaxPersons.status);
+                                console.log("Submit Person result ", ajaxPersons);
+                                if (ajaxPersons.status === 'SUCCESS') {
+                                    console.log("Reloading DataTable()...");
+                                    dt.ajax.reload();
+                                } else {
+                                    $("ul#errors").append("<li>" + ajaxPersons.message + "</li>");
+                                }
+                            }
+                        });
+                    },
+                    "Cancel" : function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
+    }
     // Load the table with the initial data
     loadTable();
     $("button").button();
@@ -178,4 +176,6 @@ $(function() {
         });
         return false;
     });
+    
+
 });

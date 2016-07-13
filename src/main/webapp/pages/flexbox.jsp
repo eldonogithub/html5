@@ -2,19 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/includes/head.jspf" %>
-<link rel="stylesheet" href='${cssUrl }'/>
+<%@ include file="/includes/head.jspf"%>
+<link rel="stylesheet" href='${cssUrl }' />
 <title>Flexbox</title>
 </head>
 <body>
-    <logic:notPresent name="org.apache.struts.action.MESSAGE"
-        scope="application">
+    <logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
         <section id="container">
-            <font color="red"> ERROR: Application resources not
-                loaded -- check servlet container logs for error
-                messages. </font>
+            <font color="red"> ERROR: Application resources not loaded -- check servlet container logs for error messages. </font>
         </section>
     </logic:notPresent>
+    <%@ include file="/includes/menu.jspf"%>
 
     <section>
         <div id="container">

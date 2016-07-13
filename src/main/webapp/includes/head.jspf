@@ -14,3 +14,5 @@
 <script src="${baseUrl }/jqueryui/jquery-ui.js"></script>
 
 <link rel="stylesheet" href='<c:out value="${baseUrl }/css/main.css"/>'>
+<link rel="stylesheet" href="${baseUrl }/tinydropdown2/tinydropdown.css" type="text/css" />
+<script type="text/javascript" src="${baseUrl }/tinydropdown2/tinydropdown.js"></script>

@@ -7,13 +7,7 @@
 <body>
     <div class="inputForm">
         <header class="header"></header>
-        <nav class="nav-bar">
-            <ul class="nav">
-                <li><a href="#">menu 1</a></li>
-                <li><a href="#">menu 2</a></li>
-                <li><a href="#">menu 3</a></li>
-            </ul>
-        </nav>
+        <%@ include file="/includes/menu.jspf" %>
         <section class="content">
             <div class="col1"></div>
             <div class="col2">
