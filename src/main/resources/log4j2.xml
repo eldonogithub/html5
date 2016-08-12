@@ -11,7 +11,7 @@
 		<Logger name="org.hibernate" level="debug"></Logger>
 		<Logger name="ca.blackperl" level="debug"></Logger>
 		<Logger name="ca.blackperl.utils.AuditInterceptor" level="debug"></Logger>
-		<Root level="warn">
+		<Root level="info">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>

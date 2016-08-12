@@ -34,7 +34,7 @@
 		maxActive="100" maxIdle="30" maxWait="10000"
 		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/seconddb" />
 
-	<Resource name="jdbc/eventsDb" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/eventsDb1" auth="Container" type="javax.sql.DataSource"
 		maxActive="100" maxIdle="30" maxWait="10000"
 		driverClassName="org.apache.derby.jdbc.ClientDriver" url="jdbc:derby://localhost:1527/eventsDb;create=true" />
 
@@ -103,7 +103,7 @@
 			Specify zero or more database connection URL attributes as detailed in Attributes of
 			the Derby database connection URL.	
 	 -->
-	<Resource name="jdbc/eventsDb4" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/eventsDb" auth="Container" type="javax.sql.DataSource"
 		driverClassName="org.apache.derby.jdbc.EmbeddedDriver" url="jdbc:derby:eventsDb;create=true" />
 
 	<Resource name="jdbc/eventsDb5" auth="Container" type="javax.sql.DataSource"

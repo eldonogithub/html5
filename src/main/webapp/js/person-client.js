@@ -86,7 +86,8 @@ $(function() {
         });
 
         $('table#personTable tbody').on('click', 'button.delete', function() {
-            var data = dt.row($(this).parents('tr')).data();
+            var row = dt.row($(this).parents('tr'));
+        	var data = row.data();
             console.log("delete clicked: " + data.id);
             var msg = "<span id='msg'>Delete Person ID " + data.id + " " + data.firstname + " " + data.lastname
             "</span>";
@@ -104,7 +105,7 @@ $(function() {
                                 console.log("Submit Person result ", ajaxPersons);
                                 if (ajaxPersons.status === 'SUCCESS') {
                                     console.log("Reloading DataTable()...");
-                                    dt.ajax.reload();
+                                    row.remove().draw("full-hold");
                                 } else {
                                     $("ul#errors").append("<li>" + ajaxPersons.message + "</li>");
                                 }

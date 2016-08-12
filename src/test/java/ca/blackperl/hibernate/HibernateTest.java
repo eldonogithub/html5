@@ -153,7 +153,6 @@ public class HibernateTest implements ConnectionEventListener {
 		}
 	}
 
-	@Ignore
 	@Test
 	public void test5() {
 		try {

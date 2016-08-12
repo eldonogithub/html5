@@ -1,23 +1,18 @@
 package ca.blackperl.dwr.bean;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
@@ -152,9 +147,6 @@ public class AjaxHibernate {
 			
 			EventsDB.deletePerson(newPerson);
 
-			List<Person> listPersons = EventsDB.listPersons();
-
-			ajaxPersons.setData(listPersons);
 			ajaxPersons.setStatus(Status.SUCCESS);
 			return ajaxPersons;
 		} catch (Exception e) {

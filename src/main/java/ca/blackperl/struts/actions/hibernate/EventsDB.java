@@ -5,9 +5,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts.action.ActionErrors;
 import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -59,7 +57,8 @@ public class EventsDB {
 		return result;
 	}
 
-	public static List<Person> listPersons() throws Exception {
+    @SuppressWarnings("unchecked")
+    public static List<Person> listPersons() throws Exception {
 		List<Person> result = new ArrayList<Person>();
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -68,9 +67,8 @@ public class EventsDB {
 
 				Query query = session.createQuery("from Person");
 				query.setReadOnly(true);
-				@SuppressWarnings("unchecked")
-				List<Person> list = query.list();
-				result.addAll(list);
+
+				result = query.list();
 
 				log.debug("Persons: " + result.size());
 
@@ -78,7 +76,7 @@ public class EventsDB {
 				// object we need to tell hibernate to preload all the data, for
 				// the proxied data. In this case, the email addresses need to
 				// be preloaded.
-				for (Person p : list) {
+				for (Person p : result) {
 					Hibernate.initialize(p.getEmailAddresses());
 				}
 				session.getTransaction().commit();

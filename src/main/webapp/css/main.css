@@ -145,11 +145,11 @@ input, textarea, keygen, select, button {
 	width: 300px;
 }
 
-.contact_form > li button {
+.contact_form  li button {
 	justify-content: flex-end;
 }
 
-#personTable > td button {
+#personTable  td button {
 	justify-content: flex-end;
 }
 

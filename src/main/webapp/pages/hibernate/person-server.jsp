@@ -19,7 +19,7 @@
         <div class="col1"></div>
         <div class="col2">
             <html:errors />
-            <html:form action="/hibernate/person/client.do" styleId="personForm"
+            <html:form action="/hibernate/person/server.do" styleId="personForm"
                 styleClass="contact_form">
                 <html:hidden property="id"/>
                 <ul>
