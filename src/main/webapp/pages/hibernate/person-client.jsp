@@ -36,6 +36,7 @@
                     <li><label for="firstname">First Name:</label> <html:text property="firstname"></html:text></li>
                     <li><label for="lastname">Last Name:</label> <html:text property="lastname"></html:text></li>
                     <li><label for="age">Age:</label> <html:text property="age"></html:text></li>
+	                <li id="emails"><label for="emails">Emails:</label><ul id="emails"></ul></li>
                     <li><label></label>
                         <button type="submit" name="submit" class="submit" value="createPerson">Create Person</button>
                         <button type="submit" name="submit" class="submit" value="updatePerson">Update Person</button>

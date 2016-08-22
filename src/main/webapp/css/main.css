@@ -4,23 +4,21 @@
    
    Webkit automatically adds some styling to input elements when they are in focus. Since we'll be adding our own styles, we want to override these defaults:
 */
-*:focus {
-	outline: none;
-}
 
 /*  add some typographic styles to our form elements: */
 body {
 	font: 12px/18px "Verdana", sans-serif;
 }
+
 input, textarea, keygen, select, button {
 	font: 12px/18px "Verdana", sans-serif;
 }
+
 .header {
 	background-color: #ccc;
 	padding: 1em 2em;
 	margin-bottom: 1em;
 }
-
 
 .col1 {
 	margin-bottom: 1em;
@@ -53,13 +51,16 @@ input, textarea, keygen, select, button {
 	.contact_form label {
 		width: 150px;
 	}
+	.contact_form li#emails {
+		display: flex;
+		flex-direction: row;
+	}
 	.content {
 		padding: 1em;
 	}
 	.header {
 		padding: 1em 3%;
 	}
-
 	.col1, .col2, .col3 {
 		float: left;
 		background-color: #eee;
@@ -102,14 +103,14 @@ input, textarea, keygen, select, button {
 	padding: 0px;
 }
 
-.contact_form li {
+.contact_form>ul>li {
 	padding: 12px;
 	border-bottom: 1px solid #eee;
 	position: relative;
 }
 
 /* add a slight border to the top and bottom sections of the form.  */
-.contact_form li:first-child, .contact_form li:last-child {
+.contact_form>ul>li:first-child, .contact_form>ul>li:last-child {
 	border-bottom: 1px solid #777;
 }
 
@@ -145,11 +146,11 @@ input, textarea, keygen, select, button {
 	width: 300px;
 }
 
-.contact_form  li button {
+.contact_form>li button {
 	justify-content: flex-end;
 }
 
-#personTable  td button {
+#personTable>td button {
 	justify-content: flex-end;
 }
 
@@ -158,12 +159,6 @@ input, textarea, keygen, select, button {
 	border: 1px solid #aaa;
 	box-shadow: 0px 0px 3px #ccc, inset 0 15px 15px #eee;
 	border-radius: 2px;
-}
-
-.contact_form input:focus, .contact_form textarea:focus {
-	background: #fff;
-	border: 1px solid #555;
-	box-shadow: 0 0 3px #aaa;
 }
 
 /* Button Style */
@@ -209,11 +204,6 @@ button.submit:active {
 	-o-box-shadow: 0 0 10px 5px #356b0b inset;
 }
  */
-/* add a little bit of interactivity. We'll make the field that is currently selected expand by adding some padding. */
-.contact_form input:focus, .contact_form textarea:focus {
-	/* add this to the already existing style */
-	padding-right: 10px;
-}
 
 /* make the expansion of the field a smooth transition using CSS3. */
 .contact_form input, .contact_form textarea {
@@ -225,6 +215,7 @@ button.submit:active {
 }
 
 .table {
+	
 }
 
 table.table td {
