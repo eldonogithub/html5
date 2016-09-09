@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+        <property name="hibernate.connection.password">fdas</property>
+        <property name="hibernate.connection.url">jdbc:derby://localhost:1527/demo/databases/toursDb</property>
+        <property name="hibernate.connection.username">user</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="ca/blackperl/toursdb/Flights.hbm.xml" />
+        <mapping resource="ca/blackperl/toursdb/Countries.hbm.xml" />
+        <mapping resource="ca/blackperl/toursdb/Flightavailability.hbm.xml" />
+        <mapping resource="ca/blackperl/toursdb/FlightsHistory.hbm.xml" />
+        <mapping resource="ca/blackperl/toursdb/Maps.hbm.xml" />
+        <mapping resource="ca/blackperl/toursdb/Airlines.hbm.xml" />
+        <mapping resource="ca/blackperl/toursdb/Cities.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

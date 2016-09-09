@@ -1,0 +1,230 @@
+@CHARSET "ISO-8859-1";
+
+/* remove :focus style 
+   
+   Webkit automatically adds some styling to input elements when they are in focus. Since we'll be adding our own styles, we want to override these defaults:
+*/
+
+/*  add some typographic styles to our form elements: */
+body {
+	font: 12px/18px "Verdana", sans-serif;
+}
+
+input, textarea, keygen, select, button {
+	font: 12px/18px "Verdana", sans-serif;
+}
+
+.header {
+	background-color: #ccc;
+	padding: 1em 2em;
+	margin-bottom: 1em;
+}
+
+.col1 {
+	margin-bottom: 1em;
+}
+
+.col2 {
+	margin-bottom: 1em;
+}
+
+.col3 {
+	margin-bottom: 1em;
+}
+
+.footer {
+	clear: both;
+	padding: 1em 2em;
+	background-color: #ccc;
+}
+
+@media ( max-device-width : 449px ) {
+	.contact_form label {
+		width: 100%;
+	}
+	.header, .footer {
+		display: none;
+	}
+}
+
+@media ( min-device-width : 450px) {
+	.contact_form label {
+		width: 150px;
+	}
+	.contact_form li#emails {
+		display: flex;
+		flex-direction: row;
+	}
+	.content {
+		padding: 1em;
+	}
+	.header {
+		padding: 1em 3%;
+	}
+	.col1, .col2, .col3 {
+		float: left;
+		background-color: #eee;
+		margin-bottom: 1em;
+	}
+	.content {
+		overflow: hidden;
+		padding: 2em 0 1em;
+	}
+	.col1 {
+		width: 20%;
+	}
+	.col2 {
+		width: 48%;
+	}
+	.col3 {
+		width: 20%;
+	}
+	.footer {
+		padding: 1em 3%;
+	}
+	.col1, .col2, .col3 {
+		margin-left: 3%;
+	}
+}
+
+.contact_form h2, .contact_form label {
+	font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.form_hint, .required_notification {
+	font-size: 11px;
+}
+
+/* style the list elements to give the form some structure: */
+.contact_form ul {
+	list-style-type: none;
+	list-style-position: outside;
+	margin: 0px;
+	padding: 0px;
+}
+
+.contact_form>ul>li {
+	padding: 12px;
+	border-bottom: 1px solid #eee;
+	position: relative;
+}
+
+/* add a slight border to the top and bottom sections of the form.  */
+.contact_form>ul>li:first-child, .contact_form>ul>li:last-child {
+	border-bottom: 1px solid #777;
+}
+
+/*  style the header section of our form. This includes the heading tag and the notification that informs table that the asterisk (*) indicates required fields. */
+.contact_form h2 {
+	margin: 0;
+	display: inline;
+}
+
+.required_notification {
+	color: #d45252;
+	margin: 5px 0 0 0;
+	display: inline;
+	float: right;
+}
+
+/* style all of the core form elements, the ones used to collect user information. */
+.contact_form label {
+	margin-top: 3px;
+	display: inline-block;
+	float: left;
+	padding: 3px;
+}
+
+.contact_form input {
+	height: 18px;
+	width: 220px;
+	padding: 2px 4px;
+}
+
+.contact_form textarea {
+	padding: 8px;
+	width: 300px;
+}
+
+.contact_form>li button {
+	justify-content: flex-end;
+}
+
+#personTable>td button {
+	justify-content: flex-end;
+}
+
+/* add some extra visual CSS styles. Some of these are CSS3 styles that reward table who use modern browsers. */
+.contact_form input, .contact_form textarea {
+	border: 1px solid #aaa;
+	box-shadow: 0px 0px 3px #ccc, inset 0 15px 15px #eee;
+	border-radius: 2px;
+}
+
+/* Button Style */
+/* button.submit {
+	background-color: #68b12f;
+	background: -webkit-gradient(linear, left top, left bottom, from(#68b12f),
+		to(#50911e));
+	background: -webkit-linear-gradient(top, #68b12f, #50911e);
+	background: -moz-linear-gradient(top, #68b12f, #50911e);
+	background: -ms-linear-gradient(top, #68b12f, #50911e);
+	background: -o-linear-gradient(top, #68b12f, #50911e);
+	background: linear-gradient(top, #68b12f, #50911e);
+	border: 1px solid #509111;
+	border-bottom: 1px solid #5b992b;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	box-shadow: inset 0 1px 0 0 #9fd574;
+	-webkit-box-shadow: 0 1px 0 0 #9fd574 inset;
+	-moz-box-shadow: 0 1px 0 0 #9fd574 inset;
+	-ms-box-shadow: 0 1px 0 0 #9fd574 inset;
+	-o-box-shadow: 0 1px 0 0 #9fd574 inset;
+	color: white;
+	font-weight: bold;
+	padding: 6px 20px;
+	text-align: center;
+	text-shadow: 0 -2px 0 #396715;
+}
+
+button.submit:hover {
+	opacity: .85;
+	cursor: pointer;
+}
+
+button.submit:active {
+	border: 1px solid #20911e;
+	box-shadow: 0 0 10px 5px #356b0b inset;
+	-webkit-box-shadow: 0 0 10px 5px #356b0b inset;
+	-moz-box-shadow: 0 0 10px 5px #356b0b inset;
+	-ms-box-shadow: 0 0 10px 5px #356b0b inset;
+	-o-box-shadow: 0 0 10px 5px #356b0b inset;
+}
+ */
+
+/* make the expansion of the field a smooth transition using CSS3. */
+.contact_form input, .contact_form textarea {
+	/* add this to the already existing style */
+	-moz-transition: padding .25s;
+	-webkit-transition: padding .25s;
+	-o-transition: padding .25s;
+	transition: padding .25s;
+}
+
+.table {
+	
+}
+
+table.table td {
+	font: 11px/16px "Verdana", sans-serif;
+}
+
+table.table th {
+	font: 12px/18px "Verdana", sans-serif;
+}
+
+.table td, .table th {
+}

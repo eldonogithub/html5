@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2016 10:34:39 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="ca.blackperl.toursdb.FlightsHistory" table="FLIGHTS_HISTORY" schema="APP" optimistic-lock="version">
+        <composite-id name="id" class="ca.blackperl.toursdb.FlightsHistoryId">
+            <key-property name="flightId" type="string">
+                <column name="FLIGHT_ID" length="6" />
+            </key-property>
+            <key-property name="segmentNumber" type="java.lang.Integer">
+                <column name="SEGMENT_NUMBER" />
+            </key-property>
+            <key-property name="origAirport" type="string">
+                <column name="ORIG_AIRPORT" length="3" />
+            </key-property>
+            <key-property name="departTime" type="time">
+                <column name="DEPART_TIME" length="8" />
+            </key-property>
+            <key-property name="destAirport" type="string">
+                <column name="DEST_AIRPORT" length="3" />
+            </key-property>
+            <key-property name="arriveTime" type="time">
+                <column name="ARRIVE_TIME" length="8" />
+            </key-property>
+            <key-property name="meal" type="java.lang.Character">
+                <column name="MEAL" length="1" />
+            </key-property>
+            <key-property name="flyingTime" type="java.lang.Double">
+                <column name="FLYING_TIME" precision="52" scale="0" />
+            </key-property>
+            <key-property name="miles" type="java.lang.Integer">
+                <column name="MILES" />
+            </key-property>
+            <key-property name="aircraft" type="string">
+                <column name="AIRCRAFT" length="6" />
+            </key-property>
+            <key-property name="status" type="string">
+                <column name="STATUS" length="20" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>
