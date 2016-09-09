@@ -1,4 +1,4 @@
-
+<%@ include file="tags.jspf" %>
 <header class="header">
     <nav class="nav">
         <ul id="menu" class="menu">

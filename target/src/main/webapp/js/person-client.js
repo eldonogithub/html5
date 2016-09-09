@@ -229,13 +229,21 @@ $(function() {
 			}
 		}
 		var select = "<li><select name='type'>" + options.reduce(reducer, null)
-				+ "</select><input type='text'><button class='addEmail'>&nbsp;+&nbsp;</button><button class='removeEmail'>&nbsp;-&nbsp;</button></li>";
+				+ "</select><input type='text'>"
+				+ "<button class='addEmail'>&nbsp;+&nbsp;</button>"
+				+ "</li>";
 		return select;
 	}
 
 	console.log("generating the email template")
 	function addEmailHandler(e) {
+		// submit and remove -
+		$(this).parent("li").find("select").prop('disabled', true);
+		$('ul#emails button.addEmail').remove();
+		$('ul#emails li').append("<button class='removeEmail'>&nbsp;-&nbsp;</button>");
 		$("ul#emails").append(getEmailTemplate(options));
+		$('ul#emails button').button();
+		$('ul#emails select').selectmenu();
 	}
 
 	function removeEmailHandler(e) {
@@ -245,4 +253,6 @@ $(function() {
 	$("ul#emails").append(getEmailTemplate(options));
 	$('ul#emails').on('click', 'button.addEmail', addEmailHandler);
 	$('ul#emails').on('click', 'button.removeEmail', removeEmailHandler);
+	$('button').button();
+	$('select').selectmenu();
 });
