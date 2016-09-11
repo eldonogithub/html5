@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/includes/head.jspf"%>
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
 <title>jQuery</title>
@@ -19,18 +20,18 @@
 			updateFullName();
 		});
 		console.log("initializing");
-		$("#firstName").val("Taro");
-		$("#lastName").val("Yamada");
+		$("#firstName").val("Eldon");
+		$("#lastName").val("Olmstead");
 	});
 </script>
 </head>
 <body>
-	First Name:
-	<input id="firstName" />
-	<br> Last Name:
-	<input id="lastName" />
-	<br> Full Name:
-	<span id="fullName"></span>
-	<br>
+	<form method="post">
+		First Name: <input id="firstName" /> <br> Last Name: <input
+			id="lastName" /> <br> Full Name: <span id="fullName"></span> <br>
+		<div class="g-recaptcha"
+			data-sitekey="6LcE1SkTAAAAAL3p_g5l0VJzN5EHwOWKszPhQ-ZV"></div>
+		<input type="submit">
+	</form>
 </body>
 </html>

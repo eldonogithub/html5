@@ -19,7 +19,6 @@
 
 <title>Simple Backbone.ModelBinding Example by yoshiokatsuneo</title>
 <script type='text/javascript'>
-	//<![CDATA[
 	$(window).load(
 			function() {
 				Person = Backbone.Model.extend({});
@@ -49,14 +48,14 @@
 					},
 				});
 				person = new Person({
-					lastName : "Yamada",
-					firstName : "Taro"
+					lastName : "Olmstead",
+					firstName : "Eldon"
 				});
 				personView = new PersonView({
 					model : person
 				});
 
-			});//]]>
+			});
 </script>
 </head>
 <body>

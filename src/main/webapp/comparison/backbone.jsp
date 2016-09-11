@@ -40,8 +40,8 @@
 					},
 				});
 				person = new Person({
-					lastName : "Yamada",
-					firstName : "Taro"
+					lastName : "Olmstead",
+					firstName : "Eldon"
 				});
 				personView = new PersonView({
 					model : person

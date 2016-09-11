@@ -17,8 +17,8 @@
 	//<![CDATA[
 	window.onload = function() {
 		function AppViewModel() {
-			this.firstName = ko.observable("Taro");
-			this.lastName = ko.observable("Yamada");
+			this.firstName = ko.observable("Eldon");
+			this.lastName = ko.observable("Olmstead");
 
 			this.fullName = ko.computed(function() {
 				return this.firstName() + " " + this.lastName();

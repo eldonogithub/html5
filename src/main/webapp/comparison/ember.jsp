@@ -31,8 +31,8 @@ body {
 	});
 
 	var person = App.Person.create({
-		firstName : "Taro",
-		lastName : "Yamada"
+		firstName : "Eldon",
+		lastName : "Olmstead"
 	});
 
 	App.Router.map(function() {

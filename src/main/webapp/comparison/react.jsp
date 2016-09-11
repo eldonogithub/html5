@@ -43,7 +43,7 @@ var MyApp = React.createClass({
   }
 });
 
-React.render(<MyApp firstName="Taro" lastName="Yamada" />, document.body);
+React.render(<MyApp firstName="Eldon" lastName="Olmstead" />, document.body);
 
 </script>
 </head>
