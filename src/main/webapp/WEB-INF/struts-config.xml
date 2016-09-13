@@ -78,6 +78,11 @@
 			<description>View Table parameters</description>
 		</form-bean>
 
+		<form-bean name="checkbox" type="ca.blackperl.struts.forms.CheckboxForm">
+			<display-name>Checkbox Example</display-name>
+			<description>Checkbox form example</description>
+		</form-bean>
+
 	</form-beans>
 
 
@@ -111,6 +116,11 @@
 		<action path="/Input2" type="ca.blackperl.struts.actions.Input2"
 			scope="request" name="inputForm2" input="/pages/Input.jsp" />
 
+		<action path="/form/checkbox" name="checkbox"
+			type="ca.blackperl.struts.actions.CheckboxAction" input="/pages/checkbox.jsp">
+			<forward name="success" path="/pages/checkbox.jsp"></forward>
+		</action>
+
 		<action name="form" path="/form/process" scope="request"
 			type="ca.blackperl.struts.actions.FormAction" input="/pages/form.jsp">
 			<forward name="success" path="/pages/done.jsp" />
@@ -138,12 +148,14 @@
 			<forward name="success" path="/pages/hibernate/event.jsp"></forward>
 		</action>
 
-		<action name="personForm" path="/hibernate/person/client" scope="request"
-			type="ca.blackperl.struts.actions.hibernate.PersonClientAction" input="/pages/hibernate/person-client.jsp">
+		<action name="personForm" path="/hibernate/person/client"
+			scope="request" type="ca.blackperl.struts.actions.hibernate.PersonClientAction"
+			input="/pages/hibernate/person-client.jsp">
 		</action>
 
-		<action name="personForm" path="/hibernate/person/server" scope="request"
-			type="ca.blackperl.struts.actions.hibernate.PersonServerAction" input="/pages/hibernate/person-server.jsp">
+		<action name="personForm" path="/hibernate/person/server"
+			scope="request" type="ca.blackperl.struts.actions.hibernate.PersonServerAction"
+			input="/pages/hibernate/person-server.jsp">
 		</action>
 
 		<action name="personForm" path="/hibernate/person2" scope="request"
@@ -173,14 +185,17 @@
 		</action>
 
 		<action path="/databases/toursdb/viewTable" scope="request"
-			type="ca.blackperl.struts.actions.ViewTableAction" 
-			name="viewTable"
+			type="ca.blackperl.struts.actions.ViewTableAction" name="viewTable"
 			input="/pages/databases/viewTable.jsp">
 		</action>
 
 		<action path="/backbutton/test" scope="request"
-			type="ca.blackperl.struts.actions.BackButtonTestAction" 
-			input="/pages/backbutton/test.jsp">
+			type="ca.blackperl.struts.actions.BackButtonTestAction" input="/pages/backbutton/test.jsp">
+		</action>
+
+		<action path="/lamdas/lamdas.do" scope="request"
+			type="ca.blackperl.struts.actions.lamdas.LamdasAction">
+			<forward name="success" path="/lamdas/lamdas.jsp"></forward>
 		</action>
 
 	</action-mappings>

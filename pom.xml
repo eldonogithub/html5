@@ -6,38 +6,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<repositories>
-		<repository>
-			<id>maven.oracle.com</id>
-			<name>oracle-maven-repo</name>
-			<url>https://maven.oracle.com</url>
-			<layout>default</layout>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>maven.oracle.com</id>
-			<name>oracle-maven-repo</name>
-			<url>https://maven.oracle.com</url>
-			<layout>default</layout>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<properties>
 		<struts.version>1.3.10</struts.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<togglz.version>2.1.0.Final</togglz.version>
 		<hibernate.version>[5.1,)</hibernate.version>
 		<derby.version>10.12.1.1</derby.version>
+		<tomcat.version>8.0.37</tomcat.version>
 	</properties>
 
 	<build>
@@ -68,57 +43,61 @@
 		</plugins>
 	</build>
 	<dependencies>
-<!-- 		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>ojdbc7</artifactId>
-			<version>12.1.0.2</version>
-		</dependency>
-
+		<!-- <dependency> <groupId>com.oracle.jdbc</groupId> <artifactId>ojdbc7</artifactId> 
+			<version>12.1.0.2</version> </dependency> <dependency> <groupId>com.oracle.jdbc</groupId> 
+			<artifactId>ucp</artifactId> <version>12.1.0.2</version> </dependency> -->
 		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>ucp</artifactId>
-			<version>12.1.0.2</version>
-		</dependency>
- -->		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-dbcp</artifactId>
-			<version>7.0.68</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-api</artifactId>
-			<version>7.0.68</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-coyote</artifactId>
-			<version>7.0.68</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jsp-api</artifactId>
+			<version>${tomcat.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>${tomcat.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-util</artifactId>
-			<version>7.0.68</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
-			<version>7.0.68</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jasper</artifactId>
-			<version>7.0.68</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -177,12 +156,6 @@
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>6.0.33</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
@@ -291,5 +264,6 @@
 			<version>2.1.2-1.1-2.3</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 </project>

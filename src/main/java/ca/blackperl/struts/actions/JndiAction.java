@@ -21,8 +21,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.tomcat.dbcp.dbcp.DelegatingConnection;
-import org.apache.tomcat.dbcp.dbcp.PoolingDataSource;
 
 import ca.blackperl.struts.forms.JndiForm;
 
@@ -52,14 +50,6 @@ public class JndiAction extends Action {
 					Class<? extends Connection> class1 = connection.getClass();
 					log.debug("Connection class = " + class1.getName());
 					log.debug("Connection Info " + connection.getClientInfo());
-					if (connection instanceof DelegatingConnection) {
-						DelegatingConnection pool = (DelegatingConnection) connection;
-						log.debug("DelegatingConnection Info " + pool.getClientInfo());
-						Connection innermostDelegate = pool.getInnermostDelegate();
-						if (innermostDelegate != null) {
-							log.debug(innermostDelegate.getClientInfo());
-						}
-					}
 				} catch (SQLException e) {
 					log.error(e);
 				}
