@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cityofheroes.ca/freedom/signup.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>City of Heroes Account Creation</title>
+<link rel="shortcut icon" href="http://www.cityofheroes.ca/favicon.ico">
+<link rel="stylesheet" href="./City of Heroes Account Creation_files/fonts.css">
+
+    <link rel="stylesheet" href="./City of Heroes Account Creation_files/coh-signup-v2.css" type="text/css">
+
+<link rel="stylesheet" href="./City of Heroes Account Creation_files/jqtransform.css" type="text/css">
+<link rel="stylesheet" href="./City of Heroes Account Creation_files/dimebar.css" type="text/css">
+<script> var currentEnvLinkArrray = new Array();currentEnvLinkArrray["linkToExistingAcct"]="https://secure.ncsoft.com/cgi-bin/quickStart.pl?qsr=DcFb5zMkRFSu";currentEnvLinkArrray["origTracker"]="https://ncwcustomer.ncsoft.com/tracker_readonly.js";currentEnvLinkArrray["acctNmAvailableRequestUrl"]="https://secure.ncsoft.com/cgi-bin/account_available.pl?account=";currentEnvLinkArrray["accountCreateFormUrl"]="/global-signup/includes/php/create-account.php";currentEnvLinkArrray["iovationUrl"]="https://secure.ncsoft.com/cgi-bin/extern_acct_validate_js.pl";</script>
+<script src="./City of Heroes Account Creation_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./City of Heroes Account Creation_files/recaptcha_ajax.js.download"></script>
+
+    <script src="./City of Heroes Account Creation_files/coh-validate-acct-creation-v2.js.download"></script>
+
+
+<script src="./City of Heroes Account Creation_files/validate_acctmgmt_text.js.download"></script>
+<script src="https://ncwcustomer.ncsoft.com/tracker_readonly.js"></script>
+<script src="./City of Heroes Account Creation_files/jquery.dimebar.js.download"></script>
+<script src="./City of Heroes Account Creation_files/jquery.jqtransform.js.download"></script>
+<script src="./City of Heroes Account Creation_files/jquery.cycle.all.min.js.download"></script>
+<script>
+	var mtlangID = 'en'; //set language for use in javacript
+	
+$(function(){
+    
+    $('#account_creation_form').jqTransform();
+    
+    $().dimeBar({
+        "rightItems"            :   [ /*'searchForm',*/  'langMenu'],
+        "leftItems"             :   ["corporateLink", "supportLink", "gamesMenu"],
+        "corporateLink"         :   "http://www.ncsoft.com/",
+        "supportLink"           :   "https://support.cityofheroes.com/",
+        "localization"          : {
+            "support"           :   "Support"
+        },
+        "languageLabel"          :      "Language",
+        "languages"           : {
+            "unitedStates"      : {
+                "label"         :   "English (NA)",
+                "url"           :   "https://na.cityofheroes.com/en/freedom/signup/"
+            },
+            "unitedKingdom"  : {
+                "label"         :   "English (EU)",
+                "url"           :   "https://eu.cityofheroes.com/uk/freedom/signup/"
+            },
+            "german"  : {
+                "label"         :   "Deutsch",
+                "url"           :   "https://eu.cityofheroes.com/de/freedom/signup/"
+            },
+            "french" : {
+                "label"         :   "Français",
+                "url"           :   "https://eu.cityofheroes.com/fr/freedom/signup/"
+            }
+        },
+        "otherGames": {
+            "games"              :     "Games",
+            "cityOfHeroes"       :     "http://www.cityofheroes.com/",
+            "aion"               :     "http://aiononline.com/",
+            "lineage"            :     "http://www.lineage.com/",
+            "lineageTwo"         :     "http://www.lineage2.com/",
+            "guildWars"          :     "http://www.guildwars.com/",
+            "guildWarsTwo"       :     "http://www.guildwars2.com/",
+            "wildStar"           :     "http://www.wildstar-online.com/"
+        }
+    });
+	
+	//Quote carousel
+	$('div.splash-quote ul').cycle({ 
+		fx:				'fade', 
+		speed:			'slow', 
+		timeout:		6000, 
+		cleartypeNoBg:	true
+	});
+
+});
+</script>
+<script src="./City of Heroes Account Creation_files/dimebar.js.download"></script>
+<!-- Double Click 3rd party media tracking functionality -->
+<script type="text/javascript">
+	function fLight(flCat, flType){
+		var axel = Math.random() + "";
+		var a = axel * 10000000000000;
+		var iframe_url = "https://fls.doubleclick.net/activityi;src=2053947;type=" + flType + ";cat=" + flCat + ";ord=" + a + "?";
+		$("#footer").append("<iframe src='" + iframe_url + "' width='1' height='1' frameborder='0' style='display:none'></iframe>");
+	}
+ 	var docHref = location.href.split("//")[1],
+			docHrefParts = docHref.split("/"),
+			rootUrl = docHrefParts[0],
+			docRegion = rootUrl.split(".")[0],
+			docLocale = docHrefParts[1];
+
+	var flcats = {
+	  en: {	mac: "cohfr169", windows: "cohfr169", exclusion: "cohfr595", ncsof931: "cohfr720", retar239: "cohfr642", regla863: "regis509",	exisi277: "cohfr910"},
+		de: { mac: "decoh482", windows: "decoh902", exclusion: "decoh248", ncsof931: "decoh916", confi502: "decoh669",	retar239: "decoh268", regla863: "decoh155", cohla361: "decoh208",	exisi277: "decoh505" },
+		fr: { mac: "frcoh931", windows: "frcoh592", exclusion: "frcoh262", ncsof931: "frcoh714", confi502: "frcoh383", retar239: "frcoh126", regla863: "frcoh280", cohla361: "frcoh533",	exisi277: "frcoh468" },
+		uk: { mac: "ukcoh612", windows: "ukcoh101",	exclusion: "ukcoh547", ncsof931: "ukcoh706", confi502: "ukcoh395", retar239: "ukcoh072", regla863: "ukcoh545", cohla361: "ukcoh883", exisi277: "ukcoh353"}
+	};
+</script>
+<!-- End Double Click 3rd party media tracking functionality -->
+
+<!--[if IE 8]>  
+  <style>.signup-header a{ margin-top:-15px; }</style>  
+<![endif]-->
+
+<script src="./City of Heroes Account Creation_files/extern_acct_validate_js.pl.download"></script>
+
+<!-- BEGIN Google Analytics -->
+<script src="./City of Heroes Account Creation_files/jquery.nc.gaq.globalTracker.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+$(document).ready(function(){
+    if($().ncsEventTracker){
+        $(document).ncsEventTracker({
+            pageProfile: "coh",
+            accountId: "UA-18530193-1",
+            rollupAccountId: "UA-17151370-1",
+            domainName:".cityofheroes.com",
+            isCrossDomainTracking: true
+        });
+    }
+});
+</script>
+<!-- END Google Analytics -->
+</head>
+<!--[if IE 7 ]>
+<body id="fp" class="no-js ie7 ie en" style="background-image: url('http://www.cityofheroes.ca/global/includes/images/site-backgrounds/signup-background2.jpg')"> <![endif]-->
+<!--[if IE 8 ]>
+<body id="fp" class="no-js ie8 ie en" style="background-image: url('http://www.cityofheroes.ca/global/includes/images/site-backgrounds/signup-background2.jpg')"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<body class="no-js en" style="background-image: url(&#39;http://www.cityofheroes.ca/global/includes/images/site-backgrounds/signup-background2.jpg&#39;)"><div id="db-container"><div id="db-inner-container" class="langEN"><div class="right-items"><div id="db-lang-menu" class="item-wrapper has-dropDown"><a class="reg-link" href="http://www.cityofheroes.ca/freedom/signup.html#">Language</a><ul class="db-dropDown"><li><a href="https://na.cityofheroes.com/en/freedom/signup/">English (NA)</a></li><li><a href="https://eu.cityofheroes.com/uk/freedom/signup/">English (EU)</a></li><li><a href="https://eu.cityofheroes.com/de/freedom/signup/">Deutsch</a></li><li><a href="https://eu.cityofheroes.com/fr/freedom/signup/">Français</a></li></ul></div></div><div class="left-items"><div class="item-wrapper db-corporate-link"><a id="db-corporate-link" class="reg-link" href="http://www.ncsoft.com/"><span>NCsoft</span></a></div></div></div></div>
+
+<!--<![endif]-->
+
+<div id="main">
+    <div class="x-pageContent" id="content">
+        
+        
+            
+<!-- Start of DoubleClick Floodlight Tags: Please do not remove | 785, 557, 795, 872, 869, 863, 859, 853, 849 -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		var tagCat = "";
+		if(typeof docRegion!=="undefined"){
+			if(docRegion === "eu"){
+				fLight(flcats[docLocale].regla863, "regla863");		
+				fLight(flcats[docLocale].retar239, "retar239");
+				fLight(flcats[docLocale].exisi277, "exisi277");			
+			}else if(docRegion === "na"){
+				fLight(flcats.en.regla863, "regla863");
+				fLight(flcats.en.retar239, "retar239");
+				fLight(flcats.en.exisi277, "exisi277");			
+			}
+		}
+	});
+
+
+</script>
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+
+	<div class="splash-quote">
+		<ul>
+			<li>
+				<p>"City of Heroes remains by far the best superhero MMO in <br>
+					terms of content, systems and communityhttp://www.cityofheroes.ca."</p>
+				<p>- PC GAMER</p>
+			</li>
+			<li style="display:none;">
+				<p>"Freedom is one of the most <br>
+					generous free-to-play games ever."</p>
+				<p>- PC GAMER</p>
+			</li>
+			<li style="display:none;">
+				<p>"How free-to-play gaming should be done, in a <br>
+					superhero MMO that's yet to be beaten for fun."</p>
+				<p>- PC GAMER</p>
+			</li>
+		</ul>
+	</div>
+
+<div class="signup-header">
+    <a class="master-account" href="http://www.cityofheroes.ca/freedom/coh-signup-downloads.html"><span class="text">Already have a City of Heroes account? <br>Download the game.</span></a>
+</div><!-- .signup-header -->
+
+<div class="acctsignup signupform">
+<div class="top-decor"></div>
+<div class="or-text">OR</div>
+
+    <h3 class="main-heading">Create a City of Heroes Game Account</h3>
+
+    <form name="account_creation_form" method="post" action="http://www.cityofheroes.ca/freedom/signup.html" id="account_creation_form" class="jqtransformdone">
+        <input type="hidden" name="source" value="na.cityofheroes.com">
+        <input type="hidden" name="action" value="request_new_account">  
+        <input type="hidden" name="referrer_url" id="extReferrer">
+        <input type="hidden" name="entrance_url" id="firstEntryUrl">
+        <input type="hidden" name="isSetup" id="isSetup">
+       
+				<input type="hidden" name="blackbox" id="blackbox">
+        <div class="inputunit_new">
+            <div class="feedback_icon_container feedback_icon_invalid" id="account_name_valid"></div>
+            <div class="inputtitle"> <label for="account_name">Account Name</label></div>
+            <div class="jqTransformInputWrapper jqTransformSafari" style="width: 330px;"><div class="jqTransformInputInner"><div><input maxlength="12" id="account_name" name="account_name" onblur="validateAcctNm(this, 1);hideDropDownHelp(this);" onkeyup="validateNameKeyPress(this);" onfocus="showDropDownHelp(this);" tabindex="1" type="text" class="jqtranformdone jqTransformInput" style="width: 346px;"></div></div></div>
+<div id="acct-name-spinner" class="acctsignup-spinner"></div>
+<div class="feedback-wrapper feedback-dropdown" style="display: none;">
+<div class="feedback invalid-border" id="account_name_invalid">
+<span class="bubbleArrow invalid-arrow"></span>
+<p>Please enter a valid account name</p>
+</div><!-- .feedback -->
+</div><!-- .feedback-wrapper -->
+        </div>
+
+        <div class="inputunit_new">
+<div class="feedback_icon_container feedback_icon_invalid" id="password2_valid"></div>
+            <div class="inputtitle"> <label for="password2">Password</label></div>
+            <div class="jqTransformInputWrapper jqTransformSafari" style="width: 210px;"><div class="jqTransformInputInner"><div><input maxlength="13" tabindex="2" name="password2" size="20" onfocus="showDropDownHelp(this);" onblur="passwdValidate(this);hideDropDownHelp(this);" onkeyup="validatePassword(this,1);" type="password" id="password2" class="jqtranformdone jqTransformInput" style="width: 346px;"></div></div></div>
+<div class="feedback-wrapper feedback-dropdown" style="display: none;">
+<div class="feedback invalid-border" id="password2_invalid">
+<span class="bubbleArrow invalid-arrow"></span>
+<p>Password Strength: <span class="password-strength password-text"></span></p>
+<span class="passwordStrength">
+<span class="password-strength password-strength-weak"></span>
+<span class="password-strength password-strength-medium"></span>
+<span class="password-strength password-strength-strong"></span>
+</span>
+<p>Please enter a valid password:</p>
+<p class="note">Password is case sensitive</p>
+</div><!-- .feedback -->
+</div><!-- .feedback-wrapper -->
+        </div>
+     
+        <div class="inputunit_new">
+            <div class="feedback_icon_container feedback_icon_invalid" id="password3_valid"></div>
+            <div class="inputtitle"> <label for="password3">Confirm Password</label></div>
+            <div class="jqTransformInputWrapper jqTransformSafari" style="width: 210px;"><div class="jqTransformInputInner"><div><input maxlength="13" onblur="confirmPass(this);" tabindex="3" name="password3" id="password3" type="password" size="20" class="jqtranformdone jqTransformInput" style="width: 346px;"></div></div></div>
+<div class="feedback-wrapper">
+<div class="feedback-text invalid-border" id="password3_invalid" style="display: block;">
+Passwords do not match.
+</div>
+</div><!-- .feedback-wrapper -->
+        </div>
+
+        <div class="inputunit_new">
+            <div class="feedback_icon_container" id="email_valid"></div>
+            <div class="inputtitle"> <label for="email">Email Address</label></div>
+            <div class="jqTransformInputWrapper jqTransformSafari" style="width: 330px;"><div class="jqTransformInputInner"><div><input id="email" maxlength="254" name="email" onfocus="showDropDownHelp(this);" onblur="validateEmailOnKeyPress(this);hideDropDownHelp(this);" onkeyup="validateEmailOnKeyPress(this);" tabindex="4" type="text" class="jqtranformdone jqTransformInput" style="width: 346px;"></div></div></div>
+<div class="feedback-wrapper feedback-dropdown" style="display: none;">
+<div class="feedback" id="email_invalid">
+<span class="bubbleArrow"></span>
+<p>Please enter valid email address:</p>
+<p class="note">If you forget your password, instructions to reset it will be sent to this address. We will never share your email address with anyone else.</p>
+</div><!-- .feedback -->
+</div><!-- .feedback-wrapper -->
+        </div>
+
+        <div class="inputunit_new birth_date_question">
+            <div class="feedback_icon_container" id="birth_date_valid"></div>
+            <div class="inputtitle"> <label for="month">Date of Birth</label></div>
+            <div class="jqTransformSelectWrapper" style="z-index: 10; width: 128px;"><div><span style="width: 100px;">Month</span><a href="http://www.cityofheroes.ca/freedom/signup.html#" class="jqTransformSelectOpen" tabindex="5"></a></div><ul style="width: 126px; display: none; visibility: visible;"><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="0" class="selected">Month</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="1">January</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="2">February</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="3">March</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="4">April</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="5">May</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="6">June</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="7">July</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="8">August</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="9">September</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="10">October</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="11">November</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="12">December</a></li></ul><select class="birthdate1 jqTransformHidden" id="month" name="month" onchange="validateBirthDate(this);" onfocus="showDobHelp(this);" onblur="dobFieldBlurred(this);" tabindex="5">
+                <option value="00">Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select></div>
+            <div class="jqTransformSelectWrapper" style="z-index: 9; width: 93px;"><div><span style="width: 65px;">Day</span><a href="http://www.cityofheroes.ca/freedom/signup.html#" class="jqTransformSelectOpen" tabindex="6"></a></div><ul style="width: 91px; display: none; visibility: visible;"><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="0" class="selected">Day</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="1">1</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="2">2</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="3">3</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="4">4</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="5">5</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="6">6</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="7">7</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="8">8</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="9">9</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="10">10</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="11">11</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="12">12</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="13">13</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="14">14</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="15">15</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="16">16</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="17">17</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="18">18</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="19">19</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="20">20</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="21">21</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="22">22</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="23">23</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="24">24</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="25">25</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="26">26</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="27">27</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="28">28</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="29">29</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="30">30</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="31">31</a></li></ul><select class="birthdate2 jqTransformHidden" id="day" name="day" onchange="validateBirthDate(this);" onfocus="showDobHelp(this);" onblur="dobFieldBlurred(this);" tabindex="6">
+                <option value="0">Day</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select></div>
+            <div class="jqTransformSelectWrapper" style="z-index: 8; width: 93px;"><div><span style="width: 65px;">Year</span><a href="http://www.cityofheroes.ca/freedom/signup.html#" class="jqTransformSelectOpen" tabindex="7"></a></div><ul style="width: 91px; display: none; visibility: visible;"><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="0" class="selected">Year</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="1">2011</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="2">2010</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="3">2009</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="4">2008</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="5">2007</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="6">2006</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="7">2005</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="8">2004</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="9">2003</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="10">2002</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="11">2001</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="12">2000</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="13">1999</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="14">1998</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="15">1997</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="16">1996</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="17">1995</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="18">1994</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="19">1993</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="20">1992</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="21">1991</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="22">1990</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="23">1989</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="24">1988</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="25">1987</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="26">1986</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="27">1985</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="28">1984</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="29">1983</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="30">1982</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="31">1981</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="32">1980</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="33">1979</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="34">1978</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="35">1977</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="36">1976</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="37">1975</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="38">1974</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="39">1973</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="40">1972</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="41">1971</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="42">1970</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="43">1969</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="44">1968</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="45">1967</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="46">1966</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="47">1965</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="48">1964</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="49">1963</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="50">1962</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="51">1961</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="52">1960</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="53">1959</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="54">1958</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="55">1957</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="56">1956</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="57">1955</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="58">1954</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="59">1953</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="60">1952</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="61">1951</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="62">1950</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="63">1949</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="64">1948</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="65">1947</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="66">1946</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="67">1945</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="68">1944</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="69">1943</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="70">1942</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="71">1941</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="72">1940</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="73">1939</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="74">1938</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="75">1937</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="76">1936</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="77">1935</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="78">1934</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="79">1933</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="80">1932</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="81">1931</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="82">1930</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="83">1929</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="84">1928</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="85">1927</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="86">1926</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="87">1925</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="88">1924</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="89">1923</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="90">1922</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="91">1921</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="92">1920</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="93">1919</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="94">1918</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="95">1917</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="96">1916</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="97">1915</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="98">1914</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="99">1913</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="100">1912</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="101">1911</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="102">1910</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="103">1909</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="104">1908</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="105">1907</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="106">1906</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="107">1905</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="108">1904</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="109">1903</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="110">1902</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="111">1901</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="112">1900</a></li></ul><select class="birthdate2 jqTransformHidden" id="year" name="year" onchange="validateBirthDate(this);" onfocus="showDobHelp(this);" onblur="dobFieldBlurred(this);" tabindex="7">
+                <option value="0">Year</option>
+                <option value="2011">2011</option>
+<option value="2010">2010</option>
+<option value="2009">2009</option>
+<option value="2008">2008</option>
+<option value="2007">2007</option>
+<option value="2006">2006</option>
+<option value="2005">2005</option>
+<option value="2004">2004</option>
+<option value="2003">2003</option>
+<option value="2002">2002</option>
+<option value="2001">2001</option>
+<option value="2000">2000</option>
+<option value="1999">1999</option>
+<option value="1998">1998</option>
+<option value="1997">1997</option>
+<option value="1996">1996</option>
+<option value="1995">1995</option>
+<option value="1994">1994</option>
+<option value="1993">1993</option>
+<option value="1992">1992</option>
+<option value="1991">1991</option>
+<option value="1990">1990</option>
+<option value="1989">1989</option>
+<option value="1988">1988</option>
+<option value="1987">1987</option>
+<option value="1986">1986</option>
+<option value="1985">1985</option>
+<option value="1984">1984</option>
+<option value="1983">1983</option>
+<option value="1982">1982</option>
+<option value="1981">1981</option>
+<option value="1980">1980</option>
+<option value="1979">1979</option>
+<option value="1978">1978</option>
+<option value="1977">1977</option>
+<option value="1976">1976</option>
+<option value="1975">1975</option>
+<option value="1974">1974</option>
+<option value="1973">1973</option>
+<option value="1972">1972</option>
+<option value="1971">1971</option>
+<option value="1970">1970</option>
+<option value="1969">1969</option>
+<option value="1968">1968</option>
+<option value="1967">1967</option>
+<option value="1966">1966</option>
+<option value="1965">1965</option>
+<option value="1964">1964</option>
+<option value="1963">1963</option>
+<option value="1962">1962</option>
+<option value="1961">1961</option>
+<option value="1960">1960</option>
+<option value="1959">1959</option>
+<option value="1958">1958</option>
+<option value="1957">1957</option>
+<option value="1956">1956</option>
+<option value="1955">1955</option>
+<option value="1954">1954</option>
+<option value="1953">1953</option>
+<option value="1952">1952</option>
+<option value="1951">1951</option>
+<option value="1950">1950</option>
+<option value="1949">1949</option>
+<option value="1948">1948</option>
+<option value="1947">1947</option>
+<option value="1946">1946</option>
+<option value="1945">1945</option>
+<option value="1944">1944</option>
+<option value="1943">1943</option>
+<option value="1942">1942</option>
+<option value="1941">1941</option>
+<option value="1940">1940</option>
+<option value="1939">1939</option>
+<option value="1938">1938</option>
+<option value="1937">1937</option>
+<option value="1936">1936</option>
+<option value="1935">1935</option>
+<option value="1934">1934</option>
+<option value="1933">1933</option>
+<option value="1932">1932</option>
+<option value="1931">1931</option>
+<option value="1930">1930</option>
+<option value="1929">1929</option>
+<option value="1928">1928</option>
+<option value="1927">1927</option>
+<option value="1926">1926</option>
+<option value="1925">1925</option>
+<option value="1924">1924</option>
+<option value="1923">1923</option>
+<option value="1922">1922</option>
+<option value="1921">1921</option>
+<option value="1920">1920</option>
+<option value="1919">1919</option>
+<option value="1918">1918</option>
+<option value="1917">1917</option>
+<option value="1916">1916</option>
+<option value="1915">1915</option>
+<option value="1914">1914</option>
+<option value="1913">1913</option>
+<option value="1912">1912</option>
+<option value="1911">1911</option>
+<option value="1910">1910</option>
+<option value="1909">1909</option>
+<option value="1908">1908</option>
+<option value="1907">1907</option>
+<option value="1906">1906</option>
+<option value="1905">1905</option>
+<option value="1904">1904</option>
+<option value="1903">1903</option>
+<option value="1902">1902</option>
+<option value="1901">1901</option>
+<option value="1900">1900</option>
+            </select></div>
+<div class="feedback-wrapper">
+<div class="feedback-text" id="birthdate2_invalid">
+You must be 13 or older to create an account.
+</div>
+</div><!-- .feedback-wrapper -->
+        </div>
+
+        <div class="inputunit_new security-question security-question-1">
+            <div class="inputtitle">Security Question #1</div>
+            <div class="jqTransformSelectWrapper" style="z-index: 7; width: 328px;"><div><span style="width: 300px;">Please Select</span><a href="http://www.cityofheroes.ca/freedom/signup.html#" class="jqTransformSelectOpen" tabindex="8"></a></div><ul style="width: 326px; display: none; visibility: visible;"><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="0" class="selected">Please Select</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="1">What is your mother's maiden name?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="2">What is your father's middle name?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="3">What was your first pet's name?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="4">In what city were you born?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="5">What was the color of your first car?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="6">What is the name of the hospital in which you were born?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="7">What was your childhood nickname?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="8">What primary school did you attend?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="9">What college did you attend?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="10">What street did you grow up on?</a></li></ul><select name="sq_question_1" id="sq_question_1" size="1" tabindex="8" title="Security Question" onchange="validateSecurityQuestions(this);" class="jqTransformHidden">
+                <option value="0" selected="selected">Please Select</option>
+                <option value="1">What is your mother's maiden name?</option>
+                <option value="2">What is your father's middle name?</option>
+                <option value="3">What was your first pet's name?</option>
+                <option value="4">In what city were you born?</option>
+                <option value="5">What was the color of your first car?</option>
+                <option value="6">What is the name of the hospital in which you were born?</option>
+                <option value="7">What was your childhood nickname?</option>
+                <option value="8">What primary school did you attend?</option>
+                <option value="9">What college did you attend?</option>
+                <option value="10">What street did you grow up on?</option>
+            </select></div>
+            <div class="duplicate-questions-error">Security Questions must be different</div><br>
+            <div class="inputtitle"></div>
+            <div class="jqTransformInputWrapper jqTransformSafari" style="width: 330px;"><div class="jqTransformInputInner"><div><input autocomplete="off" id="sq_answer_1" maxlength="32" name="sq_answer_1" onblur="validateSecurityAnswer(this);" tabindex="9" type="text" value="Your Answer" class="jqtranformdone jqTransformInput" style="width: 346px;"></div></div></div>
+            <div class="feedback-wrapper">
+                <div class="feedback-text" id="sq_answer_1_invalid">Answer must be at least 3 characters long.</div>
+            </div><!-- .feedback-wrapper -->
+        <div id="duplicate-questions-icon1" class="duplicate-questions-icon"></div>
+            <div class="feedback_icon_container" id="question_1_valid"></div>
+        </div>
+
+        <div class="inputunit_new security-question security-question-2">
+            
+            <div class="inputtitle">Security Question #2</div>
+            <div class="jqTransformSelectWrapper" style="z-index: 6; width: 328px;"><div><span style="width: 300px;">Please Select</span><a href="http://www.cityofheroes.ca/freedom/signup.html#" class="jqTransformSelectOpen" tabindex="10"></a></div><ul style="width: 326px; display: none; visibility: visible;"><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="0" class="selected">Please Select</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="1">What is your mother's maiden name?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="2">What is your father's middle name?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="3">What was your first pet's name?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="4">In what city were you born?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="5">What was the color of your first car?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="6">What is the name of the hospital in which you were born?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="7">What was your childhood nickname?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="8">What primary school did you attend?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="9">What college did you attend?</a></li><li><a href="http://www.cityofheroes.ca/freedom/signup.html#" index="10">What street did you grow up on?</a></li></ul><select name="sq_question_2" id="sq_question_2" size="1" tabindex="10" title="Security Question" onchange="validateSecurityQuestions(this);" class="jqTransformHidden">
+                <option value="0" selected="selected">Please Select</option>
+                <option value="1">What is your mother's maiden name?</option>
+                <option value="2">What is your father's middle name?</option>
+                <option value="3">What was your first pet's name?</option>
+                <option value="4">In what city were you born?</option>
+                <option value="5">What was the color of your first car?</option>
+                <option value="6">What is the name of the hospital in which you were born?</option>
+                <option value="7">What was your childhood nickname?</option>
+                <option value="8">What primary school did you attend?</option>
+                <option value="9">What college did you attend?</option>
+                <option value="10">What street did you grow up on?</option>
+            </select></div>
+            <div class="duplicate-questions-error">Security Questions must be different</div><br>
+            <div class="inputtitle"></div>
+            <div class="jqTransformInputWrapper jqTransformSafari" style="width: 330px;"><div class="jqTransformInputInner"><div><input autocomplete="off" id="sq_answer_2" maxlength="32" name="sq_answer_2" onblur="validateSecurityAnswer2(this);" tabindex="11" type="text" value="Your Answer" class="jqtranformdone jqTransformInput" style="width: 346px;"></div></div></div>
+            <div class="feedback-wrapper">
+                <div id="sq_answer_2_invalid" class="feedback-text">
+                    Answer must be at least 3 characters long.
+                </div>
+            </div>
+        <div id="duplicate-questions-icon2" class="duplicate-questions-icon"></div>
+        <div class="feedback_icon_container" id="question_2_valid"></div>
+        </div>
+
+        <div class="optInDiv">
+            <span class="jqTransformCheckboxWrapper"><a href="http://www.cityofheroes.ca/freedom/signup.html#" class="jqTransformCheckbox jqTransformChecked"></a><input class="optIn jqTransformHidden" name="optIn" tabindex="10" type="checkbox" value="1" id="optIn_1" checked="checked" onclick="setCheckbox(this);"></span>
+            <label for="optIn_1" style="cursor: pointer;">Sign up to receive the NCsoft newsletter, beta announcements, and other exclusive offers.</label>
+        </div>
+        <div class="optInDiv required" id="tos_agreement">
+            <div id="agreement_1_valid" class="feedback_icon_container"></div>
+            <span class="jqTransformCheckboxWrapper"><a href="http://www.cityofheroes.ca/freedom/signup.html#" class="jqTransformCheckbox"></a><input id="agreement_1" name="agreement" tabindex="11" type="checkbox" value="1" class="optIn jqTransformHidden" onclick="setCheckbox(this);"></span>
+            <div class="feedback-text" id="agreement_1_invalid">You must accept NCsoft policies to create an account.</div>
+        <div id="agreement_1_details"><span class="optInText">I have read and accept the NCsoft <a href="http://us.ncsoft.com/en/legal/terms-of-use.html">terms of use</a>, <a href="http://us.ncsoft.com/en/legal/privacy-policy.html">privacy policy</a>, and <a href="http://www.cityofheroes.ca/web/20120603134351/http://us.ncsoft.com/en/legal/user-agreements">license agreement</a>.</span></div>
+        </div>
+
+<div class="center-text"><span id="submit-button"><span class="button-text unselectable" unselectable="on">Create Account</span><div class="waiting-on-account-creation"></div></span></div>
+
+<a href="https://secure.ncsoft.com/cgi-bin/quickStart.pl?qsr=DcFb5zMkRFSu" class="direct-download-link">Sign up with your current NCsoft Master Account</a>
+
+    </form>
+</div>
+
+
+
+
+
+<!-- Wrapping the Recaptcha create method in a javascript function -->
+<script type="text/javascript">
+var formSecurityAnswer = "Your Answer";
+
+
+$(function(){ //onReady
+  var qsrCodeValue = "DcFb5zMkRFSu";
+  if( isEu() == 1 ){qsrCodeValue  = "eoGIGKE41xbr"}
+  $("#formQsr").val(qsrCodeValue);
+
+    //document.getElementById('account_name').focus();
+
+    var autofill1 = "";
+    var autofill2 = "";
+    var binAnswer1 = 0;
+    var binAnswer2 = 0;
+
+
+//Clear input instructions
+$('#sq_answer_1, #sq_answer_2').bind('focus',function(){clearFieldValue(this);});
+
+    //auto-focus afer selecting security question
+    $("#sq_question_1").change(function(){
+        document.forms['account_creation_form'].elements['sq_answer_1'].focus();
+        //$("#sq_answer_1").focus();
+    });
+    $("#sq_question_2").change(function(){
+        document.forms['account_creation_form'].elements['sq_answer_2'].focus();
+        });
+       
+
+        
+    //form field tracker - all must be valid before allowing form submission
+            //trackAllRequiredFields.init();
+            
+            //display error msg for matched security questions
+            $("#sq_question_2").bind('focusin',function(){
+                if( $(this).hasClass("input-invalid") ){
+                    var help_text = getValidateText('sq_question_2_help_text');
+                    $("#question_2_invalid").parent().find(".feedback").text(help_text);
+                    $("#question_2_invalid").parent().find(".feedback, .bubbleArrow").css({"display":"block"});
+                }
+            });
+            $("#sq_question_2").bind('focusout',function(){
+                    $("#question_2_invalid").parent().find(".feedback, .bubbleArrow").css({"display":"none"});
+        });
+        //mouseover fx
+
+    });
+
+
+
+</script>
+
+
+        
+               
+         <div id="footer">
+    <div id="badges-container">
+        <ul class="logo-garden">
+            <li class="coh-logo"><a title="CoH Freedom" href="http://www.cityofheroes.ca/">City of Heroes: Freedom</a></li>
+            <li class="ncsoft"><a title="NCSoft" href="http://www.ncsoft.com/">NCSoft</a></li>
+            <li class="paragon"><a title="Paragon Studios" href="http://www.paragonstudios.com/">Paragon</a></li>
+            <li class="cryptic"><span>Crytic Studios</span></li>
+            <li class="rating"><a title="ESRB" href="http://www.esrb.org/">ESRB</a></li>
+        </ul>
+    </div>
+    <div id="legal-container">© 2004 - 2012 NC Interactive, Inc. All rights reserved. City of Heroes, Paragon Studios, NCsoft, the Interlocking NC Logo, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. Cryptic Studios is a trademark of Cryptic Studios, Inc. All other trademarks or registered trademarks are property of their respective owners.</div>
+</div><!-- /footer -->  
+
+    </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- WiredMinds eMetrics tracking with Enterprise Edition V5.4 START -->
+<script type="text/javascript" src="./City of Heroes Account Creation_files/count.js.download"></script>
+<script type="text/javascript"><!--
+wm_custnum='2d59f283694a980d';
+wm_page_name='signup.html';
+wm_group_name='/services/webpages/c/i/cityofheroes.ca/public/freedom';
+wm_campaign_key='campaign_id';
+wm_track_alt='';
+wiredminds.count();
+// -->
+</script>
+<!-- WiredMinds eMetrics tracking with Enterprise Edition V5.4 END -->
+
+
+</body></html>

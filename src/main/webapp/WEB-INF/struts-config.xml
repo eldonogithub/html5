@@ -83,6 +83,11 @@
 			<description>Checkbox form example</description>
 		</form-bean>
 
+		<form-bean name="checkbox2" type="ca.blackperl.struts.forms.CheckboxIndexedForm">
+			<display-name>Checkbox Example</display-name>
+			<description>Checkbox form example</description>
+		</form-bean>
+
 	</form-beans>
 
 
@@ -119,6 +124,11 @@
 		<action path="/form/checkbox" name="checkbox"
 			type="ca.blackperl.struts.actions.CheckboxAction" input="/pages/checkbox.jsp">
 			<forward name="success" path="/pages/checkbox.jsp"></forward>
+		</action>
+
+		<action path="/form/checkbox2" name="checkbox2"
+			type="ca.blackperl.struts.actions.CheckboxIndexedAction" input="/pages/checkbox2.jsp">
+			<forward name="success" path="/pages/checkbox2.jsp"></forward>
 		</action>
 
 		<action name="form" path="/form/process" scope="request"

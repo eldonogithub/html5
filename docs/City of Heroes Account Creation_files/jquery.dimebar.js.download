@@ -1,0 +1,307 @@
+(function($){
+   $.fn.dimeBar = function(custom) {
+
+
+      var defaults = {
+         rightItems            :   ['myAccount', 'accountMenu'],//, 'searchForm'], REMOVED SEARCH
+         leftItems             :   ['corporateLink', 'gamesMenu'],
+         corporateLink         :   "http://us.ncsoft.com",
+         supportLink           :   "http://help.ncsoft.com/cgi-bin/ncsoft.cfg/php/enduser/std_alp.php?p_sid=lRpMDfuj",
+         myAccountLink         :   "http://www.need-url.com",
+         backToSiteLink        :   "a",
+         currentLang           :   "en", // en, uk, de, fr, es
+         franchiseLinks: {
+				
+         },
+         localization: {
+            support           :   "Support",
+            myAccount         :   "Aion Log In",
+            backToSite        :   "Back to site"
+         },
+         searchFormFields: {
+            searchAction      :   "http://search.plaync.com/search",
+            searchProxyCSS    :   "city_of_heroes",
+            searchOutput      :   "xml_no_dtd",
+            searchSort        :   "date:D:L:d1",
+            searchClient      :   "city_of_heroes",
+            searchSite        :   "coh_cov"
+         },
+         languageLabel	      :	  "Language",
+         languages: {
+            unitedStates: {
+               label         :   "English (NA)",
+               url           :   "http://na.aiononline.com/"
+            },
+            unitedKingdom: {
+               label         :   "English (EU)",
+               url           :   "http://uk.aiononline.com/"
+            },
+            german: {
+               label         :   "Deutsch",
+               url           :   "http://de.aiononline.com/"
+            },
+            french: {
+               label         :   "Français",
+               url           :   "http://fr.aiononline.com/"
+            }
+         },
+         accountOptions: {
+            buyAion: {
+               label	      :   "Buy Aion",
+               url	      :	  "http://www.need-url.com"
+            },
+            downloadClient: {
+               label	      :   "Download Client",
+               url	      :   "http://www.need-url.com"
+            },
+            accountServices: {
+               label	      :   "Account Services",
+               url	      :   "http://www.need-url.com"
+            },
+            referFriend: {
+               label	      :	  "Refer a Friend",
+               url	      :	  "http://www.need-url.com"
+            }
+         },
+         otherGames: {
+            games		   :	 "Games",
+            cityOfHeroes       :     "http://www.need-url.com",
+            aion               :     "http://www.need-url.com",
+            lineageTwo         :     "http://www.need-url.com",
+            guildWars          :     "http://www.need-url.com",
+			guildWarsTwo		:	"http://www.guildwars2.com",
+			wildStar			:	"http://www.wildstar-online.com"
+         },
+            searchText: "Search this Site"
+      };
+      var settings = $.extend({}, defaults, custom);
+		
+      //var currentLang = currentLang.toUpperCase();
+		
+      var html = [
+      '<div id="db-container">',
+      '<div id="db-inner-container" class="' + 'lang' + settings.currentLang.toUpperCase() + '">',
+      '<div class="right-items"></div>',
+      '<div class="left-items"></div>',
+      '</div>',
+      '</div>'
+      ];
+			
+
+      $('body').prepend(html.join(''));   //WTF - this is the INIT HERE IN THE MIDDLE OF THE PLUGIN <----------------
+
+
+      
+      ///-- Aion Link on 2.5 splash page---
+      function aionLink() {
+         var html = '<div class="item-wrapper"><a id="db-aion-link" class="reg-link" href="' + settings.aionLink + '">' + settings.localization.continueToAion + '</a></div>';
+         $('div.' + side).append(html);
+      }
+ 			
+      ///-- Corporate Link ---
+      function corporateLink() {
+         var html = '<div class="item-wrapper db-corporate-link"><a id="db-corporate-link" class="reg-link" href="' + settings.corporateLink + '"><span>NCsoft</span></a></div>';
+         $('div.' + side).append(html);
+      //$('#db-corporate-link').fadeIn(200);
+      }
+		
+	  
+	  ///-- Continue Link ---
+	  function continueLink(side) {
+		var html = '<div class="item-wrapper"><a class="reg-link" href="' + settings.continueLink + '">' + settings.continueToCoH + '</a></div>';
+		$('div.' + side).append(html);
+	  };
+	  
+		
+      ///-- Support Link ---
+      function supportMenu(side) {
+
+         ///-- Loop through subMenu Items ---
+         var subMenus = '';
+         for(var i in settings.supportSites){
+            var el = settings.supportSites[i];
+            subMenus += '<li><a href="' + el.url + '">' + el.label + '</a></li>';
+         }
+         var html = [
+
+         '<div id="db-support-menu" class="item-wrapper has-dropDown">',
+         '<a class="reg-link" href="#">' + settings.supportLabel + '</a>',
+         '<ul class="db-dropDown">',
+         subMenus,
+         '</ul>',
+         '</div>'
+         ];
+         $('div.' + side).append(html.join(''));
+         $('#db-support-menu').fadeIn(1200);
+               eventComplete();
+      };
+		
+      ///-- My Account Link ---
+      function myAccount() {
+         // Modifiy URL/HREF string depending on the logged in state
+         // simply checking GPSESSIONID
+         // TODO TEMP : hard coded URL strings in logic
+         var hrefString = '';
+         if(readCookie('GPSESSIONID') !== null ){
+            hrefString = '/webservice/loginCheck?logout=true';
+         }else{
+            hrefString = settings.myAccountLink;
+         }
+         
+         var html = '<div class="item-wrapper"><a id="db-myAccount-link" class="reg-link" href="' + hrefString + '">' + settings.localization.myAccount + '</a></div>';
+         $('div.' + side).append(html);
+      }
+		
+      ///-- Back to Site Link ---
+      //function backToSite() {
+      //var html = '<div class="item-wrapper"><a id="db-backToSite-link" class="reg-link" href="' + settings.backToSiteLink + '">' + settings.localization.backToSite + '</a></div>';
+      //$('div.' + side).append(html);
+      //}
+
+      // Each time a significant event finishes it calls eventComplete, once there are 3 events JSDOMReady is called
+      var eventCount = 0;
+      function eventComplete(){
+         eventCount++
+         if(eventCount>=3){
+            $('body').trigger('JSDOMReady');
+         }
+      }
+  
+      ///-- Franchise Menu ---
+      function gamesMenu() {
+         var html = [
+         '<div id="db-games-menu" class="item-wrapper has-dropDown">',
+         '<a class="reg-link" href="#">' + settings.otherGames.games + '</a>',
+         '<ul class="db-dropDown">',
+         '<li class="db-franchise"><a id="db-aion" class="default-game" href="' + settings.otherGames.aion + '"><span>Aion</span></a></li>',
+         '<li class="db-franchise"><a id="db-guildWars" href="' + settings.otherGames.guildWars + '"><span>Guild Wars</span></a></li>',
+         '<li class="db-franchise"><a id="db-guildWarsTwo" href="' + settings.otherGames.guildWarsTwo + '"><span>Guild Wars 2</span></a></li>',
+         '<li class="db-franchise"><a id="db-coh" href="' + settings.otherGames.cityOfHeroes + '"><span>City of Heroes</span></a></li>',
+         '<li class="db-franchise"><a id="db-lineageTwo" href="' + settings.otherGames.lineageTwo + '"><span>Lineage II</span></a></li>',
+         '<li class="db-franchise"><a id="db-wildStar" href="' + settings.otherGames.wildStar + '"><span>WildStar</span></a></li>',
+         '</ul>',
+         '</div>'
+         ];
+         $('div.' + side).append(html.join(''));
+               eventComplete();
+      }
+
+      ///-- Search Form ---
+      function searchForm(side) {
+         var html = [
+         '<div id="db-games-menuX" class="item-wrapper testclass">',
+         '<div id="ncsoftdimebar" >',
+
+         '<form class="ncdb-label" method="get" action="http://search.plaync.com/search">' +
+         '<input id="dimebar_searchbox" class="ncdb-search-box empty" type="text" name="q" value="' + settings.searchText + '" style="background-position: left top ! important; color: rgb(223, 223, 223) ! important;">' +
+         '<input id="ncdb-submit" class="ncdb-submit" type="image" src="http://static.plaync.com/dimebar/images/blank.gif" value="" style="background-position: right top ! important;">' +
+         '<input class="inputHidden" type="hidden" name="proxystylesheet" value="city_of_heroes">' +
+         '<input class="inputHidden" type="hidden" name="output" value="xml_no_dtd">' +
+         '<input class="inputHidden" type="hidden" name="sort" value="date:D:L:d1">' +
+         '<input class="inputHidden" type="hidden" name="client" value="city_of_heroes">' +
+         '<input class="inputHidden" type="hidden" name="site" value="coh_cov">' +
+         '</form>',
+
+         '</div>',
+         '</div>'
+         //         '<div id="db-games-menuX" class="item-wrapper has-dropDown testclass">',
+         //         '<a class="reg-link" href="#">Searchxx</a>',
+         //         '<div class="db-dropDown">',
+         //         '<form method="post" action="" id="db-search">',
+         //         '<fieldset>',
+         //         '<input type="submit" value="" name="Submit" id="db-search-btn">',
+         //         '<label for="search" style="display: inline;">Search ...</label>',
+         //         '<input type="text" value="" name="search">',
+         //         '</fieldset>',
+         //         '</form>',
+         //         '</div>',
+         //         '</div>'
+         ];
+         //$('div.' + side).append(html.join(''));
+              eventComplete();
+      };
+
+      ///-- Language Menu ---
+      function langMenu(side) {
+
+         ///-- Loop through subMenu Items ---
+         var subMenus = '';
+         for(var i in settings.languages){
+            var el = settings.languages[i];
+            subMenus += '<li><a href="' + el.url + '">' + el.label + '</a></li>';
+         }
+         var html = [
+
+         '<div id="db-lang-menu" class="item-wrapper has-dropDown">',
+         '<a class="reg-link" href="#">' + settings.languageLabel + '</a>',
+         '<ul class="db-dropDown">',
+         subMenus,
+         '</ul>',
+         '</div>'
+         ];
+         $('div.' + side).append(html.join(''));
+         $('#db-lang-menu').fadeIn(1200);
+               eventComplete();
+      };
+
+      ///-- Account Menu ---
+      function accountMenu(side) {
+         ///-- Loop through subMenu Items ---
+         var subMenus = '';
+         for(var i in settings.accountOptions){
+            var el = settings.accountOptions[i];
+            subMenus += '<li><a href="' + el.url + '">' + el.label + '</a></li>';
+         }
+         var html = [
+
+         '<div id="db-acct-menu" class="item-wrapper has-dropDown">',
+         '<a class="reg-link" href="#">' + settings.localization.account + '</a>',
+         '<ul class="db-dropDown">',
+         subMenus,
+         '</ul>',
+         '</div>'
+         ];
+         $('div.' + side).append(html.join(''));
+         $('#db-lang-menu').fadeIn(1200);
+      };
+
+      ///-- Loop through right side items call those functions ---
+      var num = settings.rightItems.length-1;
+      for (i=0;i<=num;i++) {
+         var side = 'right-items';
+         var el = settings.rightItems[i];
+         if(settings.rightItems[i] === el) {
+            eval(el + '(side)');
+         }
+      };
+		
+      ///-- Loop through left side items call those functions ---
+      var num = settings.leftItems.length-1;
+      for (i=0;i<=num;i++) {
+         var side = 'left-items';
+         var el = settings.leftItems[i];
+         if(settings.leftItems[i] === el) {
+            eval(el + '(side)');
+         }
+      }
+
+      //Adds current URL as referer for login redirection TODO TEMP : this is repeated in /myaion/common.js
+      // TODO TEMP this code (check the URL and act accordingly) appears in 2 different places
+      var hrefString = $("a#db-myAccount-link").attr("href");
+      var appendSymbol = "";
+      if(typeof hrefString != "undefined"){
+         if(hrefString.match(/\?/)){
+            appendSymbol = "&";
+         }else{
+            appendSymbol = "?";
+         }
+      }
+   //$("a#db-myAccount-link").attr("href", $("a#db-myAccount-link").attr("href") + "?referer=" + document.URL);
+   // $("a#db-myAccount-link").attr("href", hrefString + appendSymbol + "referer=" + document.URL);
+
+   //alert(hrefString);   //Adds current URL as referer for login redirection
+   //$(".dime-login A").attr("href", hrefString + appendSymbol + "referer=" + document.URL);
+
+   };
+	
+})(jQuery);

@@ -1,0 +1,328 @@
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+		
+	
+	
+	
+	
+	
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta name="viewport" content="user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, width=device-width, initial-scale=1.0" />
+<meta name="autocomplete" content="off" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="no" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="keyword" content="" />
+<meta name="title" content="" />
+<meta name="url" content="" />
+<meta name="description" content="" />
+<title> Log In | NCSOFT</title>
+<link rel="shortcut icon" href="//static.ncsoft.com/ncsoft/ncw/img/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="//static.ncsoft.com/ncsoft/ncw/img/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="//static.ncsoft.com/ncsoft/ncw/img/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+
+	
+	
+	
+	
+	
+	
+		<link rel="stylesheet" href="//fonts.ncwest.ncsoft.com/dinnextpro/fonts.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="//static.ncsoft.com/ncsoft/ncw/css/loginCommon.css" media="screen" />
+	
+
+<!--[if lt IE 9]><script type="text/javascript" src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="//static.ncsoft.com/ncsoft/ncw/js/common.ui.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	// enter key
+	$("input").keypress(function(event) {
+	    if (event.which == 13) {
+	    	doLogin();
+	    }
+	});
+	
+	
+	
+	var account = Login.getRememberAccount();
+	if (account) {
+		$('#remember_label').addClass('checked');
+		$('#remember').attr('checked', 'checked');
+		$("#id").val(account);
+	} 
+	$("#id").focus();
+});
+
+function doLogin() {
+
+	if(!checkLoginField())
+		return;
+	try {
+		if ($('#remember').is(':checked')) {
+			Login.setRememberAccount($("#id").val());
+		} else {
+			Login.delRememberAccount();
+		}
+	} catch (e) {}
+	
+	$("#loginForm").submit();
+}
+
+function checkLoginField() {
+	
+	$("#errEmptyEmail").css("display","none");
+	$("#errEmptyPw").css("display","none");
+	$("#errVerifyFail").css("display","none");
+	$("#errBan").css("display","none");
+	$("#errBlackIp").css("display","none");
+	$("#errRms").css("display","none");
+	
+	if($("#id").val() == '') {
+		$("#errEmptyEmail").css("display","block");
+		return false;	
+	}
+	
+	if($("#password").val() == '') {
+		$("#errEmptyPw").css("display","block");
+		return false;
+	}
+	
+	return true;
+}
+
+</script>
+<script type="text/javascript" src="https://login.ncsoft.com/resources/script/login.js"></script>
+
+
+</head>
+<body>
+	<div id="containerWrap" class="">
+		<div id="header"></div>
+		<!-- contents -->
+		<div id="contents">
+			<header id="topHeader">
+				
+					
+						
+							<h1 class="subTitle">Log In</h1>
+						
+					
+					
+				
+			</header>
+			<div id="contentWrap">
+				
+
+<div class="wrapLogin">
+	
+	
+	
+	
+	
+	<form name="loginForm" id="loginForm" method="post" action="/login/signin">
+		<input name="return_url" type="hidden" value="https://account.ncsoft.com/settings/index" />
+		<input name="service_code" type="hidden" value="" />
+		<input name="message" type="hidden" value="" />
+		<input name="reason" type="hidden" value="" />
+		<input type="hidden" id="blackbox" name="blackbox" value='' />
+		<div class="login-input">
+			<fieldset>
+				<legend>LOG IN</legend>
+				<div class="inputGroup">
+					<label>Email Address</label>
+					<input type="email" id="id" name="id" maxlength="64" autocomplete="off" placeholder="Email Address">
+				</div>
+				<div class="inputGroup wrapPassword">
+					<label>Password</label>
+					<input type="password" id="password" name="password" maxlength="16" placeholder="Password">
+				</div>
+				<div class="wrapAccountRemember">
+					<input type="checkbox" name="remember" id="remember" class="checkbox">
+					<label id="remember_label">Remember me</label>
+				</div>
+				<div class="wrapError" id="errEmptyEmail">Please enter your email address.</div>
+				<div class="wrapError" id="errEmptyPw">Please enter your password.</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="wrapError" id="errKnown">Something went wrong on our end. Please try again in a few minutes.</div>
+				
+				
+				<div class="wrapButton">
+					<a href="#" class="button squareSingle" onclick="doLogin();">LOG IN</a>
+				</div>
+				
+				<div class="wrapLink">
+					<span class="link"><a href="https://account.ncsoft.com/signup/index?serviceCode=&returnUrl=https%3A%2F%2Faccount.ncsoft.com%2Fsettings%2Findex" class="button text">Create NC Account</a></span>
+					<span class="bar"></span>
+					<span class="link"><a href="https://account.ncsoft.com/forgotpassword/index?serviceCode=&returnUrl=https%3A%2F%2Faccount.ncsoft.com%2Fsettings%2Findex" class="button text">Canʹt log in?</a></span>
+				</div>
+				
+			</fieldset>
+		</div>
+	</form>
+	
+	
+	
+</div>
+
+
+
+
+
+
+
+
+<script>
+	var fp_bbout_element_id = "blackbox";
+</script>
+<script type="text/javascript" src="https://login.ncsoft.com/resources/script/static_wdp.js"></script>
+
+
+
+<script type="text/javascript" src="https://login.ncsoft.com/iovation/latest/dyn_wdp.js"></script>
+
+
+
+		
+
+
+
+
+
+
+
+			</div>
+		</div>
+		<!-- // contents -->
+		<div id="footer"></div>
+	</div>
+
+	
+
+	
+		
+		
+			
+		
+		
+	
+	<script type='text/javascript'>
+		var ncsoft = window.ncsoft = {};
+		ncsoft.gnb = {
+			options : {
+				"authenticated" : false,
+				"css_filename" : "/css/gnb.css",
+				"css_host" : "//static.ncsoft.com/global",
+				"elements" : [ "games", "authenticated", "unauthenticated",
+						"ncoin", "credd", "support" ],
+				"environment" : "live",
+				"language" : "en-US",
+				"languagePath" : "https://login.ncsoft.com/language/update?lang={{lang}}&return_url="
+						+ encodeURIComponent(window.location.href),
+				"languages" : [ 'en-US', 'de-DE', 'fr-FR', 'en-GB' ],
+				"modify" : {
+					"right" : {
+						"signup" : {
+							"url" : "account.ncsoft.com/signup/index?serviceCode="
+						},
+						"login" : {
+							"url" : "login.ncsoft.com/login?service_code="
+						}
+					}
+				}
+			}
+		}
+	</script>
+	<script type='text/javascript' src='//static.ncsoft.com/global/js/gnb.min.js'></script>
+
+<!-- VERSA -->
+
+
+
+<script>
+var versaTag = {};
+versaTag.id = "2053";
+versaTag.sync = 0;
+versaTag.dispType = "js";
+versaTag.ptcl = "HTTPS";
+versaTag.bsUrl = "bs.serving-sys.com/BurstingPipe";
+versaTag.activityParams = {
+"OrderID":"","Session":"","Value":"money","productid":"","productinfo":"","Quantity":"",
+"loginName":"" 
+,"Account_Creation":"","Account_Management":""};
+versaTag.retargetParams = {};
+versaTag.dynamicRetargetParams = {};
+versaTag.conditionalParams = {};
+</script>
+<script src="https://secure-ds.serving-sys.com/SemiCachedScripts/ebOneTag.js" id="ebOneTagUrlId"></script>
+<noscript>
+<iframe src="https://bs.serving-sys.com/BurstingPipe?
+cn=ot&amp;
+onetagid=2053&amp;
+ns=1&amp;
+activityValues=$=[Value]&amp;OrderID=[OrderID]&amp;Session=[Session]&amp;ProductID=[ProductID]&amp;ProductInfo=[ProductInfo]&amp;Quantity=[Quantity]&amp;email_login=&amp;loginName=$$&amp;
+retargetingValues=$$$$&amp;
+dynamicRetargetingValues=$$$$&amp;
+acp=$$$$&amp;" style="display:none;width:0px;height:0px"></iframe>
+</noscript>
+
+
+
+<!-- ANALYTICS -->
+<script src="//static.ncsoft.com/global/js/analytics.min.js"></script>
+
+
+
+
+
+
+<script>
+//ncsoft analytics init
+var _gaq = _gaq || [];
+if($().ncsEventTracker){
+  $(document).ncsEventTracker({
+    pageProfile: "platform",
+    accountId: "UA-3959034-11",
+    rollupAccountId: "UA-17151370-1",
+    domainName:".ncsoft.com",
+    isCrossDomainTracking: true
+  });
+}
+</script>
+
+
+</body>
+</html>

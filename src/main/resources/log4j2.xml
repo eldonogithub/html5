@@ -9,7 +9,7 @@
 		<!-- org.hibernate.tool.hbm2ddl -->
 		<logger name="org.hibernate.tool.hbm2ddl" level="debug"></logger>
 		<Logger name="org.hibernate" level="debug"></Logger>
-		<Logger name="ca.blackperl" level="debug"></Logger>
+		<Logger name="ca.blackperl" level="trace"></Logger>
 		<Logger name="ca.blackperl.utils.AuditInterceptor" level="debug"></Logger>
 		<Root level="info">
 			<AppenderRef ref="Console" />

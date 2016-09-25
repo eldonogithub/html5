@@ -1,0 +1,166 @@
+if(!window.ncw) window.ncw = {};
+if(!ncw.signup) ncw.signup = {};
+if(!ncw.signup.validate) ncw.signup.validate = {};
+
+(function($) {
+    'use strict';
+
+    var checkEmail;
+    var checkPassword;
+    var checkPasswordRepeat;
+    var checkDisplayName;
+    var checkBirth;
+    var checkTerm;
+    var submitBtn;
+
+    $(document).ready(function() {
+        setSignup();
+    });
+
+    function checkBirthAll() {
+        if( checkBirth.getFlagCheckMonth() && checkBirth.getFlagCheckDay() && checkBirth.getFlagCheckYear() ) checkBirth.checkAll();
+    }
+
+    function setSignup() {
+        checkEmail = new ncw.signup.validate.EmailCheck({
+            checkEle: $('#loginName'),
+            msgNodes: $('#loginName').parent().find('.msg'),
+            invalidMsgNodes: [$('#email_blank'), $('#email_invalid')]
+        });
+        $(checkEmail.self).on(ncw.signup.validate.EmailCheck.CHECK_EMAIL, function(event) {
+            if(checkPassword.getCheckEleValue() !== '') checkPassword.check(false, true);
+        });
+        $(checkEmail.self).on(ncw.signup.validate.EmailCheck.KEYUP_ENTER, function(event) {
+            checkSignup();
+        });
+
+        checkPassword = new ncw.signup.validate.PasswordCheck({
+            checkEle: $('#password'),
+            msgNodes: $('#password').parent().find('.msg'),
+            invalidMsgNodes: [$('#password_blank'), $('#password_invalid')],
+            noticeEle: $('#password').parent().find('.formCheck'),
+            emailEle: $('#loginName')
+        });
+        $(checkPassword.self).on(ncw.signup.validate.PasswordCheck.CHECK_PASSWORD, function(event) {
+            if(checkPasswordRepeat.getCheckEleValue() !== '') checkPasswordRepeat.check();
+        });
+        $(checkPassword.self).on(ncw.signup.validate.PasswordCheck.KEYUP_ENTER, function(event) {
+            checkSignup({
+                passwordKeyup: true
+            });
+        });
+
+        checkPasswordRepeat = new ncw.signup.validate.PasswordRepeatCheck({
+            checkEle: $('#passwordRepeat'),
+            msgNodes: $('#passwordRepeat').parent().find('.msg'),
+            invalidMsgNodes: [$('#confirm_password_blank'), $('#confirm_password_notmatched')],
+            passwordEle: $('#password')
+        });
+        $(checkPasswordRepeat.self).on(ncw.signup.validate.PasswordRepeatCheck.CHECK_PASSWORD_REPEAT, function(event) {
+        });
+        $(checkPasswordRepeat.self).on(ncw.signup.validate.PasswordRepeatCheck.KEYUP_ENTER, function(event) {
+            checkSignup();
+        });
+
+        checkDisplayName = new ncw.signup.validate.displayNameCheck({
+            checkEle: $('#userName'),
+            msgNodes: $('#userName').parent().find('.msg'),
+            invalidMsgNodes: [$('#displayname_blank'), $('#displayname_invalid')],
+            noticeEle: $('#userName').parent().find('.formCheck')
+        });
+        $(checkDisplayName.self).on(ncw.signup.validate.displayNameCheck.CHECK_DISPLAY_NAME, function(event) {
+        });
+        $(checkDisplayName.self).on(ncw.signup.validate.displayNameCheck.KEYUP_ENTER, function(event) {
+            checkSignup();
+        });
+
+        checkBirth = new ncw.signup.validate.BirthCheck({
+            monthEle: $('#birthMonth'),
+            dayEle: $('#birthDay'),
+            yearEle: $('#birthYear'),
+            msgNodes: $('.inputGroup.wrapDob .msg'),
+            invalidMsgNodes: [$('#birth_under13'), $('#birth_blank_month'), $('#birth_blank_day'), $('#birth_blank_year'), $('#birth_incorrect_date')],
+        });
+        $(checkBirth.self).on(ncw.signup.validate.BirthCheck.CHECK_BIRTH, function(event) {
+            if(checkPassword.getCheckEleValue() !== '') checkPassword.check(false, true);
+        });
+
+        checkTerm = new ncw.signup.validate.TermCheck({
+            checkBoxEle: $('#chkAgree'),
+            msgNodes: $('#chkAgree').parent().find('.msg'),
+            invalidMsgNodes: [$('#terms_unchecked')],
+        });
+
+        submitBtn = $('#contentWrap .wrapButton #btnConfirm');
+        submitBtn.on('click', function(event) {
+            event.preventDefault();
+            checkSignup();
+        });
+    }
+
+    function checkSignup(option) {
+        if(!checkEmail.getFlagCheck()) {
+            checkEmail.check();
+            // checkEmail.focusCheckEle();
+            return;
+        }
+        if(!checkPassword.getFlagCheck()) {
+            if(option && option.passwordKeyup === true) {
+                checkPassword.check(true, true);
+                return;
+            }
+
+            checkPassword.check();
+            // checkPassword.focusCheckEle();
+            return;
+        }
+        if(!checkPasswordRepeat.getFlagCheck()) {
+            checkPasswordRepeat.check();
+            // checkPasswordRepeat.focusCheckEle();
+            return;
+        }
+        if(!checkDisplayName.getFlagCheck()) {
+            checkDisplayName.check();
+            // checkDisplayName.focusCheckEle();
+            return;
+        }
+        if(!checkBirth.getFlagCheck()) {
+            if(!checkBirth.getFlagCheckMonth()) {
+                checkBirth.checkMonth();
+                // checkBirth.focusCheckEle('month');
+                return;
+            }
+            if(!checkBirth.getFlagCheckDay()) {
+                checkBirth.checkDay();
+                // checkBirth.focusCheckEle('day');
+                return;
+            }
+            if(!checkBirth.getFlagCheckYear()) {
+                checkBirth.checkYear();
+                // checkBirth.focusCheckEle('year');
+                checkBirthAll();
+                return;
+            }
+            checkBirthAll();
+            return;
+        }
+        if (grecaptcha.getResponse(widgetId1) == "") {
+            location.href = '#html_element';
+            $('#captcha_invalid').addClass('invalid');
+            return;
+        }
+
+        if(!checkTerm.getFlagCheck()) {
+            checkTerm.checkByExternal();
+            // checkTerm.focusCheckEle();
+            return;
+        }
+
+        if (typeof create != 'undefined') {
+            create(function(_val) {});
+        } else {
+            console.log('create is not function');
+        }
+    }
+
+})(jQuery);

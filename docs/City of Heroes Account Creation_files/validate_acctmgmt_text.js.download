@@ -1,0 +1,98 @@
+
+
+
+
+
+/*
+     FILE ARCHIVED ON 20:21:16 Apr 26, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 10:06:12 Mar 4, 2013.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+function getValidateText(phrase) {
+
+    var phrases = new Array();
+
+    phrases['langselect_help_text'   ] = "Please choose the language you would like to use to manage your NCsoft account.";
+    phrases['langselect_error_text'  ] = "Please choose your preferred language.";
+    phrases['account_name_help_text' ] = "Must be 5-12 letters and numbers and must start with a letter.";
+    phrases['account_name_error_text'] = "Please enter a valid account name";
+    phrases['account_name_taken_text'] = "This account name is not available.";
+    phrases['first_name_error_text'  ] = "You have entered an invalid first name.";
+    phrases['last_name_error_text'   ] = "You have entered an invalid last name.";
+    phrases['email_help_text'        ] = "If you forget your password, instructions to reset it will be sent to this address. We will never share your email address with anyone else.";
+    phrases['email_error_text'       ] = "Please enter valid email address";
+    phrases['password2_help_text'    ] = "<ul><li>8-13 letters and numbers</li><li>Must start with a letter and contain at least one number</li><li>Case sensitive</li><li>Must be different from your account name</li></ul>";
+    phrases['password2_error_text'   ] = "Please enter a valid password:<ul><li>8-13 letters and numbers</li><li>Must start with a letter and contain at least one number</li><li>Case sensitive</li><li>Must be different from your account name</li></ul>";
+    phrases['password3_help_text'    ] = "Please confirm your password.";
+    phrases['password3_error_text'   ] = "Passwords do not match.";
+    phrases['zip_error_text'         ] = "US Zip codes should be 5 digits. International zip / postal codes must be less than 10 characters.";
+    phrases['address1_error_text'    ] = "Please enter a valid address";
+    phrases['city_error_text'        ] = "Please enter a valid city";
+    phrases['birth_date_enter_text'  ] = "Please enter your date of birth. You must be 13 or older to create an account.";
+    phrases['birth_date_error_text'  ] = "We are sorry but you must be 13 or older to create an account.";
+    phrases['birth_date_help_text'   ] = "You must be 13 or older to create an account.";
+    phrases['sq_answer_1_help_text'  ] = "Answers must be at least 3 characters long";
+    phrases['sq_answer_1_error_text' ] = "Answer must be at least 3 characters long.";
+    phrases['sq_answer_2_help_text'  ] = "Answers must be at least 3 characters long.";
+    phrases['sq_answer_2_error_text' ] = "Answer must be at least 3 characters long.";
+    
+    phrases['recaptcha_response_field_help_text' ]  = "Please enter the words presented.";
+    phrases['recaptcha_response_field_error_text' ] = "reCaptcha incorrect. Please try the reCaptcha again.";
+    
+    phrases['sq_question_2_help_text'  ] = "Security Questions must be different";
+    phrases['submit-button_help_text'  ] = "Please complete all required fields.";
+    phrases['submit-button_error_text' ] = "Please complete all required fields.";
+
+    phrases['password_validation_validCharLen'] = "Must be 8 - 13 characters";
+    phrases['password_validation_validStartWithLetter'] = "Must start with a letter";
+    phrases['password_validation_validAtLeastOneLetterNumber'] = "Must contain letters and at least one number";
+    phrases['password_validation_noSpecialChars'] = "No special characters (&amp;, !, _, %)";
+    phrases['password_validation_caseSensitive'] = "Password is case sensitive";
+    phrases['password_validation_validNotAcctName'] = "Must be different than your Account Name";
+    phrases['password_validation_strengthStrong'] = "Strong";
+    phrases['password_validation_strengthMedium'] = "Medium";
+    phrases['password_validation_strengthWeak'] = "Weak";
+   
+    phrases['email_validation_validCharLen'] = "Must be less  than 255 characters";
+    phrases['email_validation_validEmailFormat'] = "Must use a valid email Format (name@example.com)";
+    
+    phrases['account_name_validation_validCharLen'] = "Must be 5 to 12 characters";
+    phrases['account_name_validation_validStartWithLetter'] = "Must start with a letter";
+    phrases['account_name_validation_noSpecialChars'] = "No special characters (&amp;, !,_,%)";
+    phrases['account_name_validation_nameAvailable'] = "Account name must be available";
+
+    return phrases[phrase];
+}
+
+function getEUCountries() {    
+    var european_countries = [ "AT", "BE", "CZ", "DK", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "NL", "PL", "PT", "ES", "SE", "GB", "CY", "EE", "LV", "LT", "LU", "MT", "SK", "SI", "GG", "JE", "IM" ];
+    
+    return european_countries;
+}
+
+function beganInQuickstart(){
+    return false;
+}
+
+/*GLOBAL tracker hack*/
+fieldStatus = new Object({
+    "account_name": getValidateText("account_name_help_text"),
+    "password2": getValidateText("password2_help_text"),
+    "password3": getValidateText("password3_help_text"),
+    "email": getValidateText("email_help_text"),
+    "birth_date": getValidateText("birth_date_help_text"),
+    "sq_answer_1": getValidateText("sq_answer_1_help_text"),
+    "sq_answer_2": getValidateText("sq_answer_2_help_text"),
+    "flag_name_taken" :     false
+     });
+
+function setFieldErrorStatus(id) {
+    fieldStatus[id] =  getValidateText(id + "_error_text")
+}
+function clearFieldErrorStatus(id) {
+    fieldStatus[id] =  getValidateText(id + "_help_text")
+}
+ 

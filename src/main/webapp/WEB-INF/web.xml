@@ -60,17 +60,17 @@
 	
 	<jsp-config>
 		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/includes/prelude.jspf</include-prelude>
+			<include-coda>/includes/coda.jspf</include-coda>
+		</jsp-property-group>
+		<jsp-property-group>
 			<url-pattern>/pages/*</url-pattern>
 			<scripting-invalid>true</scripting-invalid>
 		</jsp-property-group>
 		<jsp-property-group>
 			<url-pattern>/scripts/*</url-pattern>
 			<scripting-invalid>false</scripting-invalid>
-		</jsp-property-group>
-		<jsp-property-group>
-			<url-pattern>*.jsp</url-pattern>
-			<include-prelude>/includes/prelude.jspf</include-prelude>
-			<include-coda>/includes/coda.jspf</include-coda>
 		</jsp-property-group>
 	</jsp-config>
 </web-app>

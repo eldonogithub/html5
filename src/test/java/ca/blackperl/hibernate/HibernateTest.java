@@ -175,7 +175,7 @@ public class HibernateTest implements ConnectionEventListener {
 					p.setLastname(sb.toString());
 
 					Set<String> emailAddresses = new HashSet<String>();
-					int emails = (int) Math.random() * 6 + 1;
+					int emails = (int) (Math.random() * 6 + 1);
 					for (int j = 0; j < emails; j++) {
 						emailAddresses.add(p.getFirstname() + "." + p.getLastname() + "@" + j + ".example.com");
 					}

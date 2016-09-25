@@ -141,12 +141,12 @@ public class FlightsHistoryId implements java.io.Serializable {
 				&& ((this.getSegmentNumber() == castOther.getSegmentNumber())
 						|| (this.getSegmentNumber() != null && castOther.getSegmentNumber() != null
 								&& this.getSegmentNumber().equals(castOther.getSegmentNumber())))
-				&& ((this.getOrigAirport() == castOther.getOrigAirport())
+				&& ((this.getOrigAirport().equals(castOther.getOrigAirport()))
 						|| (this.getOrigAirport() != null && castOther.getOrigAirport() != null
 								&& this.getOrigAirport().equals(castOther.getOrigAirport())))
 				&& ((this.getDepartTime() == castOther.getDepartTime()) || (this.getDepartTime() != null
 						&& castOther.getDepartTime() != null && this.getDepartTime().equals(castOther.getDepartTime())))
-				&& ((this.getDestAirport() == castOther.getDestAirport())
+				&& ((this.getDestAirport().equals(castOther.getDestAirport()))
 						|| (this.getDestAirport() != null && castOther.getDestAirport() != null
 								&& this.getDestAirport().equals(castOther.getDestAirport())))
 				&& ((this.getArriveTime() == castOther.getArriveTime()) || (this.getArriveTime() != null
@@ -155,11 +155,11 @@ public class FlightsHistoryId implements java.io.Serializable {
 						&& this.getMeal().equals(castOther.getMeal())))
 				&& ((this.getFlyingTime() == castOther.getFlyingTime()) || (this.getFlyingTime() != null
 						&& castOther.getFlyingTime() != null && this.getFlyingTime().equals(castOther.getFlyingTime())))
-				&& ((this.getMiles() == castOther.getMiles()) || (this.getMiles() != null
+				&& ((this.getMiles().equals(castOther.getMiles())) || (this.getMiles() != null
 						&& castOther.getMiles() != null && this.getMiles().equals(castOther.getMiles())))
-				&& ((this.getAircraft() == castOther.getAircraft()) || (this.getAircraft() != null
+				&& ((this.getAircraft().equals(castOther.getAircraft())) || (this.getAircraft() != null
 						&& castOther.getAircraft() != null && this.getAircraft().equals(castOther.getAircraft())))
-				&& ((this.getStatus() == castOther.getStatus()) || (this.getStatus() != null
+				&& ((this.getStatus().equals(castOther.getStatus())) || (this.getStatus() != null
 						&& castOther.getStatus() != null && this.getStatus().equals(castOther.getStatus())));
 	}
 

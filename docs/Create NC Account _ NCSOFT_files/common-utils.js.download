@@ -1,0 +1,69 @@
+
+function openSelfCertPopup(url) {
+	var siteDomain = url;
+
+	//var SELF_CERT_FORM_ID = "__form_self_cert__"; 				// 본인인증에 사용될 폼 ID
+	var SELF_CERT_POPUP_NAME = "__popup_self_cert__"; 			// 본인인증 팝업창 이름
+	
+	// 본인인증 팝업 창 생성
+	win1 = window
+			.open(
+					siteDomain,
+					SELF_CERT_POPUP_NAME,
+					"width=410,height=460,toolbar=no,directories=no,status=no,scrollbars=no,resizable=no");
+	
+	win1.focus();
+
+	if (win1 == null) {
+		window.alert("팝업창 차단을 해제해 주세요");
+		return false;
+	}
+}
+
+function openIpinPopup(url) {
+	var siteDomain = url;
+
+	var SELF_CERT_POPUP_NAME = "IPINWindow"; 			// 본인인증 팝업창 이름
+	
+	// 본인인증 팝업 창 생성
+	win1 = window
+			.open(
+					siteDomain,
+					SELF_CERT_POPUP_NAME,
+					"width=410,height=460,toolbar=no,directories=no,status=no,scrollbars=no,resizable=no");
+	
+	win1.focus();
+
+	if (win1 == null) {
+		window.alert("팝업창 차단을 해제해 주세요");
+		return false;
+	}
+}
+
+function createHiddenElement (doc, key, value) {
+	var element = doc.createElement("input");
+	if(element) {
+		element.type = "hidden";
+		element.setAttribute("id", key);
+		element.setAttribute("name", key);
+		element.value = value;
+	}
+
+	return element;
+}
+
+function formInputHidden(form, name, value) {
+	form.appendChild(createHiddenElement(document, name, value));
+}
+
+function goMainLink(Url) {
+	window.location.href = Url;
+}
+
+function getStrByte(str) {
+	var p, len = 0;
+	for(p=0; p<str.length; p++) {
+		(str.charCodeAt(p) > 255) ? len+=2 : len++;
+	}
+	return len;
+}

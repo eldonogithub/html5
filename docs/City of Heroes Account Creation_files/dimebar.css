@@ -1,0 +1,227 @@
+﻿body {
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/********************************************/
+/***               Reset                  ***/
+/********************************************/
+#db-container * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+}
+
+
+/********************************************/
+/***           Common Styles              ***/
+/********************************************/
+
+#db-container {
+    width: 100%;
+    font-family: arial, Helvetica, sans-serif;
+    color: #D2D2D2;
+    background: #000 url('http://static.aiononline.com/includes/images/template-items/dimebar/dimebar-bg.jpg') repeat-x scroll 0 1px;
+    border-bottom: 1px solid #383838;
+    left: 0;
+    right: 0;
+	z-index: 175
+}
+#db-container #db-inner-container {
+    width: 960px;
+    height: 30px;
+    margin: 0 auto;
+    padding: 0 8px;
+    text-align: left;
+    /*background: url('http://static.aiononline.com/includes/images/template-items/dimebar/bg.png') no-repeat scroll 0 1px;*/
+}
+#db-container .left-items {
+    float: left
+}
+#db-container .right-items {
+    float: right
+}
+#db-container .item-wrapper {
+    background: transparent url('http://static.aiononline.com/includes/images/template-items/dimebar/top-tier-link-image/sep.gif') no-repeat scroll 0 1px;
+    float: left;
+    padding: 0 14px;
+    position: relative;
+    z-index: 109;
+}
+#db-container .left-items .item-wrapper {
+    background-position: 100% 1px;
+}
+
+
+/***|  Links  |****/
+#db-container a {
+    color: #ccc;
+    font-size: 12px;
+    text-decoration: none;
+    border: none
+}
+#db-container a:hover {
+    color: #0CEDFF
+}
+#db-container a.has-icon, #db-container .has-icon-hover {
+    padding-right: 17px;
+    background: transparent url('http://static.aiononline.com/includes/images/template-items/dimebar/top-tier-link-image/has_menu.gif') no-repeat scroll right 13px;
+}
+#db-container a.has-icon-hover {
+    background-position: right -13px;
+}
+#db-container a.reg-link {
+    padding-top: 8px;
+    height: 23px;
+    display: inline-block
+}
+
+
+/***|  NCsoft Logo  |****/
+#db-container #db-corporate-link {
+    background: #CCC url('http://static.aiononline.com/includes/images/template-items/dimebar/top-tier-link-image/swipe.png') no-repeat 100px 1px;
+    padding: 0;
+    width: 102px;
+    height: 30px;
+    display: block;
+}
+#db-container .db-corporate-link {
+    padding-right: 1px;
+    padding-left: 11px;
+}
+#db-container #db-corporate-link span {
+    background: transparent url('http://static.aiononline.com/includes/images/template-items/dimebar/top-tier-link-image/ncsoft.png') no-repeat top left;
+    height: 30px;
+    display: block;
+    text-indent: -5000px;
+	cursor: pointer;
+}
+
+
+
+
+/********************************************/
+/***           dropdown menu              ***/
+/********************************************/
+
+#db-container .db-dropDown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: -1px;
+    list-style-type: none;
+    padding: 0 1px 0;
+    background-color: #101010;
+    border: 1px solid #383838;
+    border-top: none;
+}
+#db-container .left-items .db-dropDown {
+    left: -1px;
+    right: 0;
+}
+#db-container .db-dropDown li {
+    background: transparent url('http://static.aiononline.com/includes/images/template-items/dimebar/top-tier-link-image/horz_sep.png') no-repeat scroll 0 0;
+    padding: 1px 0 0;
+    margin: 1px 0;
+}
+#db-container .db-dropDown li:first-child {
+    background-image: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+#db-container .db-dropDown li a {
+    display: block;
+    padding: 5px 9px;
+    margin-top: 1px;
+}
+#db-container .db-dropDown li:first-child a {
+    margin-top: 0;
+}
+#db-container .db-dropDown li a:hover {
+    background-color: #242424;
+}
+
+
+
+/********************************************/
+/***             Games Menu               ***/
+/********************************************/
+
+#db-container #db-games-menu ul {
+    width: 202px;
+}
+#db-container #db-games-menu li a {
+    background-image: url('http://static.aiononline.com/includes/images/template-items/dimebar/games-dropdown/games.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 0 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+#db-container #db-games-menu li span {
+    display: block;
+    margin-left: -9999px;
+}
+/*** Individual Game Image Positioning ***/
+#db-container #db-games-menu li a#db-aion {
+    height: 53px;
+    background-position: 0 10px;
+}
+#db-container #db-games-menu li a#db-aion:hover {
+    background-position: 100% 10px;
+}
+#db-container #db-games-menu li a#db-guildWars {
+    height: 48px;
+    background-position: 0 -46px;
+}
+#db-container #db-games-menu li a#db-guildWars:hover {
+    background-position: 100% -46px;
+}
+#db-container #db-games-menu li a#db-coh {
+    height: 55px;
+    background-position: 0 -97px;
+}
+#db-container #db-games-menu li a#db-coh:hover {
+    background-position: 100% -97px;
+}
+#db-container #db-games-menu li a#db-lineageOne {
+    height: 48px;
+    background-position: 0 -155px;
+}
+#db-container #db-games-menu li a#db-lineageOne:hover {
+    background-position: 100% -155px;
+}
+#db-container #db-games-menu li a#db-lineageTwo {
+    height: 52px;
+    background-position: 0 -206px;
+}
+#db-container #db-games-menu li a#db-lineageTwo:hover {
+    background-position: 100% -206px;
+}
+
+
+
+/********************************************/
+/***            Account Menu              ***/
+/********************************************/
+#db-container #db-acct-menu li {
+    background-position: -202px 0;
+}
+
+/********************************************/
+/***              Lang Menu               ***/
+/********************************************/
+#db-container #db-lang-menu li {
+    background-position: -321px 0;
+}
+#db-container #db-lang-menu ul {
+    width: 108px;
+}
+

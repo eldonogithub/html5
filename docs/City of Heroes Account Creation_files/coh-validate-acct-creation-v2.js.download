@@ -1,0 +1,1112 @@
+
+
+
+
+
+/*
+     FILE ARCHIVED ON 20:01:34 Apr 26, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 10:06:11 Mar 4, 2013.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+// JavaScript Document
+// This works in tandem with validate_acctmgmt_text_js.pl
+
+$(function(){ //onReady
+		initDropDownContent(); //init dropdown feedback   #account_name #password2 email
+		$("#submit-button").live('click',function(){
+			validateAllToSubmit();
+		});
+		$(".master-account").click(function(e){
+			if($().ncsEventTracker){
+				$(document).ncsVirtualPageTracker({virtualPageUrl: 'COH AC Existing Master Account'});
+			}
+		});
+});
+
+var alternate_id = new Array();
+
+alternate_id['month'] = 'birth_date';
+alternate_id['day'  ] = 'birth_date';
+alternate_id['year' ] = 'birth_date';
+
+function initDropDownContent() {
+		var initEmailContainer = {'validEmailFormat':2,'validCharLen':2}; //validateContainer['validCharLen']  =1 updateEmailFeedback(element,validateContainer);
+		var initPasswordContainer = {'validNotAcctName':2,'validCharLen':2,'validStartWithLetter':2,'validAtLeastOneLetterNumber':2,'noSpecialChars':2}; 
+		var initAccountContainer = {'validCharLen':2,'validStartWithLetter':2,'noSpecialChars':2,'nameAvailable':2}; 
+		updateAccountNameFeedback(initAccountContainer);
+		updatePasswordFeedback(initPasswordContainer);
+		updateEmailFeedback(initEmailContainer);
+	}
+	
+	
+function getBaseId(element) {
+    var id = element.id;
+    return alternate_id[id] || id;
+}
+
+function getIconId(element) {
+    var icon_id = getBaseId(element) + '_valid';
+    return icon_id;
+}
+
+function getTextId(element) {
+    var text_id = getBaseId(element) + '_invalid';
+    return text_id;
+}
+
+function showHelp(element, help_text){
+    var icon_id = getIconId(element);
+    var text_id = getTextId(element);
+		if (help_text == null || help_text == '')
+        help_text = getValidateText(getBaseId(element) + '_help_text');
+}
+
+function showDobHelp(clickedElement){
+	var element = document.getElementById("month");
+	var icon_id = getIconId(element);
+	var text_id = getTextId(element);
+	var help_text = getValidateText(getBaseId(element) + '_help_text');
+	document.getElementById(text_id).innerHTML = fieldStatus[ getBaseId(element)]; 
+	text_id = getBaseId(element) + '_invalid';   
+	$(clickedElement).addClass("input-selected");
+	$("#" + text_id).siblings(".bubbleArrow").css('display','block');
+	$("#" + text_id).css('display','block');
+}
+function dobFieldBlurred(clickedElement) {
+	var element = document.getElementById("month");
+	$(element).siblings(".bubbleArrow").css('display','none');
+  $(element).siblings(".feedback").css('display','none');
+  $(clickedElement).removeClass("input-selected");
+}
+
+
+function hideHelp(element){
+    var icon_id = getIconId(element);
+    var text_id = getTextId(element);
+    hideIndicator(icon_id, text_id);
+}
+
+
+// Displays error text for invalid fields
+function displayErrorIndicator(icon_id, text_id, error, submission, fieldId){
+   $("#" + text_id).addClass("invalid-border");
+   $("#" + text_id).parent().find(".bubbleArrow").addClass("invalid-arrow");
+   
+    if (submission == 1){
+        document.getElementById(fieldId).focus();
+    }
+    return false;
+}
+
+function hideIndicator(icon_id, text_id) {
+    $('#'+icon_id).removeClass('feedback_icon_valid');
+    $('#'+icon_id).removeClass('feedback_icon_error');
+    document.getElementById(text_id).style.display = "none";
+}
+
+function doError( element, error_text ){
+ 	
+    var icon_id = getIconId(element);
+    var text_id = getTextId(element);
+    
+    setFieldErrorStatus(element.id);  
+    if(error_text == "taken"){ fieldStatus["flag_name_taken"] = true; }
+    if (error_text == null || error_text == '')
+        error_text = getValidateText(element.id + '_error_text');
+    else
+        error_text = getValidateText(error_text) || error_text;
+  
+    if(element.id == 'day' || element.id == 'month' || element.id == 'year') {
+			 $(element).parent().parent().find('.feedback-wrapper > .feedback-text').css({'display':'block'});
+     	$(element).parent().parent().children('.feedback_icon_container').removeClass('feedback_icon_valid').addClass('feedback_icon_invalid');
+    
+		} else {
+			 $(element).parent().parent().parent().parent().find('.feedback-wrapper > .feedback-text').css({'display':'block'});
+     	$(element).parent().parent().parent().parent().children('.feedback_icon_container').removeClass('feedback_icon_valid').addClass('feedback_icon_invalid');
+		}
+    return displayErrorIndicator(icon_id, text_id, error_text);
+}
+
+function focusError( element, error_text ){
+    element.focus();
+
+    return doError(element, error_text);
+}
+
+function doValid( element ){
+    var icon_id = getIconId(element);
+    var text_id = getTextId(element);
+    clearFieldErrorStatus(element.id);
+    if(element.id == "account_name"){ fieldStatus["flag_name_taken"] = false; }
+    if(element.id == 'day' || element.id == 'month' || element.id == 'year') {
+			 $(element).parent().parent().children('.feedback_icon_container').removeClass('feedback_icon_invalid').addClass('feedback_icon_valid');
+     $(element).parent().parent().find('.feedback-wrapper > .feedback-text').css({'display':'none'});
+		} else {
+			 $(element).parent().parent().parent().parent().children('.feedback_icon_container').removeClass('feedback_icon_invalid').addClass('feedback_icon_valid');
+     $(element).parent().parent().parent().parent().find('.feedback-wrapper > .feedback-text').css({'display':'none'});   
+		}
+    return true;
+}
+
+// Birthday code
+function getMonthLength(month,year,julianFlag)
+{
+   var ml;
+   if(month==1 || month==3 || month==5 || month==7 || month==8 || month==10||month==12)
+      {ml = 31;}
+   else {
+       if(month==2) {
+          ml = 28;
+          if(!(year%4) && (julianFlag==1 || year%100 || !(year%400)))
+             ml++;
+       }
+       else
+          {ml = 30;}
+   }
+   return ml;    
+}
+
+function ageInYears(birthday_form) {
+
+    var selectedMonthIndex = birthday_form["month"].selectedIndex;
+    var selectedDayIndex   = birthday_form["day"  ].selectedIndex;
+    var selectedYearIndex  = birthday_form["year" ].selectedIndex;
+    
+    var birth_month = birthday_form["month"].options[selectedMonthIndex].value;
+    var birth_day   = birthday_form["day"  ].options[selectedDayIndex  ].text;
+    var birth_year  = birthday_form["year" ].options[selectedYearIndex ].text;
+    
+    if( birth_year == 0 || birth_month == 0 || birth_day == 0 ){
+        return 0;
+    }
+
+    var date = new Date();
+    var current_month = date.getMonth();
+    var current_year  = date.getFullYear();
+    var mLength = 0;
+    var delta_months = 0;
+    var age_in_years = 0;
+    var delta_days = date.getDate() - birth_day;
+    if(delta_days<0)
+    {
+        current_month --;
+        if(current_month < 1)
+        {
+            current_year --;
+            if( mLength ){
+                current_month = current_month + parseInt(365/mLength);
+            }
+            else{
+                current_month = current_month + 12;
+            }
+        }
+        if( mLength == 0 ) {              
+            var isJulian = 0;
+            var month_length = getMonthLength(current_month,current_year,isJulian);
+            delta_days = delta_days + month_length;
+        }
+        else{ delta_days += mLength;} 
+    }
+    
+    birth_month = birth_month - 1; // 0-11 not 1-12
+    
+    var month_delta = current_month - birth_month;
+
+    if( month_delta < 0 ) {
+        current_year--;
+        if( mLength!=0 ){
+            month_delta = month_delta + parseInt(365/mLength);
+        }
+        else {
+            month_delta = month_delta + 12;
+        }
+    }
+
+    age_in_years = current_year - birth_year;
+    
+    return age_in_years;
+}
+
+function validateBirthDate(element,submission) {
+		//dobFieldBlurred(element);
+		
+    var birthday_form   = element.form;
+    var invalid_element = 'birth_date_invalid';
+    var valid_element   = 'birth_date_valid';
+    var birth_date_enter_text = getValidateText('birth_date_enter_text');
+    var birth_date_error_text = getValidateText('birth_date_error_text');
+    var birth_date_help_text  = getValidateText('birth_date_help_text');
+    age = ageInYears(birthday_form);
+    
+    var selectedMonthIndex = birthday_form["month"].selectedIndex;
+    var selectedDayIndex   = birthday_form["day"  ].selectedIndex;
+    var selectedYearIndex  = birthday_form["year" ].selectedIndex;
+     if(typeof(submission) != 'undefined'){
+    		if( selectedMonthIndex !='0' && selectedDayIndex !='0' && selectedYearIndex !='0' && age >= 13 ) {
+    			return doValid(element);
+				} else {
+				    doError(element); return false;
+				}
+    } else {
+    	if( (selectedMonthIndex !='0' && selectedDayIndex !='0' && selectedYearIndex !='0')  ) {
+		    if (  age >= 13  ){
+				   return doValid(element);
+				} else {
+					doError(element); return false;
+				}
+			} else {} //dont bother user until all 3 are filled out
+		}
+ 	 
+}
+
+
+// Account Info
+function passwdValidate(element, submission){
+    var account_name = getAccount(element);
+    var password = element.value;
+
+    if ( password == account_name ) {
+        return showPasswordBad(password, element, submission);
+    }
+    
+    var regExp = /^[a-zA-Z]{1}[a-zA-Z0-9\.'\-]{7,12}$/;
+    
+    if (password.search(regExp) == -1){
+        return showPasswordBad(password, element, submission);
+    } 
+    
+    var matchAnyNumberRegExp = /\d/;
+
+    if (password.search(matchAnyNumberRegExp) == -1){
+        return showPasswordBad(password, element, submission);
+    } 
+    
+    passwordStrength(element);
+    
+    return doValid(element);
+}
+
+function showPasswordBad(password, element, submission) {
+    passwordStrength(element);
+    if ( submission == 1 ) {
+        return focusError(element);
+    }
+    else {
+        return doError(element);
+    }
+}
+
+function getAccount(element) {
+    return element.form["account_name"].value;
+}
+
+function getPassword(element) {
+    return element.form["password2"].value;
+}
+
+function showDropDownHelp(element) {
+		//alert('showDropDownHelp():' + $(element).parent().parent().parent().parent().children('.feedback-wrapper').attr('class')   );
+		$(element).parent().parent().parent().parent().children('.feedback-wrapper').slideDown(300);
+}
+
+function hideDropDownHelp(element) {
+		//alert('showDropDownHelp():' + $(element).parent().parent().parent().parent().children('.feedback-wrapper').attr('class')   );
+		$(element).parent().parent().parent().parent().children('.feedback-wrapper').slideUp(300);
+}
+
+function validatePassword(element,keypress) {
+	var acctName = getAccount(element);
+	var objField = element.value;
+	var regExp = /^[a-zA-Z]{1}[a-zA-Z0-9\._\-]{7,12}$/; //original complete version
+	var regExp2 = /\d/;
+	var regExpLetterFirst = /^[a-zA-Z]{1}/;
+	var regMinOneLetterOneNumber ="((?=.*[A-Za-z0-9])(?=.*[0-9])(?=.*[a-z]))^.*";
+	var regNoSpecialChars = /[a-zA-Z0-9\._\-]$/;
+	var validateContainer = {'validNotAcctName':0,'validCharLen':0,'validStartWithLetter':0,'validAtLeastOneLetterNumber':0,'noSpecialChars':0}; //updatePasswordFeedback(validateContainer);
+	if(typeof(keypress) != 'undefined'){
+			if(objField.length < 1){
+				validateContainer['validNotAcctName'] = 2;
+				validateContainer['validCharLen'] = 2;
+				validateContainer['validStartWithLetter'] = 2;
+				validateContainer['validAtLeastOneLetterNumber'] = 2;
+				validateContainer['noSpecialChars'] = 2;
+			}else {
+			    if ( objField == acctName ) {
+			        validateContainer['validNotAcctName'] = 0;
+			    } else {
+			    	validateContainer['validNotAcctName'] = 1;
+			    }
+			    //password validation: length 8 - 13
+			    if ( objField.length > 7 && objField.length < 14) {
+			        validateContainer['validCharLen'] = 1;
+			    }else {
+			    	validateContainer['validCharLen'] = 0;
+			    }
+			    //password validation: start with letter
+			    if ( objField.search(regExpLetterFirst) == -1 ) {
+			        validateContainer['validStartWithLetter'] = 0;
+			    } else {
+			    	validateContainer['validStartWithLetter'] = 1;
+			    }
+			    //password validation: at least one alpha and number
+			    if ( objField.search(regMinOneLetterOneNumber) == -1 ) {
+			        validateContainer['validAtLeastOneLetterNumber'] = 0;
+			    } else {
+			    	validateContainer['validAtLeastOneLetterNumber'] = 1;
+			    }
+			    //password validation: no special characters
+			    if ( objField.search(regNoSpecialChars) == -1 ) {
+			        validateContainer['noSpecialChars'] = 0;
+			    } else {
+			    	validateContainer['noSpecialChars'] = 1;
+			    }
+				
+			
+			}
+	} else {
+		if ( objField == acctName ) {
+			        validateContainer['validNotAcctName'] = 0;
+			    } else {
+			    	validateContainer['validNotAcctName'] = 1;
+			    }
+			    //password validation: length 8 - 13
+			    if ( objField.length > 7 && objField.length < 14) {
+			        validateContainer['validCharLen'] = 1
+			    }else {
+			    	validateContainer['validCharLen'] = 0;
+			    }
+			    //password validation: start with letter
+			    if ( objField.search(regExpLetterFirst) == -1 ) {
+			        validateContainer['validStartWithLetter'] = 0;
+			    } else {
+			    	validateContainer['validStartWithLetter'] = 1;
+			    }
+			    //password validation: at least one alpha and number
+			    if ( objField.search(regMinOneLetterOneNumber) == -1 ) {
+			        validateContainer['validAtLeastOneLetterNumber'] = 0;
+			    } else {
+			    	validateContainer['validAtLeastOneLetterNumber'] = 1;
+			    }
+			    //password validation: no special characters
+			    if ( objField.search(regNoSpecialChars) == -1 ) {
+			        validateContainer['noSpecialChars'] = 0;
+			    } else {
+			    	validateContainer['noSpecialChars'] = 1;
+			    }
+				
+	}
+	passwordStrength(element);
+	updatePasswordFeedback(validateContainer);
+	passwdValidate(element);
+	//var responseHtml =  
+  //console.log ('validNotAcctName:' + validateContainer['validNotAcctName'] + '\nvalidCharLen:' +  validateContainer['validCharLen']  + '\nvalidStartWithLetter:' +  validateContainer['validStartWithLetter']+ '\nvalidAtLeastOneLetterNumber:' +  validateContainer['validAtLeastOneLetterNumber']+ '\nnoSpecialChars:' +  validateContainer['noSpecialChars'] +"\nval:" + objField + " != " +  acctName);
+  
+  
+}
+function updatePasswordFeedback(validateContainer) {
+	//console.log("------updatePasswordFeedback-----------");
+	var newMsg = "";
+	for(field in validateContainer) {
+		var helpPhraseKey = 'password_validation_' + field;
+		switch(validateContainer[field]) 
+		{
+			case 1:
+				newMsg = newMsg + '<li class="valid">'+  getValidateText(helpPhraseKey) +'</li>';
+			break;
+			case 2:
+				newMsg = newMsg + '<li>'+  getValidateText(helpPhraseKey) +'</li>';
+			break;
+			default:
+				newMsg = newMsg + '<li class="invalid">'+  getValidateText(helpPhraseKey) +'</li>';
+		}
+	}
+			//console.log("------END updatePasswordFeedback-----------");
+		$('#password2_invalid ul').html(newMsg);
+}
+
+function passwordStrength(element){
+    var acctName = getAccount(element);
+    var objField = element.value;
+    var regExp = /^[a-zA-Z]{1}[a-zA-Z0-9\._\-]{7,12}$/;
+    var regExp2 = /\d/;
+    if (objField.search(regExp) != -1 && objField.search(regExp2) != -1 && objField != acctName){    // valid
+        var matches = objField.match(/[A-Z]/g);
+        var count = 0;
+        var matches = objField.match(/[A-Z]/g);
+        if (matches === undefined || matches == null){
+            count = 0;
+        } 
+        else {
+             count = matches.length;
+        }
+        if (count > 1 && objField.length > 9){ 
+        	$("#account_creation_form .passwordStrength").removeClass("weak medium").addClass("strong");// strong
+        	$("#password2_invalid .password-text").removeClass("weak medium").addClass("strong").html(getValidateText('password_validation_strengthStrong'));
+        } 
+        else { 
+						$("#account_creation_form .passwordStrength").removeClass("weak strong").addClass("medium");// medium
+						$("#password2_invalid .password-text").removeClass("weak strong").addClass("medium").html(getValidateText('password_validation_strengthMedium'));
+        }
+    } 
+    else { // invalid
+        if (getPassword(element) == ""){ 
+           $("#account_creation_form .passwordStrength").removeClass("weak medium strong");// empty
+           $("#password2_invalid .password-text").removeClass("weak medium strong").html("");
+        } 
+        else {
+            $("#account_creation_form .passwordStrength").removeClass("medium strong").addClass("weak");
+            $("#password2_invalid .password-text").removeClass("medium strong").addClass("weak").html(getValidateText('password_validation_strengthWeak'));
+        }
+    }    
+   
+}
+
+
+function createXMLHttpRequest() {
+    try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {}
+    try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {}
+    try { return new XMLHttpRequest; } catch (e) {}
+    return null;
+}
+function validateNameKeyPress(element) {
+	if(element.value.length > 0) {validateName(element,9); }
+
+}
+function validateName(element,nameAvail) {
+	
+	//if (element.id == "account_name") {fieldStatus["flag_name_taken"] = false;}
+  var objField = $.trim(element.value);
+	var regExp = /^[a-zA-Z]{1}[a-zA-Z0-9]{4,11}$/;
+	var validateContainer = {'validCharLen':0,'validStartWithLetter':0,'noSpecialChars':0,'nameAvailable':0}; //updateAccountNameFeedback(validateContainer);
+	var regExpLetterFirst = /^[a-zA-Z]{1}/;
+	var regNoSpecialChars = /^[a-zA-Z0-9]+$/;
+	//account name validation: length 5 - 12 
+  if ( objField.length > 4 && objField.length < 13) {
+      validateContainer['validCharLen'] = 1;
+  }else {
+  	validateContainer['validCharLen'] = 0;
+  }
+	//account name validation: start with letter
+  if ( objField.search(regExpLetterFirst) == -1 ) {
+      validateContainer['validStartWithLetter'] = 0;
+  } else {
+  	validateContainer['validStartWithLetter'] = 1;
+  }
+  //account name validation: no special characters
+  if ( objField.search(regNoSpecialChars) == -1 ) {
+      validateContainer['noSpecialChars'] = 0;
+  } else {
+  	validateContainer['noSpecialChars'] = 1;
+  }
+	//if all valid, then check avail
+	if(typeof(nameAvail) != 'undefined')  {
+		if(nameAvail == 9) {validateContainer['nameAvailable'] = 2;
+			} else if(nameAvail === true) { validateContainer['nameAvailable'] = 1; }
+	} 
+	updateAccountNameFeedback(validateContainer);		
+}	
+
+function validateSecurityQuestions(element) {
+		var q1 = $('#sq_question_1').val();
+		var q2 = $('#sq_question_2').val();
+		if(q1==q2 && q1!=0 && q2!=0) {
+			$('.duplicate-questions-error, .duplicate-questions-icon').show();
+		} else {
+			$('.duplicate-questions-error, .duplicate-questions-icon').hide();
+		}
+}
+
+function isNameAvailable(account_text,element) {
+	   var proxyUrl = '/global-signup/includes/php/proxy-service.php';
+    var requestUrl = currentEnvLinkArrray ['acctNmAvailableRequestUrl'];
+    showSpinner();
+    $.ajax({
+			  type: 'POST',
+			  url: proxyUrl, 
+			  data: {'geturl':requestUrl,'account':account_text},
+			  success: function( data ){
+			  	hideSpinner(); 
+			  	if( ($.trim(data.result)) == "okay"){validateName(element,true);  return doValid(element);} else {validateName(element);  return doError(element,"taken");}
+			  },
+			  dataType: 'json',
+			  error: function(jqXHR, textStatus, errorThrown){validateName(element); hideSpinner();  return doError(element);  }
+			});	
+}
+
+function updateAccountNameFeedback(validateContainer) {	
+	var newMsg = "";
+	for(field in validateContainer) {
+	 	var helpPhraseKey = 'account_name_validation_' + field;
+		switch(validateContainer[field]) 
+		{
+			case 1:
+				newMsg = newMsg + '<li class="valid">'+  getValidateText(helpPhraseKey) +'</li>';
+			break;
+			case 2:
+				newMsg = newMsg + '<li>'+  getValidateText(helpPhraseKey) +'</li>';
+			break;
+			default:
+				newMsg = newMsg + '<li class="invalid">'+  getValidateText(helpPhraseKey) +'</li>';
+		}
+	}
+		$('#account_name_invalid ul').html(newMsg);
+}
+
+function validateAcctNm(element, checkAccNm){
+    if (element.id == "account_name") {fieldStatus["flag_name_taken"] = false;}
+    var account_text = element.value;
+    var regExp = /^[a-zA-Z]{1}[a-zA-Z0-9]{4,11}$/;
+    if (account_text.search(regExp) != -1)
+    {
+        if (checkAccNm == 2) {
+           return acctNmAvailable(account_text, element);
+        } 
+        if (checkAccNm == 1) {
+            return acctNmAvailable(account_text, element, 1);
+        } 
+        else {
+            return doValid(element);
+        }
+    } 
+    else 
+    {
+        if (checkAccNm == 2){
+            return focusError(element);
+        }
+        else {
+            return doError(element);
+       }
+    }
+}
+
+function showSpinner() {
+	$('#account_name_valid').hide();
+  $('#acct-name-spinner').show();
+}
+
+function hideSpinner() {
+	$('#acct-name-spinner').hide(); 
+	$('#account_name_valid').show();
+}
+
+function acctNmAvailable(account_text, element, async)  {
+    var proxyUrl = '/global-signup/includes/php/proxy-service.php';
+    var requestUrl = currentEnvLinkArrray['acctNmAvailableRequestUrl'];//'/web/20120426200134/http://plaync-qa-main.austin.ncwest.ncsoft.corp/cgi-bin/account_available.pl?account='
+    showSpinner();
+    $.ajax({
+			  type: 'POST',
+			  url: proxyUrl, 
+			  data: {'geturl':requestUrl,'account':account_text},
+			  success: function( data ){
+			  	  hideSpinner(); 
+			  	if( ($.trim(data.result)) == "okay"){validateName(element,true); return doValid(element);} else {validateName(element); return doError(element,"taken");}
+			  },
+			  dataType: 'json',
+			  error: function(jqXHR, textStatus, errorThrown){ validateName(element); hideSpinner(); return doError(element);  }
+			});		
+}
+
+function validateEmailOnKeyPress(element){
+	//alert('validateEmailOnKeyPress():' + element.value.length);
+	if(element.value.length > 0) {
+		var validateContainer = {'validEmailFormat':1,'validCharLen':1};
+		var email = $.trim(element.value);
+		if (email.search(/^\s+/) != -1 || email.search(/\s+$/) != -1) { 
+	      	validateContainer['validEmailFormat'] = 0;
+	      	return false;
+	  }
+	  if (email.length > 255) { // make sure length isn't longer than db field
+	      validateContainer['validCharLen'] = 0;
+	      validateContainer['validEmailFormat'] = 0;
+	  }
+	  var emailArr = email.split("@");
+	  var localVar = emailArr[0];
+	  var domain = emailArr[1] || '';
+	  if (domain.search(/^-/) != -1 ) { // domain part can not start with a dash
+	      validateContainer['validEmailFormat'] = 0;
+	  }
+	  if (localVar.length > 64) {  // Check to see if local part is not too long
+	      validateContainer['validEmailFormat'] = 0;
+	  }
+	  if (emailArr.length != 2){
+	      validateContainer['validEmailFormat'] = 0;
+	  }
+	  if (localVar.search(/^\./) != -1 && localVar.search(/\.$/ != -1)){ // can't start with or end with a dot
+	      validateContainer['validEmailFormat'] = 0;
+	  }
+	  if (localVar.search(/^[a-zA-Z0-9\!\#\$\%\&\'\*\+\-\/\=\?\^\_\`\{\|\}\~\.]+$/) == -1){ //check that local part is all valid
+	      validateContainer['validEmailFormat'] = 0;
+	  }
+	  var domainArr = domain.split(".");
+	  if (domainArr.length < 2){
+	     validateContainer['validEmailFormat'] = 0;
+	  }
+	  for (i = 0; i < domainArr.length; ++i){
+	      if (domainArr[i].search(/^[a-zA-Z0-9\-]+$/) == -1){
+	        	validateContainer['validEmailFormat'] = 0;
+	      }
+	      if (domainArr[i].search(/^-/) != -1 || domainArr[i].search(/-$/) != -1) { // Domain Arr's can't begin or end with a -
+	         	validateContainer['validEmailFormat'] = 0;
+	      }
+	  }
+		updateEmailFeedback(validateContainer,element);
+	}
+}
+
+function updateEmailFeedback(validateContainer,element) {
+	var newMsg = "";
+	for(field in validateContainer) {
+	 	var helpPhraseKey = 'email_validation_' + field;
+		switch(validateContainer[field]) 
+		{
+			case 1:
+				newMsg = newMsg + '<li class="valid">'+  getValidateText(helpPhraseKey) +'</li>';
+			break;
+			case 2:
+				newMsg = newMsg + '<li>'+  getValidateText(helpPhraseKey) +'</li>';
+			break;
+			default:
+				newMsg = newMsg + '<li class="invalid">'+  getValidateText(helpPhraseKey) +'</li>';
+		}
+	}
+	$('#email_invalid ul').html(newMsg);
+	if(typeof(element) != 'undefined') {validateEmail(element);}
+}
+function validateEmail(element, submission) {
+    var email = element.value;
+    var fail = false;
+    if (email.search(/^\s+/) != -1 || email.search(/\s+$/) != -1) { //Fail if address contains leading or trailing whitespace
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    if (email.length > 255) { // make sure length isn't longer than db field
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    var emailArr = email.split("@");
+    var localVar = emailArr[0];
+    var domain = emailArr[1] || '';
+    if (domain.search(/^-/) != -1 ) { // domain part can not start with a dash
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    if (localVar.length > 64) {  // Check to see if local part is not too long
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    if (emailArr.length != 2){
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    if (localVar.search(/^\./) != -1 && localVar.search(/\.$/ != -1)){ // can't start with or end with a dot
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    if (localVar.search(/^[a-zA-Z0-9\!\#\$\%\&\'\*\+\-\/\=\?\^\_\`\{\|\}\~\.]+$/) == -1){ //check that local part is all valid
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    var domainArr = domain.split(".");
+    if (domainArr.length < 2){
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+    for (i = 0; i < domainArr.length; ++i){
+        if (domainArr[i].search(/^[a-zA-Z0-9\-]+$/) == -1){
+            if (submission == 1){
+                return focusError(element);
+            } else {
+                return doError(element);
+            }
+        }
+        if (domainArr[i].search(/^-/) != -1 || domainArr[i].search(/-$/) != -1) { // Domain Arr's can't begin or end with a -
+            if (submission == 1){
+                return focusError(element);
+            } else {
+                return doError(element);
+            }
+        }
+    }
+    if (!fail){
+        return doValid(element);
+    } 
+    else {
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+}
+
+function confirmPass(element, submission) {
+    var pass = element.value;
+    if (pass == getPassword(element) && pass != "") {
+        return doValid(element);
+    } else {
+        if (submission == 1){
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+}
+
+function validateSecurityAnswer(element, submission) {
+    var answer_text = element.value;
+
+    if (answer_text.length > 2 && answer_text.length <= 32 && answer_text != formSecurityAnswer) {
+        return doValid(element);
+    }
+    else {
+        if (submission == 1) {
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+}
+
+function validateSecurityAnswer2(element, submission) {
+    var answer_text = element.value;
+
+    if (answer_text.length > 2 && answer_text.length <= 32 && answer_text != formSecurityAnswer) {
+        return doValid(element);
+    } else {
+        if (submission == 1) {
+            return focusError(element);
+        } else {
+            return doError(element);
+        }
+    }
+}
+
+function validateUser(form) {
+    var language     = form["langselect"];
+    var account_name = form["account_name"];
+    var year         = form["year"];
+    var email        = form["email"];
+    var password2    = form["password2"];
+    var password3    = form["password3"];
+    var answer1      = form["sq_answer_1"];
+    var answer2      = form["sq_answer_2"];
+    if (validateLang(language, 2)
+        && validateAcctNm(account_name, 2)
+        && validateBirthDate(year)
+        && validateEmail(email, 1)
+        && passwdValidate(password2, 1)
+        && confirmPass(password3, 1)
+        && validateSecurityAnswer(answer1, 1)
+        && validateSecurityAnswer2(answer2, 1)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+// inline <script> tag on the page
+function validateAcct() {
+    var account_name = document.acctInfo[0];
+    var first_name   = document.acctInfo[1]; 
+    var last_name    = document.acctInfo[2];
+    var email        = document.acctInfo[6];
+    var password2    = document.acctInfo[7];
+    var password3    = document.acctInfo[8];
+
+    if (validateAcctNm(account_name, 2)
+        && validateFirstName(first_name, 1)
+        && validateLastName(last_name, 1)
+        && validateBirthDate()
+        && validateEmail(email, 1)
+        && passwdValidate(password2, 1)
+        && confirmPass(password3, 1)) {
+
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validateSecurity() {
+    var answer1      = document.secrInfo[1];
+    var answer2      = document.secrInfo[3];
+
+    if (validateSecurityAnswer(answer1, 1)
+        && validateSecurityAnswer2(answer2, 1)) {
+
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+
+
+function setCheckbox(element){
+	if($(element).attr('id') == 'agreement_1') {
+		if (element.checked === true) { //fires before click updates dom,so logic is vs PREVIOUS STATE
+			 $('#agreement_1_valid').addClass('feedback_icon_invalid').removeClass('feedback_icon_valid') ;
+			 $('.acctsignup #agreement_1_invalid').css({'display':'block'});
+		} else {
+			 $('#agreement_1_valid').addClass('feedback_icon_valid').removeClass('feedback_icon_invalid') ;
+			 $('.acctsignup #agreement_1_invalid').css({'display':'none'});
+		}
+	}
+}
+
+//confirm not the same questions
+function setSecurityQuestion(element) {
+	var q1 = $("#sq_question_1").val();
+	var q2 = $("#sq_question_2").val();
+	if( (q1 != "0") && (q2 != "0")  ){
+		if(q1 == q2) {
+			doError(element);//($("#sq_question_2")); //testing dupe qs are creating an undefined item!
+		} 
+	}  
+		
+}
+
+function captchaResponse(data) {
+	var element = document.getElementById("recaptcha_response_field"); 
+	if( data.success == "true") { 
+		//alert("success!");
+		doValid( element ); //set to valid
+	} else {
+		Recaptcha.reload();
+		doError(element);
+	}
+}
+
+
+//COMMON UTILS
+function getQueryString() {
+	var queryObj = {};
+	var querystring = location.search.replace( '?', '' ).split( '&' );
+	for ( var i=0; i<querystring.length; i++ ) {
+		var name = querystring[i].split('=')[0];
+		var value = querystring[i].split('=')[1];
+		queryObj[name] = value;
+	}
+	return queryObj;
+}
+
+
+function clearFieldValue(theText) {
+     if (theText.value == theText.defaultValue) {
+         theText.value = ""
+     }
+ }
+ 
+  function isEu() {
+ 	var pageLocation = location.href.split(".")[0];	
+	pageLocation = pageLocation.split("//")[1];
+	if 	(pageLocation == "eu") {
+		return 1;
+	} else {return 0;}
+}
+
+function validateAllToSubmit() {
+	var validationSet = {};
+	var nonElementError = false;
+	var element = document.getElementById("agreement_1"); 
+	var firstError = null;
+	validationSet['agreement_1'] =  element.checked;
+	if(validationSet['agreement_1'] != true) { $('#agreement_1_valid').addClass('feedback_icon_invalid') ; $('.acctsignup #password3_invalid').css({'display':'block'}); firstError = element; }
+	
+	var element = document.getElementById("sq_answer_2"); 
+	validationSet['sq_answer_2'] = validateSecurityAnswer2(element) ;
+	if(validationSet['sq_answer_2'] === false) {firstError = element; }
+	
+	var element = document.getElementById("sq_answer_1"); 
+	validationSet['sq_answer_1'] = validateSecurityAnswer2(element) ;
+	if(validationSet['sq_answer_1'] === false) {firstError = element; }
+	
+	validationSet['sq_question_1'] = false;
+	var element = document.getElementById("sq_question_1"); 
+	var q1 = element.value;
+	if(element.value != '0') {validationSet['sq_question_1'] = true; } else {firstError = element; }
+	
+	validationSet['sq_question_2'] = false;
+	var element = document.getElementById("sq_question_2"); 
+	var q2 = element.value;
+	if(element.value != '0') {validationSet['sq_question_2'] = true; } else {firstError = element; }
+	
+	validationSet['sq_questions_different'] = false;
+	if(q1 == q2){firstError = element; nonElementError = true;}else { validationSet['sq_questions_different'] = true; }
+	
+	var element = document.getElementById("month"); 
+	validationSet['date_of_birth'] = validateBirthDate(element,1); //nonElementError = true;
+	if(validationSet['date_of_birth'] === false) {nonElementError = true; }
+	
+	
+	var element = document.getElementById("email"); 
+	validationSet['email'] = validateEmail(element) ;
+	if(validationSet['email'] === false) {firstError = element; }
+	
+	var element = document.getElementById("password2"); 
+	validationSet['password2'] = passwdValidate(element) ;
+	if(validationSet['password2'] === false) {firstError = element; }
+	
+	var element = document.getElementById("password3"); 
+	validationSet['password3'] = confirmPass(element) ;
+	if(validationSet['password3'] === false) {firstError = element; }
+
+	//check account name, and SUBMIT if valid.
+	var element = document.getElementById("account_name"); 
+	var account_text = element.value;
+  var regExp = /^[a-zA-Z]{1}[a-zA-Z0-9]{4,11}$/;
+  if (account_text.length < 1) {validationSet['account_name'] = false; 
+    firstError = element;
+    doError(element); 
+    displayErrorsComplete(firstError,validationSet)
+  } else if (account_text.search(regExp) == -1) {
+		validationSet['account_name'] = false; 
+    firstError = element;
+    doError(element); 
+    displayErrorsComplete(firstError,validationSet)
+  } else {
+		  var proxyUrl = '/global-signup/includes/php/proxy-service.php';
+	    var requestUrl = currentEnvLinkArrray ['acctNmAvailableRequestUrl'];
+	    showSpinner();
+	    $.ajax({
+				  type: 'POST',
+				  url: proxyUrl, 
+				  data: {'geturl':requestUrl,'account':account_text},
+				  success: function( data ){
+				  	hideSpinner();
+				  	if( ($.trim(data.result)) == "okay" && (firstError == null && nonElementError != true)   ){
+							acquisitionSourceTracking(); //tracking acquisition source - anw
+			  			//$('form#account_creation_form').submit();	
+			  			ajaxSubmit();		  			 
+			  		} else {
+				  			 validateName(element);
+				  			 displayErrorsComplete(firstError,validationSet);
+			  		}
+				  },
+				  dataType: 'json',
+				  error: function(jqXHR, textStatus, errorThrown){ validateName(element); hideSpinner(); validationSet['account_name'] = false; doError(element);  }
+			});	 	 
+  }
+}
+
+function acquisitionSourceTracking(){
+	if(typeof ncs_fme!=="undefined" && ncs_fme.isSetup){
+		$("#extReferrer").val(ncs_fme.referrer);
+		$("#firstEntryUrl").val(ncs_fme.firstEntryUrl);
+	}
+}
+
+function displayErrorsComplete(firstError,validationSet) {
+	if(validationSet['sq_questions_different'] != true) {	$('.duplicate-questions-error, .duplicate-questions-icon').show(); }
+	if(validationSet['sq_question_1'] != true ){$('#duplicate-questions-icon1').show(); }
+	if(validationSet['sq_question_2'] != true ){$('#duplicate-questions-icon2').show(); }
+	//if securty q is on 0 display icon
+	if(firstError != null) {	
+		firstError.focus();
+		firstError = null;
+	}
+}
+
+///utility functions
+// usage: log('inside coolFunc', this, arguments);
+window.log = function(){
+  log.history = log.history || [];   // store logs to an array for reference
+  log.history.push(arguments);
+  if(this.console) {
+      arguments.callee = arguments.callee.caller;
+      console.log( Array.prototype.slice.call(arguments) );
+  }
+};
+
+function ajaxSubmit(){
+		var dataString = '';
+		var urlSuccess = '/'+ mtlangID  +'/freedom/signup/coh-signup-congratulations.php';
+			var urlError = '/'+ mtlangID  +'/freedom/signup/coh-signup-error.php';
+	//load/send all values to form url..
+	var devstring = 'dev:\n';
+	
+	//alert('#blackbox:' + $('#blackbox').val() );
+	//alert('A:' + $('#blackbox').val()) ;
+	//alert('B:' +  escape( $('#blackbox').val() )  ) ;
+	//$('#blackbox').val( escape( $('#blackbox').val() ) );
+	$('#blackbox').val( encodeURIComponent( $('#blackbox').val() ) );
+	
+	$('#account_creation_form *').filter(":input").each(function(){
+			devstring = devstring +  $(this).attr('name') + ' = '+ $(this).val() + '\n';
+			dataString = dataString + '&' + $(this).attr('name') + '='+ escape($(this).val());
+	});
+	dataString = dataString.substring(1, dataString.length);
+	$('.waiting-on-account-creation').css('display','inline-block');
+	
+	$.ajax({
+	  url: currentEnvLinkArrray["accountCreateFormUrl"],
+	  type: 'POST',
+	 // contentType: false,
+	  dataType:'json',
+	  data: dataString,
+	  success: function(response, textStatus, jqXHR){
+	  	$('.waiting-on-account-creation').css('display','none');
+	  	var responseTypeCheck = typeof response;
+			if(responseTypeCheck == 'undefined' ){
+				window.location = urlError;
+			} else {
+				if(responseTypeCheck == 'object' ){
+					if(response != null) {
+						if(typeof response.accountCreationResult != 'undefined') {
+								if(response.accountCreationResult == true){
+									
+									 acquisitionSourceTracking(); //tracking acquisition source - anw
+									//pageview for the submit button - anw
+									if($().ncsEventTracker){
+										$(document).ncsVirtualPageTracker({virtualPageUrl: 'COH Account Creation Submit'});
+									}
+									
+									window.location = urlSuccess;
+								} else {
+									 window.location = urlError;
+								}
+						} else {
+							 window.location = urlError;
+						}
+					}  else {
+						 window.location = urlError;
+					}
+				} else {
+					 window.location = urlError;
+				}
+			}
+	  },
+	  error: function(jqXHR, textStatus, errorThrown){$('.waiting-on-account-creation').css('display','none');   window.location = urlError;	  	}
+	});
+	
+}

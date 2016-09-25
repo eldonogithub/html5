@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <%@ include file="/includes/head.jspf" %>
 <title>Derby Form</title>
