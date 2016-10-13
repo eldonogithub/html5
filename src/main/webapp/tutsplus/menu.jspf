@@ -1,0 +1,17 @@
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<div id="menu_container">
+	<ul id="menu">
+		<li id="menuFacts" class="submenu"><html:link page="/tutsplus/desktop/index.jsp">Desktop</html:link>
+			<ul>
+				<li><html:link page="/tutsplus/desktop/tabs.jsp">Tabs</html:link></li>
+				<li><html:link page="/tutsplus/desktop/accordion.jsp">Accordion</html:link></li>
+				<li><html:link page="/tutsplus/desktop/buttons.jsp">Buttons</html:link></li>
+				<li><html:link page="/tutsplus/desktop/datepicker.jsp">Datepicker</html:link></li>
+				<li><html:link page="/tutsplus/desktop/slider.jsp">Slider</html:link></li>
+			</ul></li>
+		<li id="menuFacts" class="submenu"><html:link page="/tutsplus/mobile/index.jsp">Mobile</html:link>
+			<ul>
+				<li><html:link page="/tutsplus/mobile/collapsible.jsp">Collapsible</html:link></li>
+			</ul></li>
+	</ul>
+</div>

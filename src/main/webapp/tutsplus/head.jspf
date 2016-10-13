@@ -1,0 +1,44 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<%@ taglib uri="http://www.directwebremoting.org/dwr/" prefix="dwr"%>
+
+<c:choose>
+	<c:when test="${mobile }">
+		<link rel="stylesheet"
+			href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script
+			src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	</c:when>
+	<c:when test="${not mobile }">
+		<c:url var="jqueryCssUrl" value="/tutsplus/css/jquery-ui-1.12.1.custom/jquery-ui.css" ></c:url>
+		<link href="${jqueryCssUrl }"
+			rel="stylesheet" media="screen" />
+
+		<!-- jQuery / JavaScript -->
+		<c:url var="jqueryUrl" value="/tutsplus/js/jquery-3.1.1.js"></c:url>
+		<script src="${jqueryUrl }"></script>
+		<c:url var="jqueryUIUrl" value="/tutsplus/js/jquery-ui.js"></c:url>
+		<script src="${jqueryUIUrl }"></script>
+	</c:when>
+	<c:otherwise>
+		<c:url var="jqueryCssUrl" value="/tutsplus/css/jquery-ui-1.12.1.custom/jquery-ui.css" ></c:url>
+		<link href="${jqueryCssUrl }"
+			rel="stylesheet" media="screen" />
+
+		<!-- jQuery / JavaScript -->
+		<c:url var="jqueryUrl" value="/tutsplus/js/jquery-3.1.1.js"></c:url>
+		<script src="${jqueryUrl }"></script>
+		<c:url var="jqueryUIUrl" value="/tutsplus/js/jquery-ui.js"></c:url>
+		<script src="${jqueryUIUrl }"></script>
+	</c:otherwise>
+</c:choose>
+<!-- CSS stylesheets -->
+<c:url var="styleUrl" value="/tutsplus/css/style.css" ></c:url>
+<link href="${styleUrl }" rel="stylesheet" media="screen" />

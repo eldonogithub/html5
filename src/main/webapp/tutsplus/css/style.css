@@ -1,0 +1,304 @@
+/*  Default Styles 
+--------------------------------------------------- */
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #f2f2f2;
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	text-align: left;
+}
+
+#wrapper {
+	width: 965px;
+	margin: 0 auto;
+}
+
+/* Essentially means a[href], or that the link actually goes somewhere */
+a:link {
+	color: blue;
+}
+
+a:visited {
+	color: purple;
+}
+
+a:hover {
+	color: green;
+}
+
+a:active {
+	color: red;
+}
+
+.clear {
+	float: none;
+	clear: both;
+}
+
+/*  Containers 
+--------------------------------------------------- */
+.content_container_1 {
+	width: 800px;
+	margin: 50px 0px 20px 20px;
+}
+
+/*  Tabs  
+--------------------------------------------------- */
+#tabs p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+#tabs-1 .logo_container {
+	float: left;
+	width: 325px;
+	height: 225px;
+	background-color: #aaa;
+	border-color: red;
+	border-spacing: 0px;
+	padding: 8px;
+	margin: 0px 35px 15px 0px;
+}
+
+#tabs-1 .logo {
+	background: #000;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#tabs-1 .tabs_img {
+	
+}
+
+#tabs-2 .logo_container, #tabs-3 .logo_container {
+	float: left;
+	box-sizing: border-box;
+	width: 325px;
+	height: 225px;
+	background-color: #aaa;
+	border-spacing: 0px;
+	padding: 8px;
+	margin: 0px 35px 15px 0px;
+}
+
+#tabs-2 .logo, #tabs-3 .logo {
+	background: #000000;
+	display: table-cell;
+	width: 309px;
+	height: 209px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#tabs-2 .tabs_img {
+	
+}
+/*  Containers 
+--------------------------------------------------- */
+.content_container_2 {
+	width: 800px;
+	margin: 50px 0px 0px 20px;
+}
+
+/*  Accordion  
+--------------------------------------------------- */
+#accordion .content_container_main {
+	width: 750px;
+}
+
+#accordion .content_1 {
+	width: 400px;
+	float: left;
+	font-size: 14px;
+	text-align: center;
+}
+
+#accordion .content_2 {
+	width: 290px;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	margin: 0px 0px 0px 30px;
+}
+
+#accordion img {
+	padding: 8px;
+	background-color: #aaa;
+	margin: 10px 0px 5px 0px;
+}
+
+#accordion h2 {
+	margin: 5px 0px 10px 0px;
+	padding: 0px;
+	font-size: 30px;
+}
+
+#accordion p {
+	margin: 0px 0px 15px 0px;
+	padding: 0px;
+}
+
+#accordion p.left_col_1, #accordion p.left_col_4 {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+
+#accordion p.left_col_2, #accordion p.left_col_3 {
+	float: right;
+	margin: 0px;
+	padding: 0px;
+}
+
+/*  Menu  
+--------------------------------------------------- */
+ul#menu {
+	width: 750px;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	height: 25px;
+	text-align: center;
+	/*   background: url(/images/navigation/nav.jpg) 0 0 no-repeat;
+ */
+}
+
+div#menu_container {
+}
+
+ul#menu li {
+	display: block;
+	float: left;
+	margin: 0px;
+	padding: 0px 1px 0px;
+	font-size: 10pt;
+	line-height: 25px;
+	height: 25px;
+	text-align: center;
+	width: 148px;
+	position: relative;
+	border-bottom: 1px solid black;
+}
+
+ul.menu:after, div#content:after {
+	content: ".";
+	display: block;
+	height: 0px;
+	clear: both;
+	visibility: hidden;
+}
+
+ul#menu li a {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+ul#menu li:hover {
+	padding: 0px;
+	background: #0080c0;
+	border: 1px solid black;
+	border-top: none;
+	border-bottom: none;
+}
+
+ul#menu li:hover a {
+	text-decoration: none;
+	color: #f7f5eb;
+}
+
+ul#menu li a, div#header a, div#footer a {
+	text-decoration: none;
+}
+
+ul#menu li ul {
+	display: none;
+	position: absolute;
+	z-index: 200;
+	
+	left: -1px;
+	top: 25px;
+	margin: 0px;
+	padding: 10px;
+	text-align: left;
+	background: #0080c0;
+	list-style: none;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+ul#menu li:hover ul li {
+	position: static;
+	float: none;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	font-size: 9pt;
+	width: 100%;
+	border: none;
+}
+
+ul#menu li:hover ul li:hover {
+	background: #fff;
+	border: none;
+}
+
+ul#menu li ul li a {
+	float: none;
+	margin: 0px;
+	padding: 0px 10px;
+	display: block;
+	width: 150px;
+}
+
+ul#menu li ul li a:hover {
+	color: #000;
+}
+
+ul#menu li:hover ul {
+	display: block;
+}
+
+ul#menu li#menuFacts ul {
+	left: -1px;
+}
+
+ul#menu li#menuDestinations:hover {
+	height: 26px;
+}
+
+ul#menu li#menuDestinations ul {
+	left: auto;
+	right: -1px;
+	top: 26px;
+}
+
+ul#menu li#menuFacts ul {
+	/*  width: 125px; */
+	
+}
+
+.content_container_3    { 
+    width: 950px; 
+    margin: 50px 0px 20px 20px; 
+}
+
+.content_container_4    { 
+    width: 400px; 
+    margin: 50px 0px 20px 20px; 
+}
+
+.content_container_5    { 
+    width: 875px; 
+    margin: 50px 0px 20px 20px; 
+}
+
+#accordion1 h3 a a div {
+	float: right;
+	margin: 0px;
+}
