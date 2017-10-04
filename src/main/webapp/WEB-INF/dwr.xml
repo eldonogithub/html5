@@ -13,9 +13,9 @@
 			<param name="class" value="ca.blackperl.dwr.bean.AjaxHibernate" />
 		</create>
 
-		<convert match="ca.blackperl.dwr.bean.*" converter="bean"></convert>
-		<convert match="ca.blackperl.dwr.enums.*" converter="enum"></convert>
-		<convert match="ca.blackperl.hibernate.*" converter="bean"></convert>
+		<convert converter="bean" match="ca.blackperl.dwr.bean.*"></convert>
+		<convert converter="enum" match="ca.blackperl.dwr.enums.*"></convert>
+		<convert converter="bean" match="ca.blackperl.hibernate.*"></convert>
 
 		<create creator="struts" javascript="FormBean">
 			<param name="formBean" value="personForm" />

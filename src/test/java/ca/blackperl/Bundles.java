@@ -1,10 +1,12 @@
 package ca.blackperl;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -21,7 +23,6 @@ public class Bundles {
 		private Term term;
 		private boolean bundled;
 		private double fee;
-
 
 		public Service(LocalDate start, LocalDate end, Term term, int bundled, double fee) {
 			this.start = start;
@@ -150,6 +151,27 @@ public class Bundles {
 			allservices.add(bundle);
 			log.info(bundle);
 		}
+		{
+			int a = 5;
+			int b = 7;
+			int c = b - a;
+			int d = c % 3;
+			int e = b + ( 3 - d);
+			log.info("a=" + a);
+			log.info("b=" + b);
+			log.info("c=" + c);
+			log.info("d=" + d);
+			log.info("e=" + e);
+		}
+		LocalDate now1 = LocalDate.now();
+		log.info("now1=" + now1);
+		LocalDate next = now1.plusMonths(26);
+		log.info("next=" + next);
+		Period diff = Period.between(now, next);
+		int months = diff.getMonths() % 3;
+		log.info("months=" + months);
+		LocalDate plusMonths = next.plusMonths(3 - months);
+		log.info("plusMonths=" + plusMonths);
 
 		allservices.sort(serviceStartComparator);
 
@@ -163,10 +185,12 @@ public class Bundles {
 		allservices.sort(serviceEndComparator);
 		log.info("Latest End Date: " + allservices.get(0).getEnd());
 
-		List<Service> filtered = allservices.stream().filter((b) -> now.compareTo(b.getStart()) >= 0)
+		Stream<Service> stream = allservices.stream();
+		List<Service> filtered = stream.filter((b) -> now.compareTo(b.getStart()) >= 0)
 				.filter((b) -> now.compareTo(b.getEnd()) < 0).collect(Collectors.toList());
-		List<Service> bundled =  allservices.stream().filter((b) -> now.compareTo(b.getStart()) >= 0)
+		List<Service> bundled = stream.filter((b) -> now.compareTo(b.getStart()) >= 0)
 				.filter((b) -> now.compareTo(b.getEnd()) < 0).filter((b) -> b.isBundled()).collect(Collectors.toList());
+
 		filtered.sort(serviceStartComparator);
 		LocalDate start = filtered.get(0).getStart();
 		filtered.sort(serviceEndComparator);
@@ -183,10 +207,10 @@ public class Bundles {
 			log.info("CurrentDate: " + currentDate);
 			currentDate = currentDate.plusMonths(1);
 			for (Service service : bundled) {
-				
+
 			}
 			for (Service service : filtered) {
-				
+
 			}
 		}
 	}

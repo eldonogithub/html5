@@ -33,18 +33,6 @@ $(function() {
 	$("#flip-checkbox-1").flipswitch({
 		corners : false,
 		mini : true,
-		collapse : function(event, ui) {
-			console.log("collapse");
-		},
-		expand : function(event, ui) {
-			console.log("expand");
-		}
-	}).on('vmousedown', function(e) {
-		console.log("vmousedown");
-	}).on('change', function(e) {
-		console.log("changed");
-		e.stopPropagation();
-		e.preventDefault();
-		return false;
-	});
+	}).off('click');
+	
 });

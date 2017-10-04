@@ -36,7 +36,7 @@ public class JndiAction extends Action {
 		List<NameClassPair> jndi = new ArrayList<NameClassPair>();
 
 		while (list.hasMoreElements()) {
-			NameClassPair nameClassPair = (NameClassPair) list.nextElement();
+			NameClassPair nameClassPair = list.nextElement();
 			jndi.add(nameClassPair);
 			log.debug(
 					nameClassPair.getName() + " = " + nameClassPair.getClassName() + " " + nameClassPair.isRelative());

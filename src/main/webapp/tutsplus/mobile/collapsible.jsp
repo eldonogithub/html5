@@ -33,8 +33,9 @@
 
 				<!-- Begin Panel #1 -->
 				<h3>
-					<a href="#section1">Accordion<input type="checkbox"
-						data-role="flipswitch" name="flip-checkbox-1" id="flip-checkbox-1"></a>
+					<a href="#section1">Accordion</a>
+					<input type="checkbox" data-role="flipswitch"
+						name="flip-checkbox-1" id="flip-checkbox-1">
 				</h3>
 				<div>
 

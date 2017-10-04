@@ -1,6 +1,5 @@
 package ca.blackperl.struts.actions.hibernate;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import ca.blackperl.hibernate.Event;

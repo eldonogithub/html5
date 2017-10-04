@@ -17,7 +17,6 @@
 <body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">
-
 		<%@ include file="menu.jspf"%>
 	</div>
 </body>
