@@ -17,7 +17,9 @@ public class Precedence {
 			}
 			System.out.println();
 		}
+		
 		int i = 0;
+		
 		for( ; ; ) {
 			if ( i > 5 ) {
 				break;
@@ -31,4 +33,3 @@ public class Precedence {
 		}
 	}
 }
-
